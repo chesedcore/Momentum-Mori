@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bj7kad1rgpufv"]
 
+[ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
+
 [node name="Field" type="Control" unique_id=112534353]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Stadium" parent="." unique_id=1739205512 instance=ExtResource("1_xq1i4")]
