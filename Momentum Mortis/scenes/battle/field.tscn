@@ -2,6 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
 
+[sub_resource type="Environment" id="Environment_qvk82"]
+background_mode = 3
+background_canvas_max_layer = 1000
+glow_enabled = true
+
 [node name="Field" type="Control" unique_id=112534353]
 layout_mode = 3
 anchors_preset = 15
@@ -11,3 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Stadium" parent="." unique_id=1739205512 instance=ExtResource("1_xq1i4")]
+modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=521854921]
+environment = SubResource("Environment_qvk82")

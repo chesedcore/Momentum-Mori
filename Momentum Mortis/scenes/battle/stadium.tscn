@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://cwnwoawk8x6pl"]
 
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="1_vqgvn"]
+[ext_resource type="PackedScene" uid="uid://cdfy7bn17qm0m" path="res://scenes/blade/player.tscn" id="2_mqc3m"]
 
 [node name="Stadium" type="Node2D" unique_id=1739205512]
+metadata/_edit_lock_ = true
 
 [node name="Circle" type="Node2D" parent="." unique_id=381567262]
 script = ExtResource("1_vqgvn")
 thickness = 7.0
 radius = 1200.0
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+metadata/_edit_lock_ = true
+
+[node name="Blade" parent="Circle" unique_id=221661367 instance=ExtResource("2_mqc3m")]
+position = Vector2(497, 294)
