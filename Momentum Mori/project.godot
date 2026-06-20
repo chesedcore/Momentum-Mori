@@ -26,7 +26,8 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://scenes/": "green",
-"res://scripts/": "red"
+"res://scripts/": "red",
+"res://shaderslop/": "yellow"
 }
 
 [physics]
