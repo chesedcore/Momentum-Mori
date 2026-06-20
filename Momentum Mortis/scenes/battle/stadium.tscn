@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cwnwoawk8x6pl"]
+
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="1_vqgvn"]
+
+[node name="Stadium" type="Node2D" unique_id=1739205512]
+
+[node name="Circle" type="Node2D" parent="." unique_id=381567262]
+script = ExtResource("1_vqgvn")
+thickness = 7.0
+radius = 1200.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
