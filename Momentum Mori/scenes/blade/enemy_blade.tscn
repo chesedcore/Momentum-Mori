@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://4nrvpdvd6f5v"]
+
+[ext_resource type="Script" uid="uid://dl0fuorqe3pmi" path="res://scripts/blade/enemy_blade.gd" id="1_o44cv"]
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_hyu5x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
+
+[node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367]
+script = ExtResource("1_o44cv")
+
+[node name="Visual" type="Node2D" parent="." unique_id=2145432538]
+
+[node name="Circle" type="Node2D" parent="Visual" unique_id=1357358368]
+modulate = Color(1, 0.16470589, 0.078431375, 1)
+script = ExtResource("2_hyu5x")
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
+shape = SubResource("CircleShape2D_qvk82")

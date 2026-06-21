@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
 [ext_resource type="PackedScene" uid="uid://cdfy7bn17qm0m" path="res://scenes/blade/player.tscn" id="2_3ghxc"]
+[ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="3_gn85x"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
 background_mode = 3
@@ -22,6 +23,15 @@ modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 
 [node name="Blade" parent="Stadium" unique_id=221661367 instance=ExtResource("2_3ghxc")]
 motion_mode = 1
+
+[node name="Enemies" type="Node2D" parent="Stadium" unique_id=235092122]
+
+[node name="EnemyBlade" parent="Stadium/Enemies" unique_id=1662256060 node_paths=PackedStringArray("target") instance=ExtResource("3_gn85x")]
+position = Vector2(130, 374)
+chasing_speed = 700.0
+target = NodePath("../../Blade")
+attack_dist = 400.0
+attack_speed = 1400.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=521854921]
 environment = SubResource("Environment_qvk82")
