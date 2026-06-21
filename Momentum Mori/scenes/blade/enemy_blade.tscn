@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_hyu5x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
+radius = 26.019224
 
 [node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_o44cv")
 
 [node name="Visual" type="Node2D" parent="." unique_id=2145432538]

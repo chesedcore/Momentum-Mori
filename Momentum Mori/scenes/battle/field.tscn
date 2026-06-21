@@ -38,3 +38,5 @@ environment = SubResource("Environment_qvk82")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=665820437]
 zoom = Vector2(0.3, 0.3)
+
+[connection signal="blade_collision" from="Stadium/Blade" to="Stadium" method="_on_blade_blade_collision"]

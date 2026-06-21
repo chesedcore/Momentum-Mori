@@ -7,7 +7,7 @@ class_name EnemyBlade extends Blade
 @export var turn_speed := 5.0
 @export var target: Node2D
 
-var minimum_distance_to_target: float = 300
+var minimum_distance_to_target: float = 150
 
 
 
@@ -31,6 +31,12 @@ var escape_time := 0.0
 
 
 func _physics_process(delta: float) -> void{
+	if recoil_time > 0.0 {
+		recoil_time -= delta
+		velocity = recoil_velocity
+		move_and_slide()
+		return
+	}
 	if target{
 		var dir :Vector2
 		if current_state == STATES.CHASING{

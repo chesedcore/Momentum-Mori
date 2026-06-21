@@ -1,5 +1,8 @@
 class_name Player extends Blade
 
+#signal to the stadium
+signal blade_collision
+
 ##how fast the blade spins around the orbit center (radians/sec^2)
 @export var spin_speed: float = 4.0
 ##radius of the orbit circle around the orbit center
@@ -16,6 +19,14 @@ func _ready() -> void {
 }
 
 func _physics_process(delta: float) -> void {
+	
+	if recoil_time > 0.0 {
+		recoil_time -= delta
+		velocity = recoil_velocity
+		
+	}
+	else{
+	
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	
 	var to_mouse := mouse_pos - _orbit_center
@@ -35,5 +46,12 @@ func _physics_process(delta: float) -> void {
 	var target_pos := _orbit_center + Vector2.from_angle(_angle) * orbit_radius
 	
 	velocity = (target_pos - global_position) / delta
+	}
 	move_and_slide()
+	for i in get_slide_collision_count(){
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is EnemyBlade:
+			blade_collision.emit(self,collision)
+}
 }
