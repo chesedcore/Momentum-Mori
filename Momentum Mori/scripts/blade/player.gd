@@ -4,11 +4,6 @@ class_name Player extends Blade
 signal blade_collision
 
 @export var hp_text :Label
-
-
-
-
-
 ##how fast the blade spins around the orbit center (radians/sec^2)
 @export var spin_speed: float = 4.0
 ##radius of the orbit circle around the orbit center
@@ -49,7 +44,6 @@ func _physics_process(delta: float) -> void {
 	}
 
 	var mouse_pos: Vector2 = get_global_mouse_position()
-
 	var to_mouse := mouse_pos - _orbit_center
 	var dist := to_mouse.length()
 
@@ -74,14 +68,16 @@ func _physics_process(delta: float) -> void {
 		var collider = collision.get_collider()
 		if collider is Blade:
 			blade_collision.emit(self,collision)
+	}
 }
-}
-func take_damage(dmg : float )->void{
+
+func take_damage(dmg : float ) -> void{
 	super.take_damage(dmg)
 	hp_text.text = str(hp)
 }
 
 #temp death logic
-func die()->void:
+func die() -> void {
 	print("you got out gayed")
 	visible = false
+}
