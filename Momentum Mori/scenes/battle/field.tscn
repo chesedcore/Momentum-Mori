@@ -21,10 +21,6 @@ grow_vertical = 2
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 
 [node name="Blade" parent="Stadium" unique_id=221661367 instance=ExtResource("2_3ghxc")]
-orbit_radius = 10.0
-move_acceleration = 7000.0
-mouse_bias_strength = 4000.0
-angular_acceleration = 50.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=521854921]
 environment = SubResource("Environment_qvk82")
