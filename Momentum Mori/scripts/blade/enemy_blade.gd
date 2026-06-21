@@ -22,7 +22,7 @@ var remaining_attack_duration :float = attack_duration
 @export var attack_speed : float = 1300
 const attack_cooldown : float = 2
 var remaining_attack_cooldown := attack_cooldown
-var players_last_loc : Vector2 
+var players_last_loc : Vector2
 
 var escape_dir := Vector2.ZERO
 var escape_time := 0.0
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void{
 	}
 	if target{
 		var dir :Vector2
-		
+
 		if current_state == STATES.CHASING{
 			update_chasing_state(delta)
 			var to_player = global_position.direction_to(target.global_position)
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void{
 			change_to_attack(to_player)
 			}
 			else{
-				var dist =global_position.distance_to(target.global_position) 
+				var dist =global_position.distance_to(target.global_position)
 				if dist <= minimum_distance_to_target{
 					escape_dir = -to_player
 					escape_time = escape_duration
@@ -60,11 +60,11 @@ func _physics_process(delta: float) -> void{
 					escape_time -= delta
 					dir = escape_dir
 				}
-				
+
 				else{
 					dir = to_player
 					}
-					
+
 				}
 			}
 		elif current_state == STATES.ATTACKING{
@@ -73,11 +73,11 @@ func _physics_process(delta: float) -> void{
 		}
 		var target_angle = dir.angle()
 		rotation = lerp_angle(rotation,target_angle,turn_speed*delta)
-		
+
 		velocity = Vector2.RIGHT.rotated(rotation)* speed
 		move_and_slide()
-		
-		
+
+
 		}
 }
 

@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dl0fuorqe3pmi" path="res://scripts/blade/enemy_blade.gd" id="1_o44cv"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_hyu5x"]
+[ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_rnmqm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 26.019224
 
-[node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367]
+[node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("blade_animator")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_o44cv")
+blade_animator = NodePath("BladeAnimator")
 
 [node name="Visual" type="Node2D" parent="." unique_id=2145432538]
 
@@ -20,3 +22,8 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
 shape = SubResource("CircleShape2D_qvk82")
+
+[node name="BladeAnimator" type="Node" parent="." unique_id=1767305891 node_paths=PackedStringArray("blade_visual_node")]
+script = ExtResource("3_rnmqm")
+blade_visual_node = NodePath("../Visual")
+metadata/_custom_type_script = "uid://c8e4wb3ndpout"
