@@ -29,15 +29,15 @@ func _physics_process(delta: float) -> void {
 		recoil_time -= delta
 		velocity = recoil_velocity
 		move_and_slide()
-		
+
 		_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
 		_orbit_center += _orbit_velocity * delta
-		
+
 		if recoil_time <= 0.0 {
 			# resync so orbit resumes from current position, no snap
 			_orbit_center = global_position - Vector2.from_angle(_angle) * orbit_radius
 		}
-		
+
 		for i in get_slide_collision_count() {
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
@@ -47,27 +47,27 @@ func _physics_process(delta: float) -> void {
 		}
 		return
 	}
-	
+
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	
+
 	var to_mouse := mouse_pos - _orbit_center
 	var dist := to_mouse.length()
-	
+
 	if dist > 2.0:
 		var force := to_mouse.normalized() * pow(dist, 1.5) * 2.0
 		_orbit_velocity += force * delta
-	
+
 	_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
 	_orbit_velocity = _orbit_velocity.limit_length(max_follow_speed)
 	_orbit_center += _orbit_velocity * delta
-	
+
 	_angle = (global_position - _orbit_center).angle()
 	_angle += spin_speed * delta
-	
+
 	var target_pos := _orbit_center + Vector2.from_angle(_angle) * orbit_radius
-	
+
 	velocity = (target_pos - global_position) / delta
-	
+
 	move_and_slide()
 	for i in get_slide_collision_count(){
 		var collision = get_slide_collision(i)

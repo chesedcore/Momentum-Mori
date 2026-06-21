@@ -15,7 +15,7 @@ var recoil_velocity: Vector2 = Vector2.ZERO
 func apply_recoil(dir: Vector2, force: float, duration: float) -> void {
 	recoil_velocity = dir.normalized() * force
 	recoil_time = duration
-} 
+}
 
 
 
