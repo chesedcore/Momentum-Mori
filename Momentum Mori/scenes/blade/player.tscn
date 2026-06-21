@@ -13,7 +13,7 @@ script = ExtResource("1_2ibuj")
 [node name="Visual" type="Node2D" parent="." unique_id=2145432538]
 
 [node name="Circle" type="Node2D" parent="Visual" unique_id=1357358368]
-modulate = Color(1, 0.16470589, 0.078431375, 1)
+modulate = Color(0, 0.5630204, 0.9580292, 1)
 script = ExtResource("2_m31ts")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 

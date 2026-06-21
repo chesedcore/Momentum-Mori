@@ -5,8 +5,11 @@ extends Node2D
 @export var loser_knockback_multiplier: float = 2.5
 @export var recoil_duration: float = 0.5
 
+@export var loser_dmg_multiplier : float = 1.5
+
+
 func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -> void{
-	var enemy : EnemyBlade = collision.get_collider()
+	var enemy : Blade = collision.get_collider()
 	print("Collision between "+player.name + " and " + enemy.name)
 	var normal :=collision.get_normal() 
 	var player_impact = -player.velocity.dot(normal)
@@ -14,16 +17,20 @@ func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -
 	if player_impact > 0 and enemy_impact < 0 {
 		print("Both took damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
+		player.take_damage(enemy.base_dmg)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
+		enemy.take_damage(player.base_dmg)
 	}
 	elif player_impact > enemy_impact {
 		print("Enemy took damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
 		enemy.apply_recoil(-normal, base_knockback * loser_knockback_multiplier, recoil_duration)
+		enemy.take_damage(player.base_dmg * loser_dmg_multiplier)
 	}
 	else {
 		print("Player took damage")
 		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
+		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
 	

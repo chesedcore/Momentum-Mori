@@ -3,7 +3,7 @@ class_name EnemyBlade extends Blade
 
 
 
-@export var chasing_speed: float = 200
+@export var chasing_speed: float = 700
 @export var turn_speed := 5.0
 @export var target: Node2D
 
@@ -16,10 +16,10 @@ var current_state :STATES = STATES.CHASING
 
 var speed := chasing_speed
 
-@export var attack_dist : float = 100
+@export var attack_dist : float = 300
 const attack_duration: float = 1
 var remaining_attack_duration :float = attack_duration
-@export var attack_speed : float = 400
+@export var attack_speed : float = 1300
 const attack_cooldown : float = 2
 var remaining_attack_cooldown := attack_cooldown
 var players_last_loc : Vector2 
@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void{
 	}
 	if target{
 		var dir :Vector2
+		
 		if current_state == STATES.CHASING{
 			update_chasing_state(delta)
 			var to_player = global_position.direction_to(target.global_position)
