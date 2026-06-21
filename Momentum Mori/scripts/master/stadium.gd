@@ -6,9 +6,21 @@ extends Node2D
 @export var recoil_duration: float = 0.5
 
 @export var loser_dmg_multiplier : float = 1.5
+@export var camera: Camera2D
+
+@onready var _starting_camera_zoom: Vector2 = camera.zoom
 
 
 func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -> void{
+	# Camera shake on impact
+	camera.offset = Vector2(randf_range(-200.0, 200.0), randf_range(-200.0, 200.0))
+	var z_val := randf_range(0.26, 0.3)
+	camera.zoom = Vector2(z_val, z_val)
+
+	create_tween().tween_property(camera, "offset", Vector2.ZERO, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	create_tween().tween_property(camera, "zoom", _starting_camera_zoom, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	# we done shakin
+
 	var enemy : Blade = collision.get_collider()
 	print("Collision between "+player.name + " and " + enemy.name)
 	var normal :=collision.get_normal()

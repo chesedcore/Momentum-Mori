@@ -33,12 +33,16 @@ func shake_update(delta: float) -> void {
 	shake_time -= delta * 4.0
 	var shake_val: float = (sin(freq * _time) * amp) * shake_multiplier * clampf(shake_time, 0.0, 2.0)
 
+	# Offset position using sin value.
 	blade_visual_node.position.x = shake_val * randf_range(0.25, 1.0)
 	blade_visual_node.position.y = shake_val * randf_range(0.25, 1.0)
+
+	# randomly scale to make impacts more crazy looking. using sin value.
 	if shake_time <= 0.0 {
 		blade_visual_node.scale.x = lerpf(blade_visual_node.scale.x, 1.0, 2 * delta)
 		blade_visual_node.scale.y = lerpf(blade_visual_node.scale.y, 1.0, 2 * delta)
 	} else {
+		# Holy magic numbers batman.
 		blade_visual_node.scale.x = lerpf(blade_visual_node.scale.x, clampf(shake_val * 0.5, 1.0, 2.0), 25 * delta)
 		blade_visual_node.scale.y = lerpf(blade_visual_node.scale.y, clampf(shake_val * 0.25, 1.0, 2.0), 25 * delta)
 	}
