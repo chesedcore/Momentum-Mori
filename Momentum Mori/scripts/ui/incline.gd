@@ -19,12 +19,15 @@ func _update_incline() -> void {
 	var mat := material as ShaderMaterial
 	if not mat: return
 	
-	var tilt_strength := 50.0
+	var velocity_mag_normalised := clampf(blade.velocity.length()/1200, 0.0, 1.0)
+	var velocity_strength := 2
+	var vel_tilt := velocity_mag_normalised * velocity_strength
 	
-	var angle_vec := Vector2.from_angle(blade.angle)
+	var tilt_strength := -30.0 * vel_tilt
+	var angle_vec := Vector2.from_angle(blade.angle).normalized()
 	
-	mat.set_shader_parameter(&"x_rot", sin(angle_vec.x) * tilt_strength)
-	mat.set_shader_parameter(&"y_rot", -cos(angle_vec.y) * tilt_strength)
+	mat.set_shader_parameter(&"x_rot", angle_vec.x * tilt_strength)
+	mat.set_shader_parameter(&"y_rot", angle_vec.y * tilt_strength)
 }
 
 func _process(_delta: float) -> void {
