@@ -25,10 +25,15 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
+"res://assets/": "orange",
 "res://scenes/": "green",
 "res://scripts/": "red",
 "res://shaderslop/": "yellow"
 }
+
+[gui]
+
+theme/custom_font="uid://briwqsopf7a0h"
 
 [input]
 
