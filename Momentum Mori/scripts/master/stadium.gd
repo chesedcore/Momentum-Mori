@@ -1,19 +1,18 @@
-extends Node2D
+class_name Stadium extends Node2D
 
+@export var player: Player
+@export var enemies: Node2D
 
 @export var base_knockback: float = 300.0
 @export var loser_knockback_multiplier: float = 2.5
 @export var recoil_duration: float = 0.5
 
 @export var loser_dmg_multiplier : float = 1.5
-@export var camera: Camera2D
-
-@onready var _starting_camera_zoom: Vector2 = camera.zoom
 
 var collision_cooldown: float = 0.0
 const COLLISION_COOLDOWN_DURATION: float = 0.1
 
-func _on_blade_blade_collision(player: Player, collision: KinematicCollision2D, player_velocity: Vector2) -> void {
+func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D, player_velocity: Vector2) -> void {
 	if collision_cooldown > 0.0 {
 		return
 	}
@@ -53,29 +52,30 @@ func _on_blade_blade_collision(player: Player, collision: KinematicCollision2D, 
 		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
-
-	#collision_anim(collision.get_position())
 }
 
 func _process(delta: float) -> void{
-	
 	if collision_cooldown > 0.0 {
 		collision_cooldown -= delta
 	}
-
-	
-	
 }
 
-func apply_camera_shake() -> void {
-	# Camera shake on impact
-	camera.offset = Vector2(randf_range(-200.0, 200.0), randf_range(-200.0, 200.0))
-	var z_val := randf_range(0.26, 0.3)
-	camera.zoom = Vector2(z_val, z_val)
-
-	create_tween().tween_property(camera, "offset", Vector2.ZERO, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-	create_tween().tween_property(camera, "zoom", _starting_camera_zoom, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+func iter_blades() -> Array[Blade] {
+	var arr: Array[Blade]
+	arr.assign(enemies.get_children())
+	arr.append(player)
+	return arr
 }
+
+#func apply_camera_shake() -> void {
+	## Camera shake on impact
+	#camera.offset = Vector2(randf_range(-200.0, 200.0), randf_range(-200.0, 200.0))
+	#var z_val := randf_range(0.26, 0.3)
+	#camera.zoom = Vector2(z_val, z_val)
+#
+	#create_tween().tween_property(camera, "offset", Vector2.ZERO, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	#create_tween().tween_property(camera, "zoom", _starting_camera_zoom, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+#}
 
 
 #
