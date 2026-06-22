@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dv2dfovpfp3gn" path="res://scripts/blade/player.gd" id="1_2ibuj"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_m31ts"]
+[ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_phrk6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
-radius = 24.0
+radius = 64.0
 
-[node name="Blade" type="CharacterBody2D" unique_id=221661367]
+[node name="Blade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("blade_animator")]
 collision_mask = 6
 script = ExtResource("1_2ibuj")
+orbit_radius = 80.0
+blade_animator = NodePath("BladeAnimator")
 
 [node name="Visual" type="Node2D" parent="." unique_id=2145432538]
 
@@ -20,5 +23,6 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
 shape = SubResource("CircleShape2D_qvk82")
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1959623036]
-target_position = Vector2(50, 0)
+[node name="BladeAnimator" type="Node" parent="." unique_id=2026629979 node_paths=PackedStringArray("blade_visual_node")]
+script = ExtResource("3_phrk6")
+blade_visual_node = NodePath("../Visual")

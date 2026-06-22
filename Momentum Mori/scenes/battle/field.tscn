@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
 [ext_resource type="PackedScene" uid="uid://cdfy7bn17qm0m" path="res://scenes/blade/player.tscn" id="2_3ghxc"]
-[ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="3_gn85x"]
 [ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="4_wud16"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
@@ -19,8 +18,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Stadium" parent="." unique_id=1739205512 instance=ExtResource("1_xq1i4")]
+[node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("camera") instance=ExtResource("1_xq1i4")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+base_knockback = 800.0
+recoil_duration = 0.25
+camera = NodePath("../GameCamera")
 
 [node name="Blade" parent="Stadium" unique_id=221661367 node_paths=PackedStringArray("hp_text") instance=ExtResource("2_3ghxc")]
 motion_mode = 1
@@ -28,18 +30,13 @@ hp_text = NodePath("../../CanvasLayer/Label")
 
 [node name="Enemies" type="Node2D" parent="Stadium" unique_id=235092122]
 
-[node name="SwordBoss" parent="Stadium/Enemies" unique_id=301750656 node_paths=PackedStringArray("target") instance=ExtResource("3_gn85x")]
-position = Vector2(-299, -214)
-target = NodePath("../../Blade")
-
-[node name="EnemyBlade" parent="Stadium/Enemies" unique_id=711309549 node_paths=PackedStringArray("target") instance=ExtResource("4_wud16")]
-position = Vector2(-854, 212)
+[node name="EnemyBlade" parent="Stadium/Enemies" unique_id=518324307 node_paths=PackedStringArray("target") instance=ExtResource("4_wud16")]
 target = NodePath("../../Blade")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=521854921]
 environment = SubResource("Environment_qvk82")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=665820437]
+[node name="GameCamera" type="Camera2D" parent="." unique_id=665820437]
 zoom = Vector2(0.3, 0.3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1726621473]
