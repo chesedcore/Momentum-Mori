@@ -19,32 +19,32 @@ func _ready() -> void {
 }
 
 func _physics_process(delta: float) -> void {
-	
+
 	if recoil_time > 0.0 {
 		recoil_time -= delta
 		velocity = recoil_velocity
-		
+
 	}
 	else{
-	
+
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	
+
 	var to_mouse := mouse_pos - _orbit_center
 	var dist := to_mouse.length()
-	
+
 	if dist > 2.0:
 		var force := to_mouse.normalized() * pow(dist, 1.5) * 2.0
 		_orbit_velocity += force * delta
-	
+
 	_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
 	_orbit_velocity = _orbit_velocity.limit_length(max_follow_speed)
 	_orbit_center += _orbit_velocity * delta
-	
+
 	_angle = (global_position - _orbit_center).angle()
 	_angle += spin_speed * delta
-	
+
 	var target_pos := _orbit_center + Vector2.from_angle(_angle) * orbit_radius
-	
+
 	velocity = (target_pos - global_position) / delta
 	}
 	move_and_slide()

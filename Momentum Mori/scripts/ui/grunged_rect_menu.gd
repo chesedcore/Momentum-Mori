@@ -1,4 +1,4 @@
-class_name MenuRect extends ColorRect
+class_name MenuRect extends Control
 
 @export var menu_element_cascade: CascadeV3
 @export var trigger_rect: ColorRect

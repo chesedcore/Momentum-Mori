@@ -8,7 +8,7 @@ extends Node2D
 func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -> void{
 	var enemy : EnemyBlade = collision.get_collider()
 	print("Collision between "+player.name + " and " + enemy.name)
-	var normal :=collision.get_normal() 
+	var normal :=collision.get_normal()
 	var player_impact = -player.velocity.dot(normal)
 	var enemy_impact = enemy.velocity.dot(normal)
 	if player_impact > 0 and enemy_impact < 0 {
@@ -26,7 +26,7 @@ func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -
 		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
-	
+
 	#collision_anim(collision.get_position())
 }
 
@@ -34,7 +34,7 @@ func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -
 
 #
 #@export var camera: Camera2D
-#@export var base_zoom := Vector2(.3, .3)  
+#@export var base_zoom := Vector2(.3, .3)
 #@export var base_camera_location := Vector2.ZERO
 #var collision_tween: Tween
 #const collision_time :float= 1
