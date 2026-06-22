@@ -13,6 +13,10 @@ const attack_cooldown : float = 2
 @export var attack_dist : float = 300
 
 var minimum_distance_to_target: float = 150
+
+
+
+enum STATES {CHASING,ATTACKING,FIRING}
 var current_state :STATES = STATES.CHASING
 var speed := chasing_speed
 var remaining_attack_duration :float = attack_duration
