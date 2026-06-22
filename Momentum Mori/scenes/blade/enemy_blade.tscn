@@ -1,29 +1,64 @@
 [gd_scene format=3 uid="uid://4nrvpdvd6f5v"]
 
 [ext_resource type="Script" uid="uid://dl0fuorqe3pmi" path="res://scripts/blade/enemy_blade.gd" id="1_o44cv"]
+[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://scenes/blade/wobbly_fuck.gdshader" id="2_306to"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_hyu5x"]
+[ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_muedi"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_rnmqm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfnqb"]
+resource_local_to_scene = true
+shader = ExtResource("2_306to")
+shader_parameter/fov = 137.7010064932975
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 26.019224
 
-[node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("blade_animator")]
+[node name="EnemyBlade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_o44cv")
+incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 
-[node name="Visual" type="Node2D" parent="." unique_id=2145432538]
+[node name="Incline" type="SubViewportContainer" parent="." unique_id=39415993 node_paths=PackedStringArray("target_center_dock")]
+material = SubResource("ShaderMaterial_kfnqb")
+custom_minimum_size = Vector2(150, 150)
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+stretch = true
+script = ExtResource("3_muedi")
+target_size = Vector2(150, 150)
+target_center_dock = NodePath("Visual/Visual")
 
-[node name="Circle" type="Node2D" parent="Visual" unique_id=1357358368]
-modulate = Color(1, 0.16470589, 0.078431375, 1)
+[node name="Visual" type="SubViewport" parent="Incline" unique_id=12126289]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+size = Vector2i(150, 150)
+render_target_update_mode = 4
+
+[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=1856516811]
+position = Vector2(75, 75)
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=340466369]
+modulate = Color(2.3609557, 0.12614174, 0.16910705, 1)
 script = ExtResource("2_hyu5x")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
 shape = SubResource("CircleShape2D_qvk82")
 
 [node name="BladeAnimator" type="Node" parent="." unique_id=1767305891 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("3_rnmqm")
-blade_visual_node = NodePath("../Visual")
+blade_visual_node = NodePath("../Incline/Visual/Visual/Circle")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"

@@ -1,8 +1,10 @@
-class_name GameCamera extends Camera2D
+@tool
+class_name GameCamera extends PhantomCamera2D
 
 var stadium: Stadium
 
-func _process(_delta: float) -> void {
+func _process(delta: float) -> void {
+	super(delta)
 	_update_camera()
 }
 

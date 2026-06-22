@@ -3,6 +3,8 @@ class_name EnemyBlade extends Blade
 const attack_duration: float = 1
 const attack_cooldown : float = 2
 
+@export var incline: Incline
+
 @export var chasing_speed: float = 700
 @export var turn_speed := 5.0
 @export var target: Node2D
@@ -24,6 +26,9 @@ var players_last_loc : Vector2
 var escape_dir := Vector2.ZERO
 var escape_time := 0.0
 
+func _ready() -> void {
+	incline.blade = self
+}
 
 func _physics_process(delta: float) -> void {
 	if recoil_time > 0.0 {
