@@ -1,0 +1,33 @@
+@tool
+class_name Incline extends SubViewportContainer
+
+@export var target_size := Vector2(100, 100)
+@export var target_center_dock: Node2D
+@export_tool_button("update size") var upd := _update_size
+
+var blade: Blade
+
+func _update_size() -> void {
+	if not target_center_dock: return
+	self.custom_minimum_size = target_size
+	self.size = target_size
+	self.position = -1 * target_size/2
+	target_center_dock.position = target_size / 2
+}
+
+func _update_incline() -> void {
+	var mat := material as ShaderMaterial
+	if not mat: return
+	
+	var tilt_strength := 50.0
+	
+	var angle_vec := Vector2.from_angle(blade.angle)
+	
+	mat.set_shader_parameter(&"x_rot", sin(angle_vec.x) * tilt_strength)
+	mat.set_shader_parameter(&"y_rot", -cos(angle_vec.y) * tilt_strength)
+}
+
+func _process(_delta: float) -> void {
+	if Engine.is_editor_hint(): return
+	_update_incline()
+}

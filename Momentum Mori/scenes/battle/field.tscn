@@ -24,9 +24,8 @@ base_knockback = 800.0
 recoil_duration = 0.25
 camera = NodePath("../GameCamera")
 
-[node name="Blade" parent="Stadium" unique_id=221661367 node_paths=PackedStringArray("hp_text") instance=ExtResource("2_3ghxc")]
+[node name="Blade" parent="Stadium" unique_id=221661367 instance=ExtResource("2_3ghxc")]
 motion_mode = 1
-hp_text = NodePath("../../CanvasLayer/Label")
 
 [node name="Enemies" type="Node2D" parent="Stadium" unique_id=235092122]
 

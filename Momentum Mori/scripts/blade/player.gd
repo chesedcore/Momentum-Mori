@@ -3,20 +3,20 @@ class_name Player extends Blade
 #signal to the stadium
 signal blade_collision
 
-@export var hp_text :Label
 ##how fast the blade spins around the orbit center (radians/sec^2)
 @export var spin_speed: float = 4.0
 ##radius of the orbit circle around the orbit center
 @export var orbit_radius: float = 60.0
 @export var max_follow_speed: float = 5000.0
 @export var frictional_damp_delta_inverse: float = 0.92
+@export var incline: Incline
 
 var _orbit_center: Vector2 = Vector2.ZERO
 var _orbit_velocity: Vector2 = Vector2.ZERO
-var _angle: float = 0.0
 
 func _ready() -> void {
 	_orbit_center = global_position
+	incline.blade = self
 }
 
 func _physics_process(delta: float) -> void {
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void {
 
 		if recoil_time <= 0.0 {
 			# resync so orbit resumes from current position, no snap
-			_orbit_center = global_position - Vector2.from_angle(_angle) * orbit_radius
+			_orbit_center = global_position - Vector2.from_angle(angle) * orbit_radius
 		}
 
 		for i in get_slide_collision_count() {
@@ -55,10 +55,10 @@ func _physics_process(delta: float) -> void {
 	_orbit_velocity = _orbit_velocity.limit_length(max_follow_speed)
 	_orbit_center += _orbit_velocity * delta
 
-	_angle = (global_position - _orbit_center).angle()
-	_angle += spin_speed * delta
+	angle = (global_position - _orbit_center).angle()
+	angle += spin_speed * delta
 
-	var target_pos := _orbit_center + Vector2.from_angle(_angle) * orbit_radius
+	var target_pos := _orbit_center + Vector2.from_angle(angle) * orbit_radius
 
 	velocity = (target_pos - global_position) / delta
 
@@ -73,7 +73,6 @@ func _physics_process(delta: float) -> void {
 
 func take_damage(dmg : float ) -> void{
 	super.take_damage(dmg)
-	hp_text.text = str(hp)
 }
 
 #temp death logic

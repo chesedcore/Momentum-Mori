@@ -3,6 +3,7 @@ class_name Blade extends CharacterBody2D
 @export var hp : float = 100
 @export var base_dmg : float = 10
 @export var blade_animator: BladeAnimator
+var angle: float = 0.0
 
 var rpm: float = 2000
 
