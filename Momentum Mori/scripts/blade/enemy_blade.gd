@@ -11,7 +11,7 @@ var minimum_distance_to_target: float = 150
 
 
 
-enum STATES {CHASING,ATTACKING}
+enum STATES {CHASING,ATTACKING,FIRING}
 var current_state :STATES = STATES.CHASING
 
 var speed := chasing_speed

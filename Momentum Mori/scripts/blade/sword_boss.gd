@@ -1,34 +1,14 @@
-class_name SwordBoss extends  Blade
+class_name SwordBoss extends  EnemyBlade
 
 
 @onready var sword_holder: Node2D = $"sword holder"
 const SWORD = preload("res://scenes/battle/sword.tscn")
 
 
-@export var chasing_speed: float = 700
-@export var turn_speed := 5.0
-@export var target: Node2D
-
-var minimum_distance_to_target: float = 150
 
 
 
-enum STATES {CHASING,ATTACKING,FIRING}
-var current_state :STATES = STATES.CHASING
 
-var speed := chasing_speed
-
-@export var attack_dist : float = 300
-const attack_duration: float = 1
-var remaining_attack_duration :float = attack_duration
-@export var attack_speed : float = 1300
-const attack_cooldown : float = 2
-var remaining_attack_cooldown := attack_cooldown
-var players_last_loc : Vector2 
-
-var escape_dir := Vector2.ZERO
-var escape_time := 0.0
-@export var escape_duration := 0.5
 
 var recoil_resistance :float= 0.5
 
@@ -36,7 +16,7 @@ var attack_counter : int = 0
 var num_of_attacks_to_fire : int = 0
 
 const fire_interval:float= 1
-var fire_cooldown : float = fire_interval
+var fire_cooldown : float = 0
 var num_of_swords:int 
 var swords : Array[Node]
 func  _ready() -> void:
@@ -86,7 +66,8 @@ func _physics_process(delta: float) -> void{
 				
 				fire_cooldown = 0
 				
-				}			return
+				}	
+				return
 		}
 		if current_state == STATES.CHASING{
 			update_chasing_state(delta)
