@@ -1,7 +1,5 @@
 class_name EnemyBlade extends Blade
 
-enum STATES {CHASING, ATTACKING}
-
 const attack_duration: float = 1
 const attack_cooldown : float = 2
 

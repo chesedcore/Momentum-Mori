@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void {
 		var collider = collision.get_collider()
 		if collider is Blade:
 			blade_collision.emit(self,collision,pre_collision_velocity)
-}
+}}
 
 func take_damage(dmg : float ) -> void{
 	super.take_damage(dmg)
