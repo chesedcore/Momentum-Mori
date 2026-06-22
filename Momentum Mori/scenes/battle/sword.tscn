@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://7pi3rnebjebj"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_nb555"]
+[ext_resource type="Script" uid="uid://dev807nfcqhbo" path="res://scripts/battle/sword.gd" id="1_oo4w6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay0lp"]
+size = Vector2(142, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygtp1"]
+size = Vector2(187, 12)
+
+[node name="sword" type="CharacterBody2D" unique_id=1870970966]
+collision_layer = 0
+script = ExtResource("1_oo4w6")
+speed = 800.0
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=461409319]
+scale = Vector2(1.5425056, 0.1435653)
+texture = ExtResource("1_nb555")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=187308186]
+position = Vector2(-5, 0)
+shape = SubResource("RectangleShape2D_ay0lp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=595521460]
+position = Vector2(-88, -1)
+
+[node name="hitbox" type="Area2D" parent="." unique_id=269797163]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1513608160]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_ygtp1")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

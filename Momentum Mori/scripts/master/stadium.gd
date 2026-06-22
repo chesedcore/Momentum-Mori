@@ -7,28 +7,40 @@ extends Node2D
 
 @export var loser_dmg_multiplier : float = 1.5
 
+var collision_cooldown: float = 0.0
+const COLLISION_COOLDOWN_DURATION: float = 0.1
 
-func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -> void{
-	var enemy : Blade = collision.get_collider()
-	print("Collision between "+player.name + " and " + enemy.name)
-	var normal :=collision.get_normal() 
-	var player_impact = -player.velocity.dot(normal)
-	var enemy_impact = enemy.velocity.dot(normal)
-	if player_impact > 0 and enemy_impact < 0 {
-		print("Both took damage")
+func _on_blade_blade_collision(player: Player, collision: KinematicCollision2D, player_velocity: Vector2) -> void {
+	if collision_cooldown > 0.0 {
+		return
+	}
+	collision_cooldown = COLLISION_COOLDOWN_DURATION
+
+	var enemy: Blade = collision.get_collider()
+	var normal := collision.get_normal()
+	
+	# relative velocity: how fast player is approaching enemy along the normal
+	var relative_impact = -(player_velocity - enemy.velocity).dot(normal)
+	
+	# who was attacking (facing toward the other)
+	var player_attacking = -player_velocity.normalized().dot(normal) > 0.5
+	var enemy_attacking = enemy.velocity.normalized().dot(normal) > 0.5
+	
+	if player_attacking and enemy_attacking {
+		print("Head on — both take damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
 		player.take_damage(enemy.base_dmg)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 		enemy.take_damage(player.base_dmg)
 	}
-	elif player_impact > enemy_impact {
-		print("Enemy took damage")
+	elif player_attacking {
+		print("Player hit enemy — enemy takes damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
 		enemy.apply_recoil(-normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 		enemy.take_damage(player.base_dmg * loser_dmg_multiplier)
 	}
 	else {
-		print("Player took damage")
+		print("Enemy hit player — player takes damage")
 		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
@@ -37,6 +49,15 @@ func _on_blade_blade_collision(player :Player,collision :KinematicCollision2D) -
 	#collision_anim(collision.get_position())
 }
 
+func _process(delta: float) -> void{
+	
+	if collision_cooldown > 0.0 {
+		collision_cooldown -= delta
+	}
+
+	
+	
+}
 
 
 #

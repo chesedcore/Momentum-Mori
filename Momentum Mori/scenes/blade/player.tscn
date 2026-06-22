@@ -19,3 +19,6 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
 shape = SubResource("CircleShape2D_qvk82")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1959623036]
+target_position = Vector2(50, 0)

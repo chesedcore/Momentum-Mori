@@ -67,13 +67,13 @@ func _physics_process(delta: float) -> void {
 	var target_pos := _orbit_center + Vector2.from_angle(_angle) * orbit_radius
 	
 	velocity = (target_pos - global_position) / delta
-	
+	var pre_collision_velocity := velocity
 	move_and_slide()
 	for i in get_slide_collision_count(){
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider is Blade:
-			blade_collision.emit(self,collision)
+			blade_collision.emit(self,collision,pre_collision_velocity)
 }
 }
 func take_damage(dmg : float )->void{

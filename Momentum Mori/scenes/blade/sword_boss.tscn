@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dsswtol3ovf2j"]
+
+[ext_resource type="Script" uid="uid://k38cm2j15ovt" path="res://scripts/blade/sword_boss.gd" id="1_83sj8"]
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_r6lbf"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_lli7x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
+radius = 26.019224
+
+[node name="SwordBoss" type="CharacterBody2D" unique_id=221661367]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_83sj8")
+attack_dist = 600.0
+
+[node name="Visual" type="Node2D" parent="." unique_id=2145432538]
+scale = Vector2(2, 2)
+
+[node name="Circle" type="Node2D" parent="Visual" unique_id=1357358368]
+modulate = Color(0, 0.6629851, 0.27718964, 1)
+script = ExtResource("2_r6lbf")
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_qvk82")
+
+[node name="sword holder" type="Node2D" parent="." unique_id=593059260]
+
+[node name="Icon" type="Sprite2D" parent="sword holder" unique_id=10504127]
+position = Vector2(0, 91.99999)
+scale = Vector2(1.5425056, 0.1435653)
+texture = ExtResource("3_lli7x")
+
+[node name="Icon2" type="Sprite2D" parent="sword holder" unique_id=2099044044]
+position = Vector2(-120.99999, 4.5474735e-13)
+scale = Vector2(1.5425056, 0.1435653)
+texture = ExtResource("3_lli7x")
+
+[node name="Icon3" type="Sprite2D" parent="sword holder" unique_id=1884691859]
+position = Vector2(-7.6293945e-06, -85.00001)
+scale = Vector2(1.5425056, 0.1435653)
+texture = ExtResource("3_lli7x")
