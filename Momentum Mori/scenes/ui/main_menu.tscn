@@ -1,0 +1,671 @@
+[gd_scene format=3 uid="uid://dppjjvduyuwf3"]
+
+[ext_resource type="Script" uid="uid://bn8wirf2t5us1" path="res://scripts/master/main_menu.gd" id="1_8g5eo"]
+[ext_resource type="Shader" uid="uid://dx3105kdv27tg" path="res://shaderslop/grunge_overlay.gdshader" id="1_q85j6"]
+[ext_resource type="Texture2D" uid="uid://bl7ypvhm1cnuo" path="res://assets/textures/Grunge-Texture-Transparent-Background.png" id="2_8g5eo"]
+[ext_resource type="Script" uid="uid://cj41lfnkvu1y" path="res://scripts/ui/grunged_rect_menu.gd" id="3_7suek"]
+[ext_resource type="Shader" uid="uid://dsrapryeiwe8a" path="res://shaderslop/halftone.gdshader" id="4_otr3d"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="5_8ekit"]
+[ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="6_n4uci"]
+[ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="7_877pj"]
+[ext_resource type="Shader" uid="uid://gn2uk1od0xat" path="res://shaderslop/filmgrain.gdshader" id="8_ayp64"]
+[ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="9_y2j7i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ow5"]
+shader = ExtResource("1_q85j6")
+shader_parameter/grunge_tex = ExtResource("2_8g5eo")
+shader_parameter/border_size = 2.0
+shader_parameter/grunge_scale = 0.9
+shader_parameter/scratch_scale = 1.0
+shader_parameter/grunge_color = Color(1, 0, 0, 1)
+shader_parameter/grunge_color_strength = 0.36400001729
+shader_parameter/scratch_strength = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqtx5"]
+shader = ExtResource("4_otr3d")
+shader_parameter/start_point = Vector2(0.5, 0)
+shader_parameter/end_point = Vector2(0.5, 1)
+shader_parameter/speed = -1.0
+shader_parameter/scale = 40.0
+shader_parameter/start_size = 0.5
+shader_parameter/end_size = 0.1
+shader_parameter/dot_color = Color(0, 0, 0, 1)
+shader_parameter/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqp2i"]
+shader = ExtResource("6_n4uci")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(1, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 0.1
+shader_parameter/skew = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqk53"]
+shader = ExtResource("6_n4uci")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(1, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 1.1
+shader_parameter/skew = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_8g5eo"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_7suek"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_otr3d"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_8ekit"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8uuw"]
+shader = ExtResource("8_ayp64")
+shader_parameter/grain_amount = 0.02000000095
+shader_parameter/grain_size = 1.0
+shader_parameter/time_affect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1d8u"]
+shader = ExtResource("9_y2j7i")
+shader_parameter/vignette_intensity = 0.6
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8g5eo")
+begin = NodePath("MenuElements/ButtonCascade/BEGIN")
+options = NodePath("MenuElements/ButtonCascade/OPTIONS")
+credits = NodePath("MenuElements/ButtonCascade/CREDITS")
+menu_rect = NodePath("MenuElements")
+metadata/_edit_lock_ = true
+
+[node name="Bg" type="ColorRect" parent="." unique_id=307941373]
+material = SubResource("ShaderMaterial_x6ow5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="MenuElements" type="Control" parent="." unique_id=1335118090 node_paths=PackedStringArray("menu_element_cascade", "trigger_rect", "title_cascades", "button_cascade")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7suek")
+menu_element_cascade = NodePath("MenuElementCascade")
+trigger_rect = NodePath("MenuElementCascade/Black")
+title_cascades = [NodePath("Control/MOMENTUM_MORI"), NodePath("Control/MOMENTUM_MORI2")]
+button_cascade = NodePath("ButtonCascade")
+metadata/_edit_lock_ = true
+
+[node name="Halftone" type="ColorRect" parent="MenuElements" unique_id=816289404]
+material = SubResource("ShaderMaterial_iqtx5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="MenuElementCascade" type="Control" parent="MenuElements" unique_id=672946558]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_8ekit")
+tween_in_time = 0.6
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+
+[node name="Accent" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=1420141801]
+material = SubResource("ShaderMaterial_dqp2i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.14566
+offset_top = 235.25076
+offset_right = 485.20447
+offset_bottom = -416.0589
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.15707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(1, 0, 0, 1)
+
+[node name="Accent2" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=106945522]
+material = SubResource("ShaderMaterial_sqk53")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 875.35913
+offset_top = -257.45123
+offset_right = -325.84814
+offset_bottom = 325.30005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.15673749
+pivot_offset = Vector2(100, 100)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(1, 0, 0, 1)
+
+[node name="Black" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=835296650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.14557
+offset_top = 243.01375
+offset_right = 485.2046
+offset_bottom = -423.82187
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.15707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.039954737, 0.039954733, 0.039954733, 1)
+
+[node name="RandomShit" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=2014016785]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74700004
+anchor_right = 0.814
+anchor_bottom = 1.0
+offset_left = 4.565796
+offset_top = 205.84389
+offset_right = 67.76257
+offset_bottom = -365.5918
+rotation = 0.9424778
+color = Color(1, 0, 0, 1)
+
+[node name="Black2" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=59548794]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 882.87714
+offset_top = -257.45123
+offset_right = -333.36627
+offset_bottom = 325.30005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.15673749
+pivot_offset = Vector2(100, 100)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.039954737, 0.039954733, 0.039954733, 1)
+
+[node name="RandomShit2" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=1714777167]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74700004
+anchor_right = 0.814
+anchor_bottom = 1.0
+offset_left = 0.5058594
+offset_top = 223.426
+offset_right = 40.026978
+offset_bottom = -375.24783
+rotation = 0.9424778
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit3" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=2023740223]
+layout_mode = 0
+offset_left = 953.90173
+offset_top = 239.0
+offset_right = 1053.9017
+offset_bottom = 339.0
+rotation = 0.9424778
+color = Color(0.14406255, 0.14406255, 0.14406255, 1)
+
+[node name="RandomShit4" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=1952844064]
+layout_mode = 0
+offset_left = 952.0249
+offset_top = 250.51901
+offset_right = 1035.593
+offset_bottom = 333.9409
+rotation = 0.9424778
+color = Color(0.81041485, 0.00011943646, 6.709427e-05, 1)
+
+[node name="RandomShit5" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=2043300660]
+layout_mode = 0
+offset_left = 950.4739
+offset_top = 260.368
+offset_right = 1019.92944
+offset_bottom = 329.702
+rotation = 0.9424778
+
+[node name="RandomShit6" type="ColorRect" parent="MenuElements/MenuElementCascade" unique_id=81902047]
+layout_mode = 0
+offset_left = 949.1377
+offset_top = 268.85257
+offset_right = 1006.43567
+offset_bottom = 326.05032
+rotation = 0.9424778
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="MenuElements" unique_id=1452243601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="MOMENTUM_MORI" type="HBoxContainer" parent="MenuElements/Control" unique_id=655379680]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 108.00001
+offset_right = 849.0
+offset_bottom = 249.0
+rotation = 0.15707964
+script = ExtResource("5_8ekit")
+start_on_ready = false
+tween_in_time = 0.6
+wait_a_frame = true
+affect_offsets_instead = true
+
+[node name="M" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=1801229037]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="O" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=1482700155]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "o
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M2" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=2100274681]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="E" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=1450506011]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "E"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="N" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=1304829852]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "N"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="T" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=1547421142]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "T"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="U" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=799961806]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "U"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M3" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=2105078724]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SPACE" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=468886452]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = " "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M4" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=362505872]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="O2" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=195328406]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "o"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="R" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=594468456]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "R"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="I" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=735084692]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "I"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MOMENTUM_MORI2" type="HBoxContainer" parent="MenuElements/Control" unique_id=1044095849]
+layout_mode = 0
+offset_left = 71.057274
+offset_top = 100.0
+offset_right = 856.05725
+offset_bottom = 241.0
+rotation = 0.15707964
+script = ExtResource("5_8ekit")
+start_on_ready = false
+tween_in_time = 0.6
+wait_a_frame = true
+affect_offsets_instead = true
+metadata/_edit_lock_ = true
+
+[node name="M" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=175853303]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="O" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=250989415]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "o
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M2" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=511051947]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="E" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=67094450]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "E"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="N" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=485607771]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "N"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="T" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=1464964755]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "T"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="U" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=857565593]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "U"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M3" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=575411487]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SPACE" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=639717006]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = " "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="M4" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=1872658485]
+modulate = Color(1, 0.07450981, 0.0627451, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "M"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="O2" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=1384821675]
+modulate = Color(1, 0.07450981, 0.0627451, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "o"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="R" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=1992389054]
+modulate = Color(1, 0.07450981, 0.0627451, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "R"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="I" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=627410738]
+modulate = Color(1, 0.07450981, 0.0627451, 1)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_font_sizes/normal_font_size = 120
+text = "I"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ButtonCascade" type="Control" parent="MenuElements" unique_id=661310693]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.15707964
+script = ExtResource("5_8ekit")
+start_on_ready = false
+tween_in_time = 0.6
+stagger = 0.2
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="MenuElements/ButtonCascade" unique_id=1664075844 instance=ExtResource("7_877pj")]
+layout_mode = 1
+
+[node name="OPTIONS" parent="MenuElements/ButtonCascade" unique_id=1325575975 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_top = 90.712074
+offset_right = 0.04334259
+
+[node name="BEGIN" parent="MenuElements/ButtonCascade/OPTIONS" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_8g5eo")
+text = "OPTIONS"
+
+[node name="BEGIN2" parent="MenuElements/ButtonCascade/OPTIONS" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_7suek")
+text = "OPTIONS"
+
+[node name="CREDITS" parent="MenuElements/ButtonCascade" unique_id=996543734 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_top = 185.02118
+
+[node name="BEGIN" parent="MenuElements/ButtonCascade/CREDITS" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
+text = "credits"
+
+[node name="BEGIN2" parent="MenuElements/ButtonCascade/CREDITS" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
+text = "credits"
+
+[node name="FilmGrain" type="ColorRect" parent="." unique_id=223929882]
+material = SubResource("ShaderMaterial_w8uuw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=67180634]
+material = SubResource("ShaderMaterial_t1d8u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[editable path="MenuElements/ButtonCascade/OPTIONS"]
+[editable path="MenuElements/ButtonCascade/CREDITS"]

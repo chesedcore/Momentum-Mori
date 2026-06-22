@@ -20,6 +20,7 @@ var speed := chasing_speed
 var remaining_attack_duration :float = attack_duration
 var remaining_attack_cooldown := attack_cooldown
 var players_last_loc : Vector2
+
 var escape_dir := Vector2.ZERO
 var escape_time := 0.0
 
