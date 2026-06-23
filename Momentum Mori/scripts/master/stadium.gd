@@ -27,7 +27,6 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	var enemy_attacking = enemy.velocity.normalized().dot(normal) > 0.5
 	
 	if player_attacking and enemy_attacking {
-		print("Head on — lower velocity  takes damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 		if player_velocity.length() > enemy.velocity.length(){
@@ -41,13 +40,11 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		
 	}
 	elif player_attacking {
-		print("Player hit enemy — enemy takes damage")
 		player.apply_recoil(normal, base_knockback, recoil_duration)
 		enemy.apply_recoil(-normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 		enemy.take_damage(player.base_dmg * loser_dmg_multiplier)
 	}
 	else {
-		print("Enemy hit player — player takes damage")
 		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)

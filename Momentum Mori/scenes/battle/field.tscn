@@ -56,18 +56,6 @@ process_physics_priority = 300
 script = ExtResource("6_xuj4y")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1726621473]
-
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=486408510]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
-text = "Temp hp thing : 100"
-metadata/_edit_use_anchors_ = true
-
 [node name="Pcam" type="Node2D" parent="." unique_id=1489987666]
 script = ExtResource("5_pdtp2")
 zoom = Vector2(0.3, 0.3)

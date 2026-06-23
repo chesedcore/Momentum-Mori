@@ -11,10 +11,16 @@ signal blade_collision
 @export var frictional_damp_delta_inverse: float = 0.92
 @export var incline: Incline
 
+@export var mouse_smooth_factor_min: float = 0.1  #smooth when fast
+@export var mouse_smooth_factor_max: float = 0.9  #try not to smooth when slow
+@export var smooth_speed_threshold: float = 800.0  #velocity at which smoothing maxes out (for now)
+
 var _orbit_center: Vector2 = Vector2.ZERO
 var _orbit_velocity: Vector2 = Vector2.ZERO
+var _smoothed_mouse: Vector2 = Vector2.ZERO
 
 func _ready() -> void {
+	_smoothed_mouse = get_global_mouse_position()
 	_orbit_center = global_position
 	incline.blade = self
 }
@@ -43,8 +49,12 @@ func _physics_process(delta: float) -> void {
 		return
 	}
 
-	var mouse_pos: Vector2 = get_global_mouse_position()
-	var to_mouse := mouse_pos - _orbit_center
+	var mouse_pos := get_global_mouse_position()
+	var speed_t := clampf(velocity.length() / smooth_speed_threshold, 0.0, 1.0)
+	var smooth_factor := lerpf(mouse_smooth_factor_max, mouse_smooth_factor_min, speed_t)
+	_smoothed_mouse = _smoothed_mouse.lerp(mouse_pos, smooth_factor)
+
+	var to_mouse := _smoothed_mouse - _orbit_center
 	var dist := to_mouse.length()
 
 	if dist > 2.0:
