@@ -1,5 +1,5 @@
 class_name Stadium extends Node2D
-#const SPARKS = preload("res://sparks.tscn")
+const SPARKS = preload("res://scenes/particles/sparks.tscn")
 
 @export var player: Player
 @export var enemies: Node2D
@@ -82,28 +82,34 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	
 	#uhh ill put it here to not bloat everything upp therrrr
 	
-	#
-	#var sparks: Node2D = SPARKS.instantiate()
-	#sparks.global_position = collision.get_position()
-	#var attack_direction: Vector2
-	#if player_attacking and enemy_attacking{
-		##Double the sparks cuz i think maybe that will look cool
-		#var second_sparks : Node2D = SPARKS.instantiate()
-		#second_sparks.rotation = enemy.velocity.normalized().angle() 
-		#second_sparks.global_position = collision.get_position()
-		#add_child(second_sparks)
-		#attack_direction = player_velocity.normalized()
-	#}
-	#elif player_attacking{
-	#attack_direction = player_velocity.normalized()
-	#}
-	#else{
-		#attack_direction = enemy.velocity.normalized()
-	#}
-	#
-	#sparks.rotation = attack_direction.angle() 
-	#
-	#add_child(sparks)
+	#LILI: i just reimplemented gael code with some changes
+	var sparks: Node2D = SPARKS.instantiate()
+	sparks.global_position = collision.get_position()
+	var attack_direction: Vector2
+	var sparks_scale : float
+	if player_attacking and enemy_attacking {
+		#Double the sparks cuz i think maybe that will look cool
+		var second_sparks : Node2D = SPARKS.instantiate()
+		second_sparks.rotation = enemy.velocity.normalized().angle() 
+		var second_spark_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
+		second_sparks.scale = Vector2(second_spark_scale, second_spark_scale)
+		second_sparks.global_position = collision.get_position()
+		add_child(second_sparks)
+		sparks_scale = remap(player_velocity.length(), 0.0, 5000, 0.05, 3.)
+		attack_direction = player_velocity.normalized()
+	}
+	elif player_attacking {
+		sparks_scale = remap(player_velocity.length(), 0.0, 5000, 0.05, 3.)
+		attack_direction = player_velocity.normalized()
+	}
+	else {
+		sparks_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
+		attack_direction = enemy.velocity.normalized()
+	}
+	sparks.rotation = attack_direction.angle() 
+	sparks.scale = Vector2(sparks_scale, sparks_scale)
+	
+	add_child(sparks)
 	#
 	#pazaz
 	#apply_camera_shake()

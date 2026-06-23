@@ -18,11 +18,6 @@ shader_parameter/inset = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 64.0
 
-[sub_resource type="Environment" id="Environment_g768s"]
-background_mode = 3
-background_canvas_max_layer = 1000
-glow_enabled = true
-
 [node name="Blade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
 collision_mask = 6
 script = ExtResource("1_2ibuj")
@@ -68,6 +63,3 @@ metadata/_edit_lock_ = true
 [node name="BladeAnimator" type="Node" parent="." unique_id=2026629979 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("3_phrk6")
 blade_visual_node = NodePath("../Incline/Visual/Visual/Circle")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=403184226]
-environment = SubResource("Environment_g768s")

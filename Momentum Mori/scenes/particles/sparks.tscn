@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b2hbut2rea258"]
+
+[ext_resource type="Script" uid="uid://dapesw2ukra57" path="res://scripts/visuals/particles/sparks.gd" id="1_ufr4l"]
+
+[sub_resource type="Gradient" id="Gradient_nhiyh"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.1882353, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8xnh8"]
+gradient = SubResource("Gradient_nhiyh")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.47826087, 0.5043478)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_ufr4l"]
+_data = [Vector2(0, 0.34831464), 0.0, 0.0, 0, 0, Vector2(1, 0.13483155), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xycbo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lwfaf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_lwfaf"]
+curve_x = SubResource("Curve_ufr4l")
+curve_y = SubResource("Curve_xycbo")
+curve_z = SubResource("Curve_lwfaf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e0l53"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+initial_velocity_min = 314.3
+initial_velocity_max = 478.49
+radial_velocity_min = 139.77997
+radial_velocity_max = 591.38995
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_lwfaf")
+
+[node name="Node2D" type="Node2D" unique_id=377934530]
+script = ExtResource("1_ufr4l")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=402811542]
+amount = 50
+texture = SubResource("GradientTexture2D_8xnh8")
+lifetime = 0.5
+speed_scale = 2.0
+explosiveness = 0.9
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e0l53")
