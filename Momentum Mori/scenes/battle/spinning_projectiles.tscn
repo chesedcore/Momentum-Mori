@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dgl3st4ahrqde"]
+
+[ext_resource type="Script" uid="uid://6aswt1jl6aic" path="res://scripts/battle/spinning_projectiles.gd" id="1_83576"]
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_83576"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ygtp1"]
+radius = 33.985218
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83576"]
+radius = 33.985218
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay0lp"]
+
+[node name="SpinningProjectiles" type="CharacterBody2D" unique_id=93119010 node_paths=PackedStringArray("projectile_holder")]
+script = ExtResource("1_83576")
+projectile_holder = NodePath("ProjectileHolder")
+
+[node name="ProjectileHolder" type="Node2D" parent="." unique_id=834056729]
+rotation = 0.81110996
+
+[node name="projectile" type="Node2D" parent="ProjectileHolder" unique_id=303254487]
+position = Vector2(150, 0)
+
+[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile" unique_id=1447462427]
+modulate = Color(1, 0, 0.03137255, 1)
+script = ExtResource("2_83576")
+thickness = 30.0
+radius = 20.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile" unique_id=750345090]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHolder/projectile/hitbox" unique_id=1092500886]
+shape = SubResource("CircleShape2D_ygtp1")
+
+[node name="projectile2" type="Node2D" parent="ProjectileHolder" unique_id=367413007]
+position = Vector2(-150, 0)
+
+[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile2" unique_id=9856000]
+modulate = Color(1, 0, 0.03137255, 1)
+script = ExtResource("2_83576")
+thickness = 30.0
+radius = 20.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile2" unique_id=249621641]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHolder/projectile2/hitbox" unique_id=271629505]
+shape = SubResource("CircleShape2D_83576")
+
+[node name="projectile3" type="Node2D" parent="ProjectileHolder" unique_id=511848341]
+position = Vector2(0, -150)
+
+[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile3" unique_id=648952883]
+modulate = Color(1, 0, 0.03137255, 1)
+script = ExtResource("2_83576")
+thickness = 30.0
+radius = 20.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile3" unique_id=866722908]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHolder/projectile3/hitbox" unique_id=905169864]
+shape = SubResource("CircleShape2D_83576")
+
+[node name="projectile4" type="Node2D" parent="ProjectileHolder" unique_id=692371352]
+position = Vector2(0, 150)
+
+[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile4" unique_id=1736282071]
+modulate = Color(1, 0, 0.03137255, 1)
+script = ExtResource("2_83576")
+thickness = 30.0
+radius = 20.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile4" unique_id=758373293]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHolder/projectile4/hitbox" unique_id=1195120997]
+shape = SubResource("CircleShape2D_83576")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=727035979]
+shape = SubResource("CircleShape2D_ay0lp")
+
+[connection signal="body_entered" from="ProjectileHolder/projectile/hitbox" to="." method="_on_hitbox_body_entered" binds= [0]]
+[connection signal="body_entered" from="ProjectileHolder/projectile2/hitbox" to="." method="_on_hitbox_body_entered" binds= [1]]
+[connection signal="body_entered" from="ProjectileHolder/projectile3/hitbox" to="." method="_on_hitbox_body_entered" binds= [2]]
+[connection signal="body_entered" from="ProjectileHolder/projectile4/hitbox" to="." method="_on_hitbox_body_entered" binds= [3]]
