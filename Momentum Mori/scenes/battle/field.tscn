@@ -48,7 +48,7 @@ environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 top_level = true
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(0.35, 0.35)
 
 [node name="PhantomCameraHost" type="Node" parent="Cam" unique_id=1536686757]
 process_priority = 300
@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Pcam" type="Node2D" parent="." unique_id=1489987666]
 script = ExtResource("5_pdtp2")
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(0.35, 0.35)
 tween_resource = SubResource("Resource_xuj4y")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
