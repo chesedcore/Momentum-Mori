@@ -20,14 +20,19 @@ func _update_incline() -> void {
 	if not mat: return
 	
 	var velocity_mag_normalised := clampf(blade.velocity.length()/1200, 0.0, 1.0)
-	var velocity_strength := 2
-	var vel_tilt := velocity_mag_normalised * velocity_strength
-	
+	var vel_tilt := velocity_mag_normalised * 1.6
 	var tilt_strength := 30.0 * vel_tilt
-	var move_dir := blade.velocity.normalized()
+	#var move_dir := blade.velocity.normalized()
 	
-	mat.set_shader_parameter(&"x_rot", -move_dir.y * tilt_strength)
-	mat.set_shader_parameter(&"y_rot", move_dir.x * tilt_strength)
+	if blade is Player {
+		var move_dir := blade.velocity.normalized()
+		mat.set_shader_parameter(&"x_rot", -move_dir.y * tilt_strength)
+		mat.set_shader_parameter(&"y_rot", move_dir.x * tilt_strength)
+	} else {
+		tilt_strength *= 1.4
+		mat.set_shader_parameter(&"x_rot", 0.0)
+		mat.set_shader_parameter(&"y_rot", 45.0 * vel_tilt)
+	}
 }
 
 func _process(_delta: float) -> void {

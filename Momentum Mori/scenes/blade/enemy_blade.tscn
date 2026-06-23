@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_muedi"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_rnmqm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfnqb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_306to"]
 resource_local_to_scene = true
 shader = ExtResource("2_306to")
 shader_parameter/fov = 137.7010064932975
@@ -26,7 +26,7 @@ incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=39415993 node_paths=PackedStringArray("target_center_dock")]
-material = SubResource("ShaderMaterial_kfnqb")
+material = SubResource("ShaderMaterial_306to")
 custom_minimum_size = Vector2(150, 150)
 offset_left = -75.0
 offset_top = -75.0

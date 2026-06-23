@@ -26,6 +26,8 @@ var players_last_loc : Vector2
 var escape_dir := Vector2.ZERO
 var escape_time := 0.0
 
+var display_velocity: Vector2 = Vector2.ZERO
+
 func _ready() -> void {
 	incline.blade = self
 }
@@ -75,6 +77,7 @@ func _physics_process(delta: float) -> void {
 		rotation = lerp_angle(rotation,target_angle,turn_speed*delta)
 
 		velocity = Vector2.RIGHT.rotated(rotation)* speed
+		display_velocity = velocity
 		move_and_slide()
 
 
