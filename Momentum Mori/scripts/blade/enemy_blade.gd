@@ -58,13 +58,8 @@ func _physics_process(delta: float) -> void {
 }
 
 func calculate_movement(delta){
-	var target_angle = dir.angle()
-	#so get the angel from  the blade facing to the uhh player and fuck yeah if its away(close to ) pi we turn sloowww but the as the angle diff goes down the  turning goes NYOOMM
-	# EASE IN BASSICALLY  
-	var angle_diff = abs(angle_difference(rotation, target_angle))
-	var ease_factor = remap(angle_diff, 0.0, PI, turn_speed * delta, 0.02)
-	rotation = lerp_angle(rotation, target_angle, ease_factor)
-	velocity = Vector2.RIGHT.rotated(rotation)* speed
+	var target_velocity = dir * speed
+	velocity = velocity.lerp(target_velocity, turn_speed * delta)
 	display_velocity = velocity
 	move_and_slide()
 }
@@ -94,9 +89,7 @@ func update_chasing_state(delta:float) -> void {
 		remaining_attack_cooldown += delta
 		}
 	var to_player = global_position.direction_to(target.global_position)
-	var blade_forward = Vector2.RIGHT.rotated(rotation)
-	var angle_to_player = rad_to_deg(acos(blade_forward.dot(to_player)))
-	if global_position.distance_to(target.global_position) <= attack_dist and angle_to_player <= 20  and remaining_attack_cooldown >= attack_cooldown{
+	if global_position.distance_to(target.global_position) <= attack_dist  and remaining_attack_cooldown >= attack_cooldown{
 			change_to_attack(to_player)
 	}
 	else{

@@ -24,7 +24,7 @@ func _update_incline() -> void {
 	var tilt_strength := 30.0 * vel_tilt
 	#var move_dir := blade.velocity.normalized()
 	
-	if blade is Player {
+	if blade is  Blade {
 		var move_dir := blade.velocity.normalized()
 		mat.set_shader_parameter(&"x_rot", -move_dir.y * tilt_strength)
 		mat.set_shader_parameter(&"y_rot", move_dir.x * tilt_strength)

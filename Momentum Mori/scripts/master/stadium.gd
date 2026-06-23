@@ -75,6 +75,11 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	
 	
 	#OH BOY SPARKY SPARKY
+	
+	
+	
+	
+	
 	#uhh ill put it here to not bloat everything upp therrrr
 	
 	#

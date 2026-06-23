@@ -70,9 +70,7 @@ func _physics_process(delta: float) -> void {
 
 	angle = (global_position - _orbit_center).angle()
 	angle += spin_speed * delta
-
 	var target_pos := _orbit_center + Vector2.from_angle(angle) * orbit_radius
-
 	velocity = (target_pos - global_position) / delta
 	pre_collision_velocity = velocity
 	move_and_slide()
