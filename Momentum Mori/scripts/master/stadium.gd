@@ -4,7 +4,7 @@ class_name Stadium extends Node2D
 @export var enemies: Node2D
 
 @export var base_knockback: float = 300.0
-@export var loser_knockback_multiplier: float = 2.5
+@export var loser_knockback_multiplier: float = 5
 @export var recoil_duration: float = 0.5
 
 @export var loser_dmg_multiplier : float = 1.5
@@ -23,8 +23,8 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	
 
 	# who was attacking (facing toward the other)
-	var player_attacking = -player_velocity.normalized().dot(normal) > 0.5
-	var enemy_attacking = enemy.velocity.normalized().dot(normal) > 0.5
+	var player_attacking :bool = -player_velocity.normalized().dot(normal) > 0.5
+	var enemy_attacking :bool = enemy.velocity.normalized().dot(normal) > 0.5
 	
 	if player_attacking and enemy_attacking {
 		player.apply_recoil(normal, base_knockback, recoil_duration)

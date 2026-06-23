@@ -25,10 +25,12 @@ func _ready() -> void {
 	incline.blade = self
 }
 
+var pre_collision_velocity :Vector2
 func _physics_process(delta: float) -> void {
 	if recoil_time > 0.0 {
 		recoil_time -= delta
 		velocity = recoil_velocity
+		pre_collision_velocity = velocity
 		move_and_slide()
 
 		_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
@@ -43,7 +45,7 @@ func _physics_process(delta: float) -> void {
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
 			if collider is EnemyBlade {
-				blade_collision.emit(self, collision)
+				blade_collision.emit(self, collision,pre_collision_velocity)
 			}
 		}
 		return
@@ -71,8 +73,7 @@ func _physics_process(delta: float) -> void {
 	var target_pos := _orbit_center + Vector2.from_angle(angle) * orbit_radius
 
 	velocity = (target_pos - global_position) / delta
-
-	var pre_collision_velocity := velocity
+	pre_collision_velocity = velocity
 	move_and_slide()
 	for i in get_slide_collision_count(){
 		var collision = get_slide_collision(i)
