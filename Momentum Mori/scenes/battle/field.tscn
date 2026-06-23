@@ -29,12 +29,13 @@ script = ExtResource("1_wud16")
 stadium = NodePath("Stadium")
 game_camera = NodePath("Pcam")
 
-[node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies") instance=ExtResource("1_xq1i4")]
+[node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "camera") instance=ExtResource("1_xq1i4")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 base_knockback = 800.0
 recoil_duration = 0.25
+camera = NodePath("../Cam")
 
 [node name="Player" parent="Stadium" unique_id=221661367 instance=ExtResource("2_3ghxc")]
 motion_mode = 1

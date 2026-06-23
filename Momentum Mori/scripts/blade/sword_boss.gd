@@ -45,14 +45,10 @@ func _physics_process(delta: float) -> void{
 			dir = players_last_loc
 			update_attack_state(delta)
 		}
-		var target_angle = dir.angle()
-		rotation = lerp_angle(rotation,target_angle,turn_speed*delta)
 		
-		velocity = Vector2.RIGHT.rotated(rotation)* speed
-		move_and_slide()
+		calculate_movement(delta)
 		
-		
-		}
+	}
 }
 
 func change_to_attack(attack_dir : Vector2)->void{

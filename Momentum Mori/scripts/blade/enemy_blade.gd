@@ -6,7 +6,7 @@ const attack_cooldown : float = 2
 @export var incline: Incline
 
 @export var chasing_speed: float = 700
-@export var turn_speed := 1
+@export var turn_speed := 2.5
 @export var target: Node2D
 @export var escape_duration := 0.5
 @export var attack_speed : float = 1300
@@ -53,12 +53,18 @@ func _physics_process(delta: float) -> void {
 			dir = players_last_loc
 			update_attack_state(delta)
 		}
-		var target_angle = dir.angle()
-		rotation = lerp_angle(rotation,target_angle,turn_speed*delta)
-		velocity = Vector2.RIGHT.rotated(rotation)* speed
-		display_velocity = velocity
-		move_and_slide()
-		}
+		calculate_movement(delta)
+	}
+}
+
+func calculate_movement(delta){
+	var target_angle = dir.angle()
+	var angle_diff = abs(angle_difference(rotation, target_angle))
+	var ease_factor = remap(angle_diff, 0.0, PI, turn_speed * delta, 0.02)
+	rotation = lerp_angle(rotation, target_angle, ease_factor)
+	velocity = Vector2.RIGHT.rotated(rotation)* speed
+	display_velocity = velocity
+	move_and_slide()
 }
 
 func change_to_attack(attack_dir : Vector2)->void {
@@ -88,7 +94,7 @@ func update_chasing_state(delta:float) -> void {
 	var to_player = global_position.direction_to(target.global_position)
 	var blade_forward = Vector2.RIGHT.rotated(rotation)
 	var angle_to_player = rad_to_deg(acos(blade_forward.dot(to_player)))
-	if global_position.distance_to(target.global_position) <= attack_dist  and remaining_attack_cooldown >= attack_cooldown{
+	if global_position.distance_to(target.global_position) <= attack_dist and angle_to_player <= 20  and remaining_attack_cooldown >= attack_cooldown{
 			change_to_attack(to_player)
 	}
 	else{

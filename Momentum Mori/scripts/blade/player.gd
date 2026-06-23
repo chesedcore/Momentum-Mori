@@ -28,6 +28,7 @@ func _ready() -> void {
 var pre_collision_velocity :Vector2
 func _physics_process(delta: float) -> void {
 	if recoil_time > 0.0 {
+		
 		recoil_time -= delta
 		velocity = recoil_velocity
 		pre_collision_velocity = velocity
@@ -82,9 +83,7 @@ func _physics_process(delta: float) -> void {
 			blade_collision.emit(self,collision,pre_collision_velocity)
 }}
 
-func take_damage(dmg : float ) -> void{
-	super.take_damage(dmg)
-}
+
 
 #temp death logic
 func die() -> void {
