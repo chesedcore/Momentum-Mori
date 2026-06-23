@@ -47,8 +47,9 @@ motion_mode = 1
 position = Vector2(-414, -199)
 target = NodePath("../../Player")
 
-[node name="DefenseBoss" parent="Stadium/Enemies" unique_id=1939288871 instance=ExtResource("5_gsd1j")]
-position = Vector2(-629, 378)
+[node name="DefenseBoss" parent="Stadium/Enemies" unique_id=1964085662 node_paths=PackedStringArray("target") instance=ExtResource("5_gsd1j")]
+position = Vector2(-714, 343)
+target = NodePath("../../Player")
 
 [node name="Projectiles" type="Node2D" parent="Stadium" unique_id=697776277]
 
