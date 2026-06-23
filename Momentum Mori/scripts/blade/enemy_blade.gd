@@ -59,6 +59,8 @@ func _physics_process(delta: float) -> void {
 
 func calculate_movement(delta){
 	var target_angle = dir.angle()
+	#so get the angel from  the blade facing to the uhh player and fuck yeah if its away(close to ) pi we turn sloowww but the as the angle diff goes down the  turning goes NYOOMM
+	# EASE IN BASSICALLY  
 	var angle_diff = abs(angle_difference(rotation, target_angle))
 	var ease_factor = remap(angle_diff, 0.0, PI, turn_speed * delta, 0.02)
 	rotation = lerp_angle(rotation, target_angle, ease_factor)

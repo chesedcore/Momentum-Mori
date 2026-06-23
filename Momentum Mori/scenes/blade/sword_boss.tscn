@@ -62,6 +62,7 @@ scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_qvk82")
 
 [node name="sword holder" type="Node2D" parent="." unique_id=593059260]
+visible = false
 
 [node name="Icon" type="Sprite2D" parent="sword holder" unique_id=10504127]
 position = Vector2(0, 91.99999)

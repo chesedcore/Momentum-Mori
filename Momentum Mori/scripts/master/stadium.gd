@@ -1,7 +1,9 @@
 class_name Stadium extends Node2D
+#const SPARKS = preload("res://sparks.tscn")
 
 @export var player: Player
 @export var enemies: Node2D
+@export var projectiles: Node2D
 
 @export var base_knockback: float = 300.0
 @export var loser_knockback_multiplier: float = 4
@@ -11,6 +13,7 @@ class_name Stadium extends Node2D
 
 var collision_cooldown: float = 0.0
 const COLLISION_COOLDOWN_DURATION: float = 0.1
+
 
 func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D, player_velocity: Vector2) -> void {
 	if collision_cooldown > 0.0 {
@@ -38,6 +41,8 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	player.take_damage(enemy.base_dmg * player_dmg_ratio)
 	enemy.apply_recoil(-normal, base_knockback * enemy_dmg_ratio, recoil_duration)
 	enemy.take_damage(player.base_dmg * enemy_dmg_ratio)
+	
+	
 	}
 	elif player_attacking {
 		player.apply_recoil(normal, base_knockback, recoil_duration)
@@ -64,9 +69,40 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
 	#uhhh so like the enemy should stop the attack after colliding i think
+	if enemy.current_state == EnemyBlade.STATES.ATTACKING{
 	enemy.change_to_chasing()
+	}
 	
-	apply_camera_shake()
+	
+	#OH BOY SPARKY SPARKY
+	#uhh ill put it here to not bloat everything upp therrrr
+	
+	#
+	#var sparks: Node2D = SPARKS.instantiate()
+	#sparks.global_position = collision.get_position()
+	#var attack_direction: Vector2
+	#if player_attacking and enemy_attacking{
+		##Double the sparks cuz i think maybe that will look cool
+		#var second_sparks : Node2D = SPARKS.instantiate()
+		#second_sparks.rotation = enemy.velocity.normalized().angle() 
+		#second_sparks.global_position = collision.get_position()
+		#add_child(second_sparks)
+		#attack_direction = player_velocity.normalized()
+	#}
+	#elif player_attacking{
+	#attack_direction = player_velocity.normalized()
+	#}
+	#else{
+		#attack_direction = enemy.velocity.normalized()
+	#}
+	#
+	#sparks.rotation = attack_direction.angle() 
+	#
+	#add_child(sparks)
+	#
+	#pazaz
+	#apply_camera_shake()
+	
 }
 
 func _process(delta: float) -> void{
@@ -84,23 +120,24 @@ func iter_blades() -> Array[Blade] {
 
 func  _ready() -> void{
 	_starting_camera_zoom = camera.zoom
+	EventBus.spawn_projectile.connect(_on_spawn_projectile)
 }
 
 @export var camera: Camera2D
 var _starting_camera_zoom : Vector2
-func apply_camera_shake() -> void {
-	# Camera shake on impact
-	camera.offset = Vector2(randf_range(-200.0, 200.0), randf_range(-200.0, 200.0))
-	var z_val := randf_range(0.26, 0.3)
-	camera.zoom = Vector2(z_val, z_val)
-
-	create_tween().tween_property(camera, "offset", Vector2.ZERO, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-	create_tween().tween_property(camera, "zoom", _starting_camera_zoom, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-}
-
-
+#func apply_camera_shake() -> void {
+	## Camera shake on impact
+	#camera.offset = Vector2(randf_range(-200.0, 200.0), randf_range(-200.0, 200.0))
+	#var z_val := randf_range(0.26, 0.3)
+	#camera.zoom = Vector2(z_val, z_val)
+#
+	#create_tween().tween_property(camera, "offset", Vector2.ZERO, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	#create_tween().tween_property(camera, "zoom", _starting_camera_zoom, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+#}
 
 
+#
+#
 #@export var base_zoom := Vector2(.3, .3)
 #@export var base_camera_location := Vector2.ZERO
 #var collision_tween: Tween
@@ -124,3 +161,6 @@ func apply_camera_shake() -> void {
 	#collision_tween.parallel().tween_property(Engine, "time_scale", 1.0,collision_time/2)
 	#}
 	#
+func _on_spawn_projectile(projectile:Node2D)->void{
+	projectiles.add_child(projectile)
+}

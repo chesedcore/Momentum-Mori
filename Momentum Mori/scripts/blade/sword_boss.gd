@@ -76,6 +76,7 @@ func update_attack_state(delta : float)->void{
 func  change_to_firing()->void{
 	current_state = STATES.FIRING
 	speed = 0
+	sword_holder.visible = true
 	print("firing")
 	
 	
@@ -90,6 +91,7 @@ func update_firing_state(delta:float)-> void {
 	dir = global_position.direction_to(target.global_position)
 	
 	if fire_cooldown >= fire_interval{
+		#this part ends the firing state
 		if num_of_swords ==0 {
 			num_of_swords = 3
 			for sword_img : Node2D in sword_holder.get_children(){
@@ -98,6 +100,7 @@ func update_firing_state(delta:float)-> void {
 			attack_counter = 0
 			num_of_attacks_to_fire = randi_range(1,3)
 			fire_cooldown = 0
+			sword_holder.visible = false
 			change_to_chasing()
 			return
 		}
@@ -107,7 +110,7 @@ func update_firing_state(delta:float)-> void {
 		sword.target=target
 		sword.global_transform = sword_sprite.global_transform
 		#will spawn proper later
-		get_parent().add_child(sword)
+		EventBus.spawn_projectile.emit(sword)
 		sword_sprite.visible = false
 		sword.fire()
 		fire_cooldown = 0
