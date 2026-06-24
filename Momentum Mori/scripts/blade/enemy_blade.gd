@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void {
 		return
 	}
 	if target{
-		
+
 		if current_state == STATES.CHASING{
 			update_chasing_state(delta)
 		}
