@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://mg6f5sewnwxk"]
+
+[ext_resource type="Script" uid="uid://il04efdyx1gr" path="res://sparks.gd" id="1_me7x7"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_p74jf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ay0lp"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+linear_accel_min = 19.999998
+linear_accel_max = 19.999998
+radial_accel_min = 99.99999
+radial_accel_max = 99.99999
+damping_min = 100.00001
+damping_max = 200.00002
+scale_min = 0.25
+scale_max = 0.25
+
+[node name="Node2D" type="Node2D" unique_id=1283161924]
+script = ExtResource("1_me7x7")
+
+[node name="particles" type="GPUParticles2D" parent="." unique_id=1910873766]
+self_modulate = Color(0.9393534, 0.72977394, 0, 1)
+position = Vector2(-2, 0)
+emitting = false
+texture = ExtResource("2_p74jf")
+one_shot = true
+speed_scale = 5.0
+process_material = SubResource("ParticleProcessMaterial_ay0lp")
+
+[connection signal="finished" from="particles" to="." method="_on_particles_finished"]
