@@ -44,5 +44,5 @@ void fragment() {
 	vec4 grunge = texture(red_grunge, (UV * n_val * uv_scale / 8.0) + TIME * speed);
 	COLOR = (grunge * gs_texture);
 	COLOR += (tex * gs_texture);
-	COLOR *= 0.5;
+	COLOR *= 0.35;
 }

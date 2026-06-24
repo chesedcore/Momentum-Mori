@@ -38,7 +38,7 @@ shader_parameter/key_color = Color(0, 1, 0, 1)
 shader_parameter/similarity = 0.4
 shader_parameter/smoothness = 0.08
 shader_parameter/spill = 0.1
-shader_parameter/uv_scale = 10.0
+shader_parameter/uv_scale = 40.0
 shader_parameter/ground_texture = ExtResource("3_eje4j")
 shader_parameter/red_grunge = SubResource("NoiseTexture2D_6ltpu")
 shader_parameter/noise = SubResource("NoiseTexture2D_eje4j")
@@ -49,15 +49,24 @@ metadata/_edit_lock_ = true
 
 [node name="Floor" type="TextureRect" parent="." unique_id=745948540]
 material = SubResource("ShaderMaterial_ci1pd")
-offset_left = -1725.0
-offset_top = -1756.9999
-offset_right = -1213.0
-offset_bottom = -1244.9999
-scale = Vector2(6.797725, 6.797725)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(20.288242, 20.288242)
+pivot_offset = Vector2(253.76135, 258.4688)
 texture = ExtResource("2_2jhvn")
 
 [node name="Circle" type="Node2D" parent="." unique_id=381567262]
-scale = Vector2(1.3918445, 1.3918445)
+rotation = -0.0038538056
+scale = Vector2(4.1842494, 4.1842494)
 script = ExtResource("1_vqgvn")
 thickness = 7.0
 radius = 1200.0
@@ -68,6 +77,6 @@ collision_layer = 4
 collision_priority = 30.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1761124410]
-scale = Vector2(1.3690939, 1.3690939)
+scale = Vector2(4.1341543, 4.1341543)
 build_mode = 1
 polygon = PackedVector2Array(2, -1202, 208, -1186, 386, -1140, 562, -1062, 732, -953, 876, -827, 991, -676, 1071, -550, 1131, -409, 1165, -277, 1192, -138, 1202, 50, 1191, 152, 1169, 304, 1126, 428, 1037, 603, 941, 744, 835, 862, 724, 952, 567, 1060, 394, 1128, 222, 1178, 81, 1195, -76, 1200, -292, 1169, -458, 1109, -606, 1038, -732, 948, -867, 831, -963, 703, -1073, 533, -1144, 357, -1189, 178, -1202, -47, -1177, -243, -1139, -398, -1060, -568, -966, -717, -814, -884, -611, -1035, -397, -1139, -216, -1183)
