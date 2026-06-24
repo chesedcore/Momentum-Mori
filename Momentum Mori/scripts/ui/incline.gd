@@ -28,11 +28,11 @@ func _update_incline() -> void {
 		var move_dir := blade.velocity.normalized()
 		mat.set_shader_parameter(&"x_rot", -move_dir.y * tilt_strength)
 		mat.set_shader_parameter(&"y_rot", move_dir.x * tilt_strength)
-	} else {
-		tilt_strength *= 1.4
-		mat.set_shader_parameter(&"x_rot", 0.0)
-		mat.set_shader_parameter(&"y_rot", 45.0 * vel_tilt)
-	}
+	} #else {
+		#tilt_strength *= 1.4
+		#mat.set_shader_parameter(&"x_rot", 0.0)
+		#mat.set_shader_parameter(&"y_rot", 45.0 * vel_tilt)
+	#}
 }
 
 func _process(_delta: float) -> void {
