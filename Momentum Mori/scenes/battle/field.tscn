@@ -34,7 +34,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 player = NodePath("Player")
 enemies = NodePath("Enemies")
-projectiles = NodePath("Projectiles")
+projectiles = NodePath("ProjectilesHolder")
 base_knockback = 800.0
 recoil_duration = 0.25
 camera = NodePath("../Cam")
@@ -52,14 +52,14 @@ target = NodePath("../../Player")
 position = Vector2(-499, 330)
 target = NodePath("../../Player")
 
-[node name="Projectiles" type="Node2D" parent="Stadium" unique_id=697776277]
+[node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=521854921]
 environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 top_level = true
-zoom = Vector2(0.35, 0.35)
+zoom = Vector2(0.3, 0.3)
 
 [node name="PhantomCameraHost" type="Node" parent="Cam" unique_id=1536686757]
 process_priority = 300
@@ -69,10 +69,8 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Pcam" type="Node2D" parent="." unique_id=1489987666]
 script = ExtResource("5_pdtp2")
-zoom = Vector2(0.35, 0.35)
+zoom = Vector2(0.3, 0.3)
 tween_resource = SubResource("Resource_xuj4y")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
-
-[node name="ProjectileHolder" type="Node2D" parent="." unique_id=917200871]
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
