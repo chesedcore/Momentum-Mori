@@ -22,6 +22,15 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	collision_cooldown = COLLISION_COOLDOWN_DURATION
 	var enemy: EnemyBlade = collision.get_collider()
 	var normal := collision.get_normal()
+	#OH BOY HERE I GO DISSAPOINYOMH MONARCH AGAIN
+	# ignore everything if the guy is parryinggg
+	if enemy.is_parrying {
+		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
+		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
+		_on_spark_at_node(player)
+		return
+	}
+	
 	
 	# who was attacking (facing toward the other)
 	var player_attacking :bool = -player_velocity.normalized().dot(normal) > 0.5

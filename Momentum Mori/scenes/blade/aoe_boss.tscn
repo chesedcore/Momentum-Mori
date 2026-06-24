@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckdvewdxcovni"]
 
-[ext_resource type="Script" uid="uid://bjqr8a554h2be" path="res://scripts/blade/defense_boss.gd" id="1_oceyv"]
+[ext_resource type="Script" uid="uid://bjqr8a554h2be" path="res://scripts/blade/aoe_boss.gd" id="1_oceyv"]
 [ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_b54ou"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_h843n"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_h843n"]
@@ -76,9 +76,9 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_s4hsf")]
 
 [node name="AoeVisual" type="Node2D" parent="." unique_id=1672008490]
-visible = false
 
 [node name="Circle" type="Node2D" parent="AoeVisual" unique_id=675775566]
+modulate = Color(1, 0, 0, 1)
 script = ExtResource("2_h843n")
 thickness = 2.5
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"

@@ -6,7 +6,7 @@ const attack_duration: float = 1
 @export var attack_speed : float = 1300
 @export var attack_dist : float = 300
 
-
+var is_parrying :bool = false
 
 @export var incline: Incline
 
