@@ -1,13 +1,6 @@
-class_name SpinningProjectileEnemy extends  EnemyBlade
-
-
-
+class_name SpinningProjectileEnemy extends EnemyBlade
 
 const SPINNING_PROJECTILES = preload("res://scenes/battle/spinning_projectiles.tscn")
-
-
-
-
 
 
 var attack_counter : int = 0
@@ -73,8 +66,6 @@ func  change_to_firing()->void{
 	current_state = STATES.FIRING
 	speed = 0
 	print("firing")
-	
-	
 }
 
 
