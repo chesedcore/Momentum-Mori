@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://scenes/blade/wobbly_fuck.gdshader" id="2_g768s"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_m31ts"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_phrk6"]
+[ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_j7qga"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gejl"]
 resource_local_to_scene = true
@@ -63,3 +64,5 @@ metadata/_edit_lock_ = true
 [node name="BladeAnimator" type="Node" parent="." unique_id=2026629979 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("3_phrk6")
 blade_visual_node = NodePath("../Incline/Visual/Visual/Circle")
+
+[node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_j7qga")]
