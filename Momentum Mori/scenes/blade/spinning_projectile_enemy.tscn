@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="4_8sk8t"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="5_fo2wi"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_5v8by"]
+[ext_resource type="Texture2D" uid="uid://c84miaijurh2l" path="res://assets/textures/temp_hp_bar_back.png" id="7_fo2wi"]
+[ext_resource type="Texture2D" uid="uid://cor0mtx3idtdx" path="res://assets/textures/temp_hp_bar.png" id="8_hyxdh"]
+[ext_resource type="Script" uid="uid://c6nf7dprdbuqq" path="res://scripts/blade/blade_health_bar.gd" id="9_slfwr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jepn1"]
 resource_local_to_scene = true
@@ -67,3 +70,15 @@ blade_visual_node = NodePath("../Incline/Visual/Visual")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_5v8by")]
+
+[node name="BladeHealthBar" type="TextureProgressBar" parent="." unique_id=1504354350]
+modulate = Color(0.75, 0, 0, 1)
+offset_left = -99.0
+offset_top = -89.0
+offset_right = 101.0
+offset_bottom = -45.0
+value = 16.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_fo2wi")
+texture_progress = ExtResource("8_hyxdh")
+script = ExtResource("9_slfwr")

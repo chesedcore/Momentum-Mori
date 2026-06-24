@@ -67,6 +67,7 @@ lower_orbit_radius={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
 viewport/hdr_2d=true

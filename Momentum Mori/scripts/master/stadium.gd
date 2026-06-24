@@ -22,27 +22,27 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	collision_cooldown = COLLISION_COOLDOWN_DURATION
 	var enemy: EnemyBlade = collision.get_collider()
 	var normal := collision.get_normal()
-	
+
 	# who was attacking (facing toward the other)
 	var player_attacking :bool = -player_velocity.normalized().dot(normal) > 0.5
 	var enemy_attacking :bool = enemy.velocity.normalized().dot(normal) > 0.5
-	
+
 	if player_attacking and enemy_attacking {
 	var player_speed := player_velocity.length()
 	var enemy_speed := enemy.velocity.length()
 	var total_speed := player_speed + enemy_speed
-	
-	
+
+
 	var player_dmg_ratio := roundf(enemy_speed / total_speed)
-	
+
 	var enemy_dmg_ratio := roundf(player_speed / total_speed)
-	
+
 	player.apply_recoil(normal, base_knockback * player_dmg_ratio, recoil_duration)
 	player.take_damage(enemy.base_dmg * player_dmg_ratio)
 	enemy.apply_recoil(-normal, base_knockback * enemy_dmg_ratio, recoil_duration)
 	enemy.take_damage(player.base_dmg * enemy_dmg_ratio)
-	
-	
+
+
 	}
 	elif player_attacking {
 		player.apply_recoil(normal, base_knockback, recoil_duration)
@@ -57,7 +57,7 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		}
 	}
 	else {
-		#SAME HERE I DONT THINK A SLOW ENEMY SHOULD KNOCK THE BLADE MILLION MILES AWAY 
+		#SAME HERE I DONT THINK A SLOW ENEMY SHOULD KNOCK THE BLADE MILLION MILES AWAY
 		if player_velocity.length() >= enemy.velocity.length(){
 			player.apply_recoil(normal, base_knockback, recoil_duration)
 			player.take_damage(enemy.base_dmg )
@@ -72,16 +72,16 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if enemy.current_state == EnemyBlade.STATES.ATTACKING{
 	enemy.change_to_chasing()
 	}
-	
-	
+
+
 	#OH BOY SPARKY SPARKY
-	
-	
-	
-	
-	
+
+
+
+
+
 	#uhh ill put it here to not bloat everything upp therrrr
-	
+
 	#LILI: i just reimplemented gael code with some changes
 	var sparks: Node2D = SPARKS.instantiate()
 	sparks.global_position = collision.get_position()
@@ -90,7 +90,7 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if player_attacking and enemy_attacking {
 		#Double the sparks cuz i think maybe that will look cool
 		var second_sparks : Node2D = SPARKS.instantiate()
-		second_sparks.rotation = enemy.velocity.normalized().angle() 
+		second_sparks.rotation = enemy.velocity.normalized().angle()
 		var second_spark_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
 		second_sparks.scale = Vector2(second_spark_scale, second_spark_scale)
 		second_sparks.global_position = collision.get_position()
@@ -106,14 +106,14 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		sparks_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
 		attack_direction = enemy.velocity.normalized()
 	}
-	sparks.rotation = attack_direction.angle() 
+	sparks.rotation = attack_direction.angle()
 	sparks.scale = Vector2(sparks_scale, sparks_scale)
-	
+
 	add_child(sparks)
 	#
 	#pazaz
 	#apply_camera_shake()
-	
+
 }
 
 func _process(delta: float) -> void{
