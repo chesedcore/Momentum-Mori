@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c0p0kf6354mc2"]
+
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="1_n7com"]
+[ext_resource type="Texture2D" uid="uid://dsumutf6tq6yr" path="res://assets/chain/segment1.png" id="2_m0p2c"]
+[ext_resource type="Texture2D" uid="uid://bfgo72fbsm781" path="res://assets/chain/mace.png" id="2_sxhik"]
+[ext_resource type="Texture2D" uid="uid://b44vpuc4y4b87" path="res://assets/chain/segment2.png" id="3_ggdsm"]
+[ext_resource type="Texture2D" uid="uid://chntt0ncdcwpk" path="res://assets/chain/mace_aura.png" id="3_m0p2c"]
+
+[node name="MaceHead" type="Control" unique_id=41535524]
+custom_minimum_size = Vector2(535, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 139.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+mouse_filter = 2
+script = ExtResource("1_n7com")
+start_on_ready = false
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1209976660]
+texture = ExtResource("2_m0p2c")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1483903307]
+texture = ExtResource("3_ggdsm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=665376272]
+texture = ExtResource("2_sxhik")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1634361820]
+texture = ExtResource("3_m0p2c")

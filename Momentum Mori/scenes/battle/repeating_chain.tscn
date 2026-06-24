@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://4hq0e6361j6r"]
+
+[ext_resource type="Script" uid="uid://db7n8c6q0y8op" path="res://scripts/battle/segments.gd" id="1_0u4ir"]
+[ext_resource type="Script" uid="uid://cibxosi0lwpuq" path="res://scripts/battle/chain_whip.gd" id="1_2vufs"]
+[ext_resource type="PackedScene" uid="uid://d0t0ihe4mfnv2" path="res://scenes/battle/chain_segment.tscn" id="1_jqttu"]
+[ext_resource type="PackedScene" uid="uid://c0p0kf6354mc2" path="res://scenes/battle/mace_head.tscn" id="3_oc3hr"]
+
+[node name="Chain" type="Node2D" unique_id=851590246 node_paths=PackedStringArray("segments")]
+script = ExtResource("1_2vufs")
+segments = NodePath("Segments")
+
+[node name="Segments" type="HBoxContainer" parent="." unique_id=1690813158]
+offset_left = 450.0
+offset_right = 490.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+script = ExtResource("1_0u4ir")
+metadata/_edit_lock_ = true
+
+[node name="Segment" parent="Segments" unique_id=41535524 instance=ExtResource("1_jqttu")]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Segment2" parent="Segments" unique_id=484496418 instance=ExtResource("1_jqttu")]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Segment3" parent="Segments" unique_id=759796106 instance=ExtResource("1_jqttu")]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Segment4" parent="Segments" unique_id=1190295205 instance=ExtResource("1_jqttu")]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="MaceHead" parent="Segments" unique_id=2023355759 instance=ExtResource("3_oc3hr")]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=772700367]
+position = Vector2(1445, 15)
+zoom = Vector2(0.4, 0.4)
