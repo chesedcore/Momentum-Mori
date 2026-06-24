@@ -13,10 +13,13 @@ const attack_duration: float = 1
 @export var chasing_speed: float = 700
 @export var turn_speed := 2.5
 @export var target: Node2D
+
+
 @export var escape_duration := 0.5
+var escape_dir := Vector2.ZERO
+var escape_time := 0.0
+@export var minimum_distance_to_target: float = 150
 
-
-var minimum_distance_to_target: float = 150
 
 @export var recoil_resistance:float = 1 # 1 means no resist , 0 means no recoil
 
@@ -28,8 +31,6 @@ var remaining_attack_duration :float = attack_duration
 var remaining_attack_cooldown := attack_cooldown
 var players_last_loc : Vector2
 
-var escape_dir := Vector2.ZERO
-var escape_time := 0.0
 
 
 var display_velocity: Vector2 = Vector2.ZERO

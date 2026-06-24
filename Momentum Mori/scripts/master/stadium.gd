@@ -28,21 +28,25 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	var enemy_attacking :bool = enemy.velocity.normalized().dot(normal) > 0.5
 	
 	if player_attacking and enemy_attacking {
-	var player_speed := player_velocity.length()
-	var enemy_speed := enemy.velocity.length()
-	var total_speed := player_speed + enemy_speed
-	
-	
-	var player_dmg_ratio := roundf(enemy_speed / total_speed)
-	
-	var enemy_dmg_ratio := roundf(player_speed / total_speed)
-	
-	player.apply_recoil(normal, base_knockback * player_dmg_ratio, recoil_duration)
-	player.take_damage(enemy.base_dmg * player_dmg_ratio)
-	enemy.apply_recoil(-normal, base_knockback * enemy_dmg_ratio, recoil_duration)
-	enemy.take_damage(player.base_dmg * enemy_dmg_ratio)
-	
-	
+		var player_speed := player_velocity.length()
+		var enemy_speed := enemy.velocity.length()
+		var total_speed := player_speed + enemy_speed
+		var player_dmg_ratio := roundf(enemy_speed / total_speed)
+		var enemy_dmg_ratio := roundf(player_speed / total_speed)
+		player.apply_recoil(normal, base_knockback * player_dmg_ratio, recoil_duration)
+		player.take_damage(enemy.base_dmg * player_dmg_ratio)
+		enemy.apply_recoil(-normal, base_knockback * enemy_dmg_ratio, recoil_duration)
+		enemy.take_damage(player.base_dmg * enemy_dmg_ratio)
+		
+		
+		#ok this is probbably the worst way to do it but i am just gonna have the stadium check if the collision had a vamp and allow for lifesteal
+		#head on vamp lifesteals  the amouunt the player dealt so they get a net postive spin from head as opposed to the player
+		if enemy is VampBoss{
+			enemy.life_steal(player.base_dmg * enemy_dmg_ratio)
+		}
+		
+		
+		
 	}
 	elif player_attacking {
 		player.apply_recoil(normal, base_knockback, recoil_duration)
@@ -65,6 +69,15 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		else{
 			player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 			player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
+			
+			#sigh.......monarchs gonna kill me
+			
+			if enemy is VampBoss{
+				enemy.life_steal(enemy.base_dmg * loser_dmg_multiplier)
+				
+			}
+			
+			
 		}
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
@@ -131,8 +144,16 @@ func iter_blades() -> Array[Blade] {
 
 func  _ready() -> void{
 	_starting_camera_zoom = camera.zoom
-	EventBus.spawn_projectile.connect(_on_spawn_projectile)
+	_wire_signals()
 }
+
+
+func _wire_signals()->void {
+	EventBus.spawn_projectile.connect(_on_spawn_projectile)
+	EventBus.spawn_blade.connect(_on_spawn_blade)
+	EventBus.spawn_spark.connect(_on_spark_at_node)
+}
+
 
 @export var camera: Camera2D
 var _starting_camera_zoom : Vector2
@@ -174,4 +195,16 @@ var _starting_camera_zoom : Vector2
 	#
 func _on_spawn_projectile(projectile:Node2D)->void{
 	projectiles.add_child(projectile)
+}
+
+func _on_spawn_blade(blade :Node2D) ->void{
+	enemies.add_child(blade)
+}
+func _on_spark_at_node(node : Node2D){
+	var sparks: Node2D = SPARKS.instantiate()
+	sparks.global_position = node.global_position
+	if node is Blade{
+		sparks.rotation = -node.velocity.normalized().angle() 
+	}
+	add_child(sparks)
 }

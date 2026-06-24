@@ -19,10 +19,14 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
-[node name="DefenseBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay0lp"]
+radius = 31.87251
+
+[node name="AoeBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("aoe_visual", "incline", "blade_animator")]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_oceyv")
+aoe_visual = NodePath("AoeVisual")
 attack_speed = 800.0
 incline = NodePath("Incline")
 chasing_speed = 350.0
@@ -70,3 +74,19 @@ script = ExtResource("2_h843n")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_s4hsf")]
+
+[node name="AoeVisual" type="Node2D" parent="." unique_id=1672008490]
+visible = false
+
+[node name="Circle" type="Node2D" parent="AoeVisual" unique_id=675775566]
+script = ExtResource("2_h843n")
+thickness = 2.5
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="Area2D" type="Area2D" parent="AoeVisual" unique_id=1784997273]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AoeVisual/Area2D" unique_id=787642525]
+shape = SubResource("CircleShape2D_ay0lp")
+debug_color = Color(0.9808809, 0, 0.37990618, 0.41960785)
+
+[connection signal="body_entered" from="AoeVisual/Area2D" to="." method="_on_area_2d_body_entered"]
