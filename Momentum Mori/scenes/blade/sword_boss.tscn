@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_lli7x"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_tdkym"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="4_lli7x"]
+[ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="7_tdkym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jepn1"]
 resource_local_to_scene = true
@@ -23,8 +24,8 @@ radius = 26.019224
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_83sj8")
-incline = NodePath("Incline")
 attack_dist = 600.0
+incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]
@@ -83,3 +84,5 @@ texture = ExtResource("3_lli7x")
 script = ExtResource("4_lli7x")
 blade_visual_node = NodePath("../Incline/Visual/Visual")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
+
+[node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("7_tdkym")]

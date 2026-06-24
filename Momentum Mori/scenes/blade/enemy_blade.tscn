@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_hyu5x"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_muedi"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_rnmqm"]
+[ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_muedi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306to"]
 resource_local_to_scene = true
@@ -62,3 +63,5 @@ shape = SubResource("CircleShape2D_qvk82")
 script = ExtResource("3_rnmqm")
 blade_visual_node = NodePath("../Incline/Visual/Visual/Circle")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
+
+[node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_muedi")]

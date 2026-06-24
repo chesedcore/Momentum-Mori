@@ -1,7 +1,12 @@
 class_name EnemyBlade extends Blade
 
 const attack_duration: float = 1
-const attack_cooldown : float = 2
+@export_group("Attack","attack")
+@export var attack_cooldown : float = 2
+@export var attack_speed : float = 1300
+@export var attack_dist : float = 300
+
+
 
 @export var incline: Incline
 
@@ -9,8 +14,7 @@ const attack_cooldown : float = 2
 @export var turn_speed := 2.5
 @export var target: Node2D
 @export var escape_duration := 0.5
-@export var attack_speed : float = 1300
-@export var attack_dist : float = 300
+
 
 var minimum_distance_to_target: float = 150
 

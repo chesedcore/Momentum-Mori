@@ -11,7 +11,8 @@ var recoil_time: float = 0.0
 var recoil_velocity: Vector2 = Vector2.ZERO
 
 func apply_recoil(dir: Vector2, force: float, duration: float) -> void {
-	blade_animator.shake(randf_range(0.5, 2.5))
+	var shake_force : float=  remap(force,300,1200,0.1,1)
+	blade_animator.shake(shake_force)
 	recoil_velocity = dir.normalized() * force
 	recoil_time = duration
 }

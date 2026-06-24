@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_h843n"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_h843n"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_s4hsf"]
+[ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_s4hsf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 13.823168
@@ -22,10 +23,10 @@ shader_parameter/inset = 0.0
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_oceyv")
+attack_speed = 800.0
 incline = NodePath("Incline")
 chasing_speed = 350.0
 escape_duration = 0.3
-attack_speed = 800.0
 recoil_resistance = 0.3
 blade_animator = NodePath("BladeAnimator")
 
@@ -67,3 +68,5 @@ modulate = Color(0.5320703, 0.18831304, 0, 1)
 position = Vector2(38, 37.5)
 script = ExtResource("2_h843n")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_s4hsf")]
