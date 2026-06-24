@@ -6,6 +6,32 @@
 [ext_resource type="Shader" uid="uid://chu0h3oe1pfeq" path="res://shaderslop/arena_floor.gdshader" id="2_ci1pd"]
 [ext_resource type="Texture2D" uid="uid://do15p2y7n0ynw" path="res://assets/textures/arena_floor.png" id="3_eje4j"]
 
+[sub_resource type="Gradient" id="Gradient_eje4j"]
+offsets = PackedFloat32Array(0, 0.22232646, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5463978, 0.5463978, 0.5463978, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6ltpu"]
+noise_type = 2
+frequency = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eje4j"]
+noise = SubResource("FastNoiseLite_6ltpu")
+color_ramp = SubResource("Gradient_eje4j")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_1s0xc"]
+offsets = PackedFloat32Array(0.6669794, 0.8302064, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.13, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jp4x7"]
+noise_type = 5
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6ltpu"]
+noise = SubResource("FastNoiseLite_jp4x7")
+color_ramp = SubResource("Gradient_1s0xc")
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ci1pd"]
 shader = ExtResource("2_ci1pd")
 shader_parameter/key_color = Color(0, 1, 0, 1)
@@ -14,6 +40,8 @@ shader_parameter/smoothness = 0.08
 shader_parameter/spill = 0.1
 shader_parameter/uv_scale = 10.0
 shader_parameter/ground_texture = ExtResource("3_eje4j")
+shader_parameter/red_grunge = SubResource("NoiseTexture2D_6ltpu")
+shader_parameter/noise = SubResource("NoiseTexture2D_eje4j")
 
 [node name="Stadium" type="Node2D" unique_id=1739205512]
 script = ExtResource("1_mqc3m")

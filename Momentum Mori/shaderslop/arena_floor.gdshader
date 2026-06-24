@@ -10,6 +10,8 @@ uniform float spill : hint_range(0.0,1.0) = 0.1;
 uniform float uv_scale = 10.0;
 
 uniform sampler2D ground_texture: repeat_enable;
+uniform sampler2D red_grunge: repeat_enable;
+uniform sampler2D noise: repeat_enable;
 
 // From https://github.com/libretro/glsl-shaders/blob/master/nnedi3/shaders/rgb-to-yuv.glsl
 vec2 RGBtoUV(vec3 rgb) {
@@ -35,8 +37,12 @@ vec4 ProcessChromaKey(sampler2D tex,vec2 texCoord) {
 }
 
 void fragment() {
+	float speed = 0.02;
 	vec4 gs_texture = ProcessChromaKey(TEXTURE, UV);
 	vec4 tex = (texture(ground_texture, UV * uv_scale));
-	COLOR = (tex * gs_texture);
-	COLOR *= 0.75;
+	float n_val = texture(noise, UV + TIME * speed).r;
+	vec4 grunge = texture(red_grunge, (UV * n_val * uv_scale / 8.0) + TIME * speed);
+	COLOR = (grunge * gs_texture);
+	COLOR += (tex * gs_texture);
+	COLOR *= 0.5;
 }
