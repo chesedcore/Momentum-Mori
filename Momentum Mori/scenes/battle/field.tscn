@@ -47,6 +47,7 @@ motion_mode = 1
 [node name="ParryBoss" parent="Stadium/Enemies" unique_id=701940980 node_paths=PackedStringArray("target") instance=ExtResource("4_xuj4y")]
 position = Vector2(-414, -125)
 target = NodePath("../../Player")
+hp = 200.0
 
 [node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]
 

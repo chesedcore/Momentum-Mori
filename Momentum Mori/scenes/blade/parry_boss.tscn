@@ -25,6 +25,8 @@ collision_mask = 6
 script = ExtResource("1_hpdak")
 visual = NodePath("Incline/Visual/Visual/Circle")
 incline = NodePath("Incline")
+chasing_speed = 400.0
+recoil_resistance = 0.3
 blade_animator = NodePath("BladeAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
