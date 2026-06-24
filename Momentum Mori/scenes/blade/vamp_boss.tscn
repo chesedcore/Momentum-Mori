@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c10r7tej3wl6d"]
 
 [ext_resource type="Script" uid="uid://cbgksp6uiqham" path="res://vamp_boss.gd" id="1_jlrj6"]
-[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://scenes/blade/wobbly_fuck.gdshader" id="2_qemca"]
+[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_qemca"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_tlmub"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="4_68m3t"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="5_x8skt"]
@@ -19,11 +19,22 @@ shader_parameter/inset = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 26.019224
 
-[node name="VampBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
+[node name="VampBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("visual", "incline", "blade_animator")]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_jlrj6")
+visual = NodePath("Incline/Visual/Visual")
+attack_cooldown = null
+attack_speed = 2500.0
+attack_dist = 800.0
 incline = NodePath("Incline")
+chasing_speed = 1400.0
+turn_speed = 4.0
+escape_duration = null
+minimum_distance_to_target = 400.0
+recoil_resistance = null
+hp = null
+base_dmg = null
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]

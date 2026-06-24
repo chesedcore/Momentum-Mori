@@ -51,6 +51,7 @@ target = NodePath("../../Player")
 
 [node name="SwordBoss" parent="Stadium/Enemies" unique_id=972105975 node_paths=PackedStringArray("target") instance=ExtResource("5_0lnkb")]
 position = Vector2(-252, -344)
+attack_cooldown = 4.0
 target = NodePath("../../Player")
 
 [node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]

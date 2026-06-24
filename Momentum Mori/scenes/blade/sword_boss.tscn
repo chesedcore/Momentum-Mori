@@ -63,6 +63,7 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 shape = SubResource("CircleShape2D_qvk82")
 
 [node name="sword holder" type="Node2D" parent="." unique_id=593059260]
+visible = false
 
 [node name="sword" type="Sprite2D" parent="sword holder" unique_id=10504127]
 position = Vector2(0, 151)
