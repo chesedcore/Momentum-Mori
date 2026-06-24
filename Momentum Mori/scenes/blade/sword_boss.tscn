@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://k38cm2j15ovt" path="res://scripts/blade/sword_boss.gd" id="1_83sj8"]
 [ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_pcls2"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_r6lbf"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_lli7x"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_tdkym"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="4_lli7x"]
+[ext_resource type="Texture2D" uid="uid://do8k6oc28d2y7" path="res://assets/projectile/sword.png" id="5_tdkym"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="7_tdkym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jepn1"]
@@ -63,22 +63,24 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 shape = SubResource("CircleShape2D_qvk82")
 
 [node name="sword holder" type="Node2D" parent="." unique_id=593059260]
-visible = false
 
-[node name="Icon" type="Sprite2D" parent="sword holder" unique_id=10504127]
-position = Vector2(0, 91.99999)
-scale = Vector2(1.5425056, 0.1435653)
-texture = ExtResource("3_lli7x")
+[node name="sword" type="Sprite2D" parent="sword holder" unique_id=10504127]
+position = Vector2(0, 151)
+rotation = -3.1415927
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_tdkym")
 
-[node name="Icon2" type="Sprite2D" parent="sword holder" unique_id=2099044044]
-position = Vector2(-120.99999, 4.5474735e-13)
-scale = Vector2(1.5425056, 0.1435653)
-texture = ExtResource("3_lli7x")
+[node name="sword2" type="Sprite2D" parent="sword holder" unique_id=35205415]
+position = Vector2(-204, 0)
+rotation = -3.1415927
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_tdkym")
 
-[node name="Icon3" type="Sprite2D" parent="sword holder" unique_id=1884691859]
-position = Vector2(-7.6293945e-06, -85.00001)
-scale = Vector2(1.5425056, 0.1435653)
-texture = ExtResource("3_lli7x")
+[node name="sword3" type="Sprite2D" parent="sword holder" unique_id=1932782732]
+position = Vector2(0, -140)
+rotation = -3.1415927
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_tdkym")
 
 [node name="BladeAnimator" type="Node" parent="." unique_id=2068761957 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("4_lli7x")

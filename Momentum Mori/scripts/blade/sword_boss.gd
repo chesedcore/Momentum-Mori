@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void{
 		
 		calculate_movement(delta)
 		
+		sword_holder.rotation = (target.global_position - global_position).angle()
 	}
 }
 
