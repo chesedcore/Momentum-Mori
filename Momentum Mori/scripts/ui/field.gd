@@ -3,23 +3,87 @@ class_name Field extends Control
 signal action_requested
 signal chain_spawn_confirmed
 
+signal request_start_adrenaline
+signal request_stop_adrenaline
+signal request_force_stop_adrenaline
+
 @export var stadium: Stadium
 @export var game_camera: GameCamera
+@export var timer: Timer
+
 @export var time_until_chain_disappears := 2.0
 
+@export var max_adrenaline_time_in_seconds := 3.0
+@export var adrenaline_recharge_rate := 0.33
+@export var time_slow_down_factor := 0.2
+
+var _is_under_adrenaline := false
+
 func _unhandled_input(event: InputEvent) -> void {
-	if event.is_action_pressed("action") {
+	if event.is_action_pressed(&"action") {
 		action_requested.emit()
+	}
+	
+	if event.is_action_pressed(&"adrenaline") {
+		request_start_adrenaline.emit()
+	}
+	
+	if event.is_action_released(&"adrenaline") {
+		request_stop_adrenaline.emit()
 	}
 }
 
 func _ready() -> void {
+	timer.wait_time = max_adrenaline_time_in_seconds
 	_inject_deps()
 	_wire_up_signals()
 }
 
 func _wire_up_signals() -> void {
 	action_requested.connect(_on_action_requested)
+	request_start_adrenaline.connect(_on_requested_adrenaline_start)
+	request_stop_adrenaline.connect(_on_requested_adrenaline_stop)
+	request_force_stop_adrenaline.connect(force_stop_adrenaline)
+	timer.timeout.connect(_on_timer_expired)
+}
+
+func _on_requested_adrenaline_start() -> void {
+	if _is_under_adrenaline: return
+	_is_under_adrenaline = true
+	Engine.time_scale *= time_slow_down_factor
+	timer.start()
+}
+
+func _on_requested_adrenaline_stop() -> void {
+	print("balls")
+	if not _is_under_adrenaline: return
+	timer.wait_time = timer.wait_time - timer.time_left
+	force_stop_adrenaline()
+}
+
+func _on_timer_expired() -> void {
+	force_stop_adrenaline()
+}
+
+func force_stop_adrenaline() -> void {
+	_is_under_adrenaline = false
+	Engine.time_scale = 1.0
+}
+
+func _physics_process(delta: float) -> void {
+	tick_up_adrenaline(delta)
+}
+
+func tick_up_adrenaline(delta: float) -> void {
+	if _is_under_adrenaline: return
+	var eff_delta := delta
+	
+	timer.wait_time = minf(
+		max_adrenaline_time_in_seconds, 
+		timer.wait_time + eff_delta
+	)
+	
+	#print(timer.wait_time)
 }
 
 func _on_action_requested() -> void {

@@ -7,3 +7,7 @@ static func flatten_array[T](arr: Array) -> T {
 	}
 	return value as T
 }
+
+static func reciprocal_inverse(f: float) -> float {
+	return 1.0 / f
+}

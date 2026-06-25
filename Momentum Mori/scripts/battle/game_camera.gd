@@ -12,10 +12,10 @@ func _process(delta: float) -> void {
 
 func _update_camera(delta: float) -> void {
 	if not stadium: return
-
+	
 	var player := stadium.player
 	var blades := stadium.iter_blades()
-
+	
 	var max_dist := 0.0
 	for blade in blades {
 		var d := player.global_position.distance_to(blade.global_position)
