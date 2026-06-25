@@ -54,7 +54,10 @@ position = Vector2(75, 75)
 
 [node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=1357358368]
 modulate = Color(0, 1.4842072, 2.454227, 1)
+z_index = 3
 script = ExtResource("2_m31ts")
+thickness = 15.0
+radius = 60.0
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 metadata/_edit_lock_ = true
 

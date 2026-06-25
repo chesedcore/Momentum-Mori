@@ -31,7 +31,7 @@ func _summon_chain() -> ChainWhip {
 		w.kill()
 	}
 	var chain := ChainWhip.summon_chain_from_start_to_end(
-		stadium.get_chain_dock(),
+	stadium.get_chain_dock(),
 		stadium.get_player().get_global_position(),
 		get_global_mouse_position()
 	)
