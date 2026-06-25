@@ -22,7 +22,7 @@ func apply_recoil(dir: Vector2, force: float, duration: float) -> void {
 }
 
 func take_damage(dmg : float ) -> void {
-	prints(name,hp,dmg)
+	#prints(name,hp,dmg)
 	hp -= dmg
 	if hp <= 0 {
 		die()

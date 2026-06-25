@@ -107,7 +107,7 @@ static func from_objects(signal_name: StringName, ...objects: Array) -> Promise 
 ##given a signal name and multiple objects that have that signal on them, create a Promise
 ##from all of those signals. see also [code]from_objects[/code] for a constructor that
 ##infers those signals at compile-time instead.
-static func from_obj_arr(signal_name: StringName, arr: Array[Object]) -> Promise {
+static func from_obj_arr(signal_name: StringName, arr: Array[Variant]) -> Promise {
 	var promise := Promise.new()
 	for obj: Object in arr {
 		var sig := obj.get(signal_name) as Signal

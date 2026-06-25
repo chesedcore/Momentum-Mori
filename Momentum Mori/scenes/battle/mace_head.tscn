@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://c0p0kf6354mc2"]
 
-[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="1_n7com"]
+[ext_resource type="Script" uid="uid://4exu60j0sw41" path="res://scripts/battle/chain_segment.gd" id="1_m0p2c"]
 [ext_resource type="Texture2D" uid="uid://dsumutf6tq6yr" path="res://assets/chain/segment1.png" id="2_m0p2c"]
 [ext_resource type="Texture2D" uid="uid://bfgo72fbsm781" path="res://assets/chain/mace.png" id="2_sxhik"]
 [ext_resource type="Texture2D" uid="uid://b44vpuc4y4b87" path="res://assets/chain/segment2.png" id="3_ggdsm"]
 [ext_resource type="Texture2D" uid="uid://chntt0ncdcwpk" path="res://assets/chain/mace_aura.png" id="3_m0p2c"]
 
-[node name="MaceHead" type="Control" unique_id=41535524]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0p2c"]
+size = Vector2(447.5, 133)
+
+[node name="MaceHead" type="Control" unique_id=41535524 node_paths=PackedStringArray("area")]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 3
 anchors_preset = 0
@@ -14,7 +17,8 @@ offset_right = 139.0
 offset_bottom = 40.0
 offset_transform_enabled = true
 mouse_filter = 2
-script = ExtResource("1_n7com")
+script = ExtResource("1_m0p2c")
+area = NodePath("Area")
 start_on_ready = false
 tween_in_time = 0.1
 stagger = 0.01
@@ -35,3 +39,14 @@ texture = ExtResource("2_sxhik")
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1634361820]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_m0p2c")
+
+[node name="Area" type="Area2D" parent="." unique_id=1195449808]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1609895172]
+position = Vector2(-14.75, -18.5)
+shape = SubResource("RectangleShape2D_m0p2c")
+
+[node name="Marker" type="Marker2D" parent="." unique_id=24101321]
+position = Vector2(198, -22)
