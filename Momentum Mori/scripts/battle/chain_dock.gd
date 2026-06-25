@@ -17,3 +17,11 @@ static func raycast_for_collidables(
 	if res.collider is not PhysicsBody2D: return Option.none()
 	return Option.some(res.collider)
 }
+
+func summon_chain(from: Vector2, to: Vector2) -> void {
+	var angle_to_end := from.angle_to_point(to)
+	var chain := Registry.create_chain_whip()
+	self.add_child(chain)
+	chain.rotation = angle_to_end
+	chain.global_position = from
+}

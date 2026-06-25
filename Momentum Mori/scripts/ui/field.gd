@@ -1,15 +1,14 @@
 class_name Field extends Control
 
 signal action_requested
+signal chain_spawn_confirmed
 
 @export var stadium: Stadium
 @export var game_camera: GameCamera
 
 func _unhandled_input(event: InputEvent) -> void {
-	if event is InputEventMouseButton {
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT {
-			action_requested.emit()
-		}
+	if event.is_action_pressed("action", true) {
+		action_requested.emit()
 	}
 }
 
@@ -23,10 +22,20 @@ func _wire_up_signals() -> void {
 }
 
 func _on_action_requested() -> void {
-	print_rich(ChainDock.raycast_for_collidables(
-		stadium, stadium.player.global_position, 
-		get_global_mouse_position(), 2
-	))
+	var chain := ChainWhip.summon_chain_from_start_to_end(
+		stadium.get_chain_dock(),
+		stadium.get_player().get_global_position(),
+		get_global_mouse_position()
+	)
+	chain_spawn_confirmed.emit()
+	
+	_setup_chain_destructor.call_deferred(chain)
+}
+
+func _setup_chain_destructor(chain: ChainWhip) -> void {
+	var t := create_tween()
+	t.tween_await(chain_spawn_confirmed).set_timeout(2)
+	t.tween_callback(chain.kill)
 }
 
 func _inject_deps() -> void {

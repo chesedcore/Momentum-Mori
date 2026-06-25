@@ -10,11 +10,13 @@ script = ExtResource("1_2vufs")
 segments = NodePath("Segments")
 
 [node name="Segments" type="HBoxContainer" parent="." unique_id=1690813158]
-offset_left = 450.0
-offset_right = 490.0
+offset_left = 220.0
+offset_right = 1520.0
 offset_bottom = 40.0
 theme_override_constants/separation = 0
 script = ExtResource("1_0u4ir")
+start_on_ready = false
+stagger_time = 0.05
 metadata/_edit_lock_ = true
 
 [node name="Segment" parent="Segments" unique_id=41535524 instance=ExtResource("1_jqttu")]
