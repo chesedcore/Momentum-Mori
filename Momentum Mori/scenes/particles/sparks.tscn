@@ -60,3 +60,5 @@ speed_scale = 2.0
 explosiveness = 0.9
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_e0l53")
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
