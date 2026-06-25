@@ -58,6 +58,7 @@ script = ExtResource("5_gsd1j")
 environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
+physics_interpolation_mode = 1
 top_level = true
 zoom = Vector2(0.3, 0.3)
 
@@ -67,10 +68,15 @@ process_physics_priority = 300
 script = ExtResource("6_xuj4y")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Pcam" type="Node2D" parent="." unique_id=1489987666]
+[node name="Pcam" type="Node2D" parent="." unique_id=1489987666 node_paths=PackedStringArray("follow_target")]
+top_level = true
 script = ExtResource("5_pdtp2")
+follow_mode = 2
+follow_target = NodePath("../Stadium/Player")
 zoom = Vector2(0.3, 0.3)
 tween_resource = SubResource("Resource_xuj4y")
+follow_damping = true
+follow_damping_value = Vector2(2, 2)
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]

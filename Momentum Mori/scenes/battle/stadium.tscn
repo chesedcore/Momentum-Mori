@@ -2,22 +2,81 @@
 
 [ext_resource type="Script" uid="uid://ca4apyk8hb1vq" path="res://scripts/master/stadium.gd" id="1_mqc3m"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="1_vqgvn"]
+[ext_resource type="Texture2D" uid="uid://cn2scq51d6s3e" path="res://assets/textures/muhfuckin_greenscreen.png" id="2_2jhvn"]
+[ext_resource type="Shader" uid="uid://chu0h3oe1pfeq" path="res://shaderslop/arena_floor.gdshader" id="2_ci1pd"]
+[ext_resource type="Texture2D" uid="uid://do15p2y7n0ynw" path="res://assets/textures/arena_floor.png" id="3_eje4j"]
+
+[sub_resource type="Gradient" id="Gradient_eje4j"]
+offsets = PackedFloat32Array(0, 0.22232646, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5463978, 0.5463978, 0.5463978, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6ltpu"]
+noise_type = 2
+frequency = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eje4j"]
+noise = SubResource("FastNoiseLite_6ltpu")
+color_ramp = SubResource("Gradient_eje4j")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_1s0xc"]
+offsets = PackedFloat32Array(0.6669794, 0.8302064, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.13, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jp4x7"]
+noise_type = 5
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6ltpu"]
+noise = SubResource("FastNoiseLite_jp4x7")
+color_ramp = SubResource("Gradient_1s0xc")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ci1pd"]
+shader = ExtResource("2_ci1pd")
+shader_parameter/key_color = Color(0, 1, 0, 1)
+shader_parameter/similarity = 0.4
+shader_parameter/smoothness = 0.08
+shader_parameter/spill = 0.1
+shader_parameter/uv_scale = 40.0
+shader_parameter/ground_texture = ExtResource("3_eje4j")
+shader_parameter/red_grunge = SubResource("NoiseTexture2D_6ltpu")
+shader_parameter/noise = SubResource("NoiseTexture2D_eje4j")
 
 [node name="Stadium" type="Node2D" unique_id=1739205512]
 script = ExtResource("1_mqc3m")
 metadata/_edit_lock_ = true
 
+[node name="Floor" type="TextureRect" parent="." unique_id=745948540]
+material = SubResource("ShaderMaterial_ci1pd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(20.288242, 20.288242)
+pivot_offset = Vector2(253.76135, 258.4688)
+texture = ExtResource("2_2jhvn")
+
 [node name="Circle" type="Node2D" parent="." unique_id=381567262]
+rotation = -0.0038538056
+scale = Vector2(4.1842494, 4.1842494)
 script = ExtResource("1_vqgvn")
 thickness = 7.0
 radius = 1200.0
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
-metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1705093046]
 collision_layer = 4
 collision_priority = 30.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1761124410]
+scale = Vector2(4.1341543, 4.1341543)
 build_mode = 1
 polygon = PackedVector2Array(2, -1202, 208, -1186, 386, -1140, 562, -1062, 732, -953, 876, -827, 991, -676, 1071, -550, 1131, -409, 1165, -277, 1192, -138, 1202, 50, 1191, 152, 1169, 304, 1126, 428, 1037, 603, 941, 744, 835, 862, 724, 952, 567, 1060, 394, 1128, 222, 1178, 81, 1195, -76, 1200, -292, 1169, -458, 1109, -606, 1038, -732, 948, -867, 831, -963, 703, -1073, 533, -1144, 357, -1189, 178, -1202, -47, -1177, -243, -1139, -398, -1060, -568, -966, -717, -814, -884, -611, -1035, -397, -1139, -216, -1183)
