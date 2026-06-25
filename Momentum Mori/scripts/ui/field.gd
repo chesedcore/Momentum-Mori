@@ -22,14 +22,21 @@ func _wire_up_signals() -> void {
 }
 
 func _on_action_requested() -> void {
+	var chain := _summon_chain()
+	_setup_chain_destructor(chain)
+}
+
+func _summon_chain() -> ChainWhip {
+	for w: ChainWhip in stadium.get_chain_dock().get_children() {
+		w.kill()
+	}
 	var chain := ChainWhip.summon_chain_from_start_to_end(
 		stadium.get_chain_dock(),
 		stadium.get_player().get_global_position(),
 		get_global_mouse_position()
 	)
-	chain_spawn_confirmed.emit()
-	
-	_setup_chain_destructor.call_deferred(chain)
+	get_tree().create_timer(2.0).timeout.connect(chain.kill)
+	return chain
 }
 
 func _setup_chain_destructor(chain: ChainWhip) -> void {

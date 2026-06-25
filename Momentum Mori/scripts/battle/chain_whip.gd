@@ -37,7 +37,7 @@ func clear_segments() -> void {
 func summon_these_many_segments(num: int) -> void {
 	var chain_segment := preload("res://scenes/battle/chain_segment.tscn")
 	var mace_head := preload("res://scenes/battle/mace_head.tscn")
-	for i in (num-1) {
+	for i in (num - 1) {
 		segments.add_child(chain_segment.instantiate())
 	}
 	segments.add_child(mace_head.instantiate())
@@ -46,8 +46,17 @@ func summon_these_many_segments(num: int) -> void {
 func kill() -> void {
 	if is_being_killed: return
 	is_being_killed = true
-	var last_cascade: CascadeV3 = segments.get_children().map(
-		func(c: CascadeV3): c.cascade_out(); return c
-	).back()
+	segments.cancel()
+	var children := segments.get_children()
+	
+	if children.is_empty() {
+		queue_free()
+		return
+	}
+	
+	var last_cascade: CascadeV3 = children.back()
 	last_cascade.cascade_out_chain_finished.connect(queue_free)
+	for c: CascadeV3 in children {
+		c.cascade_out()
+	}
 }
