@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ktc4qvl1r5e3"]
 
 [ext_resource type="Script" uid="uid://6lkbl02fdikd" path="res://scripts/blade/spinning_projectile_enemy.gd" id="1_8jhfs"]
-[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://scenes/blade/wobbly_fuck.gdshader" id="2_5v8by"]
+[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_5v8by"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_utcdv"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="4_8sk8t"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="5_fo2wi"]

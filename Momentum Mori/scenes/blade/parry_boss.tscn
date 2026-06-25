@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://b52k08ccyw5li"]
+
+[ext_resource type="Script" uid="uid://dyaqp0gdlngxb" path="res://scripts/blade/parry_boss.gd" id="1_hpdak"]
+[ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="2_w4egg"]
+[ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="3_e7076"]
+[ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="4_a3fxq"]
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="5_wpxnr"]
+[ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_g17t8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
+radius = 13.823168
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b54ou"]
+resource_local_to_scene = true
+shader = ExtResource("3_e7076")
+shader_parameter/fov = 137.7010064932975
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="ParryBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("visual", "incline", "blade_animator")]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_hpdak")
+visual = NodePath("Incline/Visual/Visual/Circle")
+incline = NodePath("Incline")
+chasing_speed = 400.0
+recoil_resistance = 0.3
+blade_animator = NodePath("BladeAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_qvk82")
+
+[node name="BladeAnimator" type="Node" parent="." unique_id=1797960383 node_paths=PackedStringArray("blade_visual_node")]
+script = ExtResource("2_w4egg")
+blade_visual_node = NodePath("../Incline/Visual/Visual")
+metadata/_custom_type_script = "uid://c8e4wb3ndpout"
+
+[node name="Incline" type="SubViewportContainer" parent="." unique_id=2033758320 node_paths=PackedStringArray("target_center_dock")]
+material = SubResource("ShaderMaterial_b54ou")
+custom_minimum_size = Vector2(150, 150)
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+stretch = true
+script = ExtResource("4_a3fxq")
+target_size = Vector2(150, 150)
+target_center_dock = NodePath("Visual/Visual")
+
+[node name="Visual" type="SubViewport" parent="Incline" unique_id=1499841731]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+size = Vector2i(150, 150)
+render_target_update_mode = 4
+
+[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=105600063]
+scale = Vector2(2, 2)
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=614851873]
+modulate = Color(0.95237297, 0.7607871, 0, 1)
+position = Vector2(38, 37.5)
+script = ExtResource("5_wpxnr")
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_g17t8")]

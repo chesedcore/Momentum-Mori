@@ -22,11 +22,23 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	collision_cooldown = COLLISION_COOLDOWN_DURATION
 	var enemy: EnemyBlade = collision.get_collider()
 	var normal := collision.get_normal()
-
+	#OH BOY HERE I GO DISSAPOINYOMH MONARCH AGAIN
+	# ignore everything if the guy is parryinggg
+	if enemy.is_parrying {
+		player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
+		player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
+		_on_spark_at_node(player)
+		return
+	}
+	
+	
 	# who was attacking (facing toward the other)
 	var player_attacking :bool = -player_velocity.normalized().dot(normal) > 0.5
 	var enemy_attacking :bool = enemy.velocity.normalized().dot(normal) > 0.5
-
+	
+	## you REALLY know how to make a grown man cry huh 
+	##  -- monarch
+	
 	if player_attacking and enemy_attacking {
 		var player_speed := player_velocity.length()
 		var enemy_speed := enemy.velocity.length()
@@ -193,18 +205,23 @@ var _starting_camera_zoom : Vector2
 	#collision_tween.parallel().tween_property(Engine, "time_scale", 1.0,collision_time/2)
 	#}
 	#
-func _on_spawn_projectile(projectile:Node2D)->void{
+func _on_spawn_projectile(projectile: Node2D)->void{
 	projectiles.add_child(projectile)
 }
 
-func _on_spawn_blade(blade :Node2D) ->void{
+func _on_spawn_blade(blade: Node2D) ->void{
 	enemies.add_child(blade)
 }
-func _on_spark_at_node(node : Node2D){
+
+func _on_spark_at_node(node: Node2D){
 	var sparks: Node2D = SPARKS.instantiate()
 	sparks.global_position = node.global_position
-	if node is Blade{
-		sparks.rotation = -node.velocity.normalized().angle()
+	if node is Blade {
+		sparks.rotation = -node.velocity.normalized().angle() 
 	}
 	add_child(sparks)
+}
+
+func get_player() -> Player {
+	return player
 }
