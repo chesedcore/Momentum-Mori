@@ -11,6 +11,7 @@ const SPARKS = preload("res://scenes/particles/sparks.tscn")
 @export var recoil_duration: float = 1
 
 @export var loser_dmg_multiplier : float = 1.5
+@export var pcam: GameCamera
 
 var collision_cooldown: float = 0.0
 const COLLISION_COOLDOWN_DURATION: float = 0.1
@@ -20,6 +21,8 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if collision_cooldown > 0.0 {
 		return
 	}
+	pcam.play_impact_shake(_player.velocity.length() / 2500)
+
 	collision_cooldown = COLLISION_COOLDOWN_DURATION
 	var enemy: EnemyBlade = collision.get_collider()
 	var normal := collision.get_normal()
@@ -31,15 +34,15 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		_on_spark_at_node(player)
 		return
 	}
-	
-	
+
+
 	# who was attacking (facing toward the other)
 	var player_attacking :bool = -player_velocity.normalized().dot(normal) > 0.5
 	var enemy_attacking :bool = enemy.velocity.normalized().dot(normal) > 0.5
-	
-	## you REALLY know how to make a grown man cry huh 
+
+	## you REALLY know how to make a grown man cry huh
 	##  -- monarch
-	
+
 	if player_attacking and enemy_attacking {
 		var player_speed := player_velocity.length()
 		var enemy_speed := enemy.velocity.length()
@@ -139,7 +142,6 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	#
 	#pazaz
 	#apply_camera_shake()
-
 }
 
 func _process(delta: float) -> void{
@@ -218,7 +220,7 @@ func _on_spark_at_node(node: Node2D){
 	var sparks: Node2D = SPARKS.instantiate()
 	sparks.global_position = node.global_position
 	if node is Blade {
-		sparks.rotation = -node.velocity.normalized().angle() 
+		sparks.rotation = -node.velocity.normalized().angle()
 	}
 	add_child(sparks)
 }

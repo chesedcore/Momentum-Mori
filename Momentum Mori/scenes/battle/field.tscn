@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c6uguv8v6oa8i" path="res://scripts/battle/game_camera.gd" id="5_pdtp2"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_xuj4y"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sncn5"]
+[ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
 background_mode = 3
@@ -17,6 +18,12 @@ glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_xuj4y"]
 script = ExtResource("7_sncn5")
+
+[sub_resource type="Resource" id="Resource_gsd1j"]
+script = ExtResource("10_0lnkb")
+amplitude = 0.0
+frequency = 5.0
+metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 
 [node name="Field" type="Control" unique_id=112534353 node_paths=PackedStringArray("stadium", "game_camera")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
@@ -32,7 +39,7 @@ stadium = NodePath("Stadium")
 game_camera = NodePath("Pcam")
 metadata/_edit_lock_ = true
 
-[node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "camera") instance=ExtResource("1_xq1i4")]
+[node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "pcam", "camera") instance=ExtResource("1_xq1i4")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 player = NodePath("Player")
 enemies = NodePath("Enemies")
@@ -40,6 +47,7 @@ projectiles = NodePath("ProjectilesHolder")
 chain_dock = NodePath("ChainDock")
 base_knockback = 800.0
 recoil_duration = 0.25
+pcam = NodePath("../Pcam")
 camera = NodePath("../Cam")
 
 [node name="Player" parent="Stadium" unique_id=221661367 instance=ExtResource("2_3ghxc")]
@@ -66,6 +74,7 @@ environment = SubResource("Environment_qvk82")
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 physics_interpolation_mode = 1
 top_level = true
+rotation = -0.0024651876
 zoom = Vector2(0.3, 0.3)
 
 [node name="PhantomCameraHost" type="Node" parent="Cam" unique_id=1536686757]
@@ -76,6 +85,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Pcam" type="Node2D" parent="." unique_id=1489987666 node_paths=PackedStringArray("follow_target")]
 top_level = true
+rotation = -0.0024651876
 script = ExtResource("5_pdtp2")
 follow_mode = 2
 follow_target = NodePath("../Stadium/Player")
@@ -83,6 +93,7 @@ zoom = Vector2(0.3, 0.3)
 tween_resource = SubResource("Resource_xuj4y")
 follow_damping = true
 follow_damping_value = Vector2(2, 2)
+noise = SubResource("Resource_gsd1j")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
