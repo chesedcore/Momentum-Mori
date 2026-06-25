@@ -1,5 +1,7 @@
 class_name ChainWhip extends Node2D
 
+signal stuff_hit(stuff: Node2D)
+
 @export var segments: Segments
 
 const SEGMENT_LENGTH_X := 220
@@ -26,9 +28,35 @@ static func summon_chain_from_start_to_end(
 	var distance := start_point.distance_to(end_point)
 	var fittable_number_of_segments := ceili(distance / SEGMENT_LENGTH_X)
 	chain_whip.summon_these_many_segments(fittable_number_of_segments)
-	
-	chain_whip.segments.launch()
+	chain_whip.launch_and_detect_collidables()
 	return chain_whip
+}
+
+var promise: Promise
+func launch_and_detect_collidables() -> void {
+	assert(not promise, "A promise has already been made!")
+	promise = await segments.launch()
+	promise.resolved.connect(_on_promise_resolved)
+}
+
+func _on_promise_resolved(results: Array) -> void {
+	print(results)
+	
+	assert(results, "This result array has nothing!")
+	
+	if results.size() == 1 {
+		stuff_hit.emit(results[0])
+		return
+	}
+	
+	#get the nearest hit
+	results.sort_custom(
+		func(a: Node2D, b: Node2D) -> bool:
+			return self.global_position.distance_to(a.global_position) < \
+			self.global_position.distance_squared_to(b.global_position)
+	)
+	
+	stuff_hit.emit(results[0])
 }
 
 func clear_segments() -> void {
@@ -50,6 +78,7 @@ func kill() -> void {
 	if is_being_killed: return
 	is_being_killed = true
 	segments.cancel()
+	promise.deny()
 	var children := segments.get_children()
 	
 	if children.is_empty() {

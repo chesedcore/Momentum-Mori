@@ -70,8 +70,7 @@ func _raycast_collidables_for_chain(
 	if not is_instance_valid(chain): return
 	if chain.is_being_killed: return
 	
-	var raycast_res := ChainDock.raycast_for_collidables(stadium, start, end, 2)
-	print_rich(raycast_res)
+	chain.stuff_hit.connect(print)
 }
 
 func _setup_chain_destructor(chain: ChainWhip) -> void {

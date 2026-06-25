@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b44vpuc4y4b87" path="res://assets/chain/segment2.png" id="3_vxswg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nrvg"]
-size = Vector2(323, 40)
+size = Vector2(323, 84)
 
 [node name="Segment" type="Control" unique_id=41535524 node_paths=PackedStringArray("area")]
 custom_minimum_size = Vector2(260, 0)

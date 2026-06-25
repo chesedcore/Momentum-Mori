@@ -10,7 +10,7 @@ func _ready() -> void {
 }
 
 func _wire_up_signals() -> void {
-	self.cascade_in_chain_started.connect(sweep_area)
+	self.cascade_in_chain_finished.connect(sweep_area)
 }
 
 func sweep_area() -> void {
