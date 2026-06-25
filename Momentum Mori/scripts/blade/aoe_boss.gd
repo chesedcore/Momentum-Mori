@@ -5,7 +5,7 @@ const AOE_PROJECTILE = preload("res://scenes/battle/aoe_projectile.tscn")
 @export var aoe_recoil :float = 700
 @export var aoe_dmg : float = 15
 @export var aoe_duration : float = 2
-@export var aoe_cooldown : float = 2
+@export var aoe_cooldown : float = .5
 
 var remaining_aoe_cooldown : float = 0
 var remaining_aoe_duration : float = 0

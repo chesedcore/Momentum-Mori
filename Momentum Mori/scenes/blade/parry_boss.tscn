@@ -27,6 +27,7 @@ visual = NodePath("Incline/Visual/Visual/Circle")
 incline = NodePath("Incline")
 chasing_speed = 400.0
 recoil_resistance = 0.3
+hp = 200.0
 blade_animator = NodePath("BladeAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]

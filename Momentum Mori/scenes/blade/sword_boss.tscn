@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://do8k6oc28d2y7" path="res://assets/projectile/sword.png" id="5_tdkym"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="7_tdkym"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
+radius = 67.02985
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jepn1"]
 resource_local_to_scene = true
 shader = ExtResource("2_pcls2")
@@ -18,9 +21,6 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
-radius = 26.019224
-
 [node name="SwordBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
 collision_layer = 2
 collision_mask = 6
@@ -29,38 +29,8 @@ attack_dist = 800.0
 incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 
-[node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]
-material = SubResource("ShaderMaterial_jepn1")
-custom_minimum_size = Vector2(150, 150)
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
-stretch = true
-script = ExtResource("3_tdkym")
-target_size = Vector2(150, 150)
-target_center_dock = NodePath("Visual/Visual")
-
-[node name="Visual" type="SubViewport" parent="Incline" unique_id=1152395196]
-transparent_bg = true
-handle_input_locally = false
-use_hdr_2d = true
-size = Vector2i(150, 150)
-render_target_update_mode = 4
-
-[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=2145432538]
-
-[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=1357358368]
-modulate = Color(0, 0.6629851, 0.27718964, 1)
-position = Vector2(75, 75)
-script = ExtResource("2_r6lbf")
-thickness = 15.0
-radius = 45.0
-metadata/_custom_type_script = "uid://b0nijkb0ceph5"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_qvk82")
 
 [node name="sword holder" type="Control" parent="." unique_id=1540432409]
@@ -93,3 +63,35 @@ blade_visual_node = NodePath("../Incline/Visual/Visual")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("7_tdkym")]
+
+[node name="Incline" type="SubViewportContainer" parent="." unique_id=1052896150 node_paths=PackedStringArray("target_center_dock")]
+material = SubResource("ShaderMaterial_jepn1")
+custom_minimum_size = Vector2(175, 175)
+offset_left = -87.5
+offset_top = -87.5
+offset_right = 87.5
+offset_bottom = 87.5
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+stretch = true
+script = ExtResource("3_tdkym")
+target_size = Vector2(175, 175)
+target_center_dock = NodePath("Visual/Visual")
+
+[node name="Visual" type="SubViewport" parent="Incline" unique_id=1128946525]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+size = Vector2i(175, 175)
+render_target_update_mode = 4
+
+[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=1785963646]
+position = Vector2(12.5, 13.5)
+scale = Vector2(2, 2)
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=939575130]
+modulate = Color(0.26392642, 0.5393841, 5.7756904e-07, 1)
+position = Vector2(38, 37.5)
+script = ExtResource("2_r6lbf")
+thickness = 15.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
