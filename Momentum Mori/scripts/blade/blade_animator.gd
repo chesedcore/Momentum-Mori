@@ -4,7 +4,7 @@ class_name BladeAnimator extends Node
 @export var amp: float = 0.15
 @export var freq: float = 75.0
 @export var blade_visual_node: Node2D
-var blade_orignal_scale : Vector2 
+var blade_orignal_scale : Vector2
 var _time: float = 0.0
 
 var shake_time: float = 0.0:

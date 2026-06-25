@@ -49,16 +49,16 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		player.take_damage(enemy.base_dmg * player_dmg_ratio)
 		enemy.apply_recoil(-normal, base_knockback * enemy_dmg_ratio, recoil_duration)
 		enemy.take_damage(player.base_dmg * enemy_dmg_ratio)
-		
-		
+
+
 		#ok this is probbably the worst way to do it but i am just gonna have the stadium check if the collision had a vamp and allow for lifesteal
 		#head on vamp lifesteals  the amouunt the player dealt so they get a net postive spin from head as opposed to the player
 		if enemy is VampBoss{
 			enemy.life_steal(player.base_dmg * enemy_dmg_ratio)
 		}
-		
-		
-		
+
+
+
 	}
 	elif player_attacking {
 		player.apply_recoil(normal, base_knockback, recoil_duration)
@@ -73,7 +73,7 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		}
 	}
 	else {
-		#SAME HERE I DONT THINK A SLOW ENEMY SHOULD KNOCK THE BLADE MILLION MILES AWAY 
+		#SAME HERE I DONT THINK A SLOW ENEMY SHOULD KNOCK THE BLADE MILLION MILES AWAY
 		if player_velocity.length() >= enemy.velocity.length(){
 			player.apply_recoil(normal, base_knockback, recoil_duration)
 			player.take_damage(enemy.base_dmg )
@@ -81,15 +81,15 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		else{
 			player.apply_recoil(normal, base_knockback * loser_knockback_multiplier, recoil_duration)
 			player.take_damage(enemy.base_dmg * loser_dmg_multiplier)
-			
+
 			#sigh.......monarchs gonna kill me
-			
+
 			if enemy is VampBoss{
 				enemy.life_steal(enemy.base_dmg * loser_dmg_multiplier)
-				
+
 			}
-			
-			
+
+
 		}
 		enemy.apply_recoil(-normal, base_knockback, recoil_duration)
 	}
@@ -97,16 +97,16 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if enemy.current_state == EnemyBlade.STATES.ATTACKING{
 	enemy.change_to_chasing()
 	}
-	
-	
+
+
 	#OH BOY SPARKY SPARKY
-	
-	
-	
-	
-	
+
+
+
+
+
 	#uhh ill put it here to not bloat everything upp therrrr
-	
+
 	#LILI: i just reimplemented gael code with some changes
 	var sparks: Node2D = SPARKS.instantiate()
 	sparks.global_position = collision.get_position()
@@ -115,7 +115,7 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if player_attacking and enemy_attacking {
 		#Double the sparks cuz i think maybe that will look cool
 		var second_sparks : Node2D = SPARKS.instantiate()
-		second_sparks.rotation = enemy.velocity.normalized().angle() 
+		second_sparks.rotation = enemy.velocity.normalized().angle()
 		var second_spark_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
 		second_sparks.scale = Vector2(second_spark_scale, second_spark_scale)
 		second_sparks.global_position = collision.get_position()
@@ -131,14 +131,14 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 		sparks_scale = remap(enemy.velocity.length(),0.0, 800, 0.05, 3.)
 		attack_direction = enemy.velocity.normalized()
 	}
-	sparks.rotation = attack_direction.angle() 
+	sparks.rotation = attack_direction.angle()
 	sparks.scale = Vector2(sparks_scale, sparks_scale)
-	
+
 	add_child(sparks)
 	#
 	#pazaz
 	#apply_camera_shake()
-	
+
 }
 
 func _process(delta: float) -> void{

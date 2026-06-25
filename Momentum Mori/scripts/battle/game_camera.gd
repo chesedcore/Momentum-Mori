@@ -3,6 +3,7 @@ class_name GameCamera extends PhantomCamera2D
 
 var stadium: Stadium
 
+
 func _process(delta: float) -> void {
 	super(delta)
 	#_update_camera(delta)
