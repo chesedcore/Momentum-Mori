@@ -1,6 +1,6 @@
 class_name SpinningProjectile extends Projectile
 
-@export var projectile_holder: Node2D
+@export var projectile_holder: CascadeV3
 
 @export var spin_speed : float = 2.5
 
@@ -39,6 +39,7 @@ var projectiles : Array[Node]
 
 func _ready() -> void:
 	projectiles = projectile_holder.get_children()
+	projectile_holder.cascade_in()
 
 @export var dmg : float = 5
 

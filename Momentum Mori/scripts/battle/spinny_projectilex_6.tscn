@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt8383gmhmmrq"]
 
 [ext_resource type="Script" uid="uid://cv1ud0m3w6lyg" path="res://scripts/battle/spinny_projectilex_6.gd" id="1_cqjt6"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="2_hob5w"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_s482c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hob5w"]
@@ -16,7 +17,10 @@ script = ExtResource("1_cqjt6")
 projectile_holder = NodePath("ProjectileHolder")
 movement_time = 0.0
 
-[node name="ProjectileHolder" type="Node2D" parent="." unique_id=1354666900]
+[node name="ProjectileHolder" type="Control" parent="." unique_id=1977367246]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_hob5w")
 
 [node name="projectile" type="Node2D" parent="ProjectileHolder" unique_id=1912468110]
 position = Vector2(113.197945, -34.956604)
