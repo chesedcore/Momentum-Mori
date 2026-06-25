@@ -4,6 +4,7 @@ const SPARKS = preload("res://scenes/particles/sparks.tscn")
 @export var player: Player
 @export var enemies: Node2D
 @export var projectiles: Node2D
+@export var chain_dock: ChainDock
 
 @export var base_knockback: float = 300.0
 @export var loser_knockback_multiplier: float = 4
@@ -224,4 +225,8 @@ func _on_spark_at_node(node: Node2D){
 
 func get_player() -> Player {
 	return player
+}
+
+func get_chain_dock() -> ChainDock {
+	return chain_dock
 }
