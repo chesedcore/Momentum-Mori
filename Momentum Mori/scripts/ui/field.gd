@@ -7,7 +7,7 @@ signal chain_spawn_confirmed
 @export var game_camera: GameCamera
 
 func _unhandled_input(event: InputEvent) -> void {
-	if event.is_action_pressed("action", true) {
+	if event.is_action_pressed("action") {
 		action_requested.emit()
 	}
 }
