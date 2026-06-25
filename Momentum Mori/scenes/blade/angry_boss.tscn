@@ -25,7 +25,7 @@ collision_mask = 6
 script = ExtResource("1_civc3")
 attack_cooldown = 0.1
 attack_speed = 2000.0
-attack_dist = 1000.0
+attack_dist = 3000.0
 incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 

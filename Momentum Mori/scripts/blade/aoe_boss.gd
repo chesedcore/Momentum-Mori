@@ -1,5 +1,6 @@
 class_name AoeBoss extends EnemyBlade
 
+const AOE_PROJECTILE = preload("res://scenes/battle/aoe_projectile.tscn")
 
 @export var aoe_recoil :float = 700
 @export var aoe_dmg : float = 15
@@ -35,20 +36,21 @@ func _physics_process(delta: float) -> void{
 		if remaining_aoe_duration >= aoe_duration{
 			remaining_aoe_duration = 0
 			on_cooldown = true
-			end_aoe()
 		}
 	}
 }
 
 
 func begin_aoe()->void {
-	aoe_visual.visible = true
+	#5050 if the aoe will be at the boss location or the players location
+	var aoe_projectile : Node2D = AOE_PROJECTILE.instantiate()
 	
-	var aoe_tween = create_tween()
-	aoe_tween.tween_property(aoe_visual,"scale",Vector2(10,10),2)
-}
-
-func end_aoe()->void{
-	aoe_visual.visible = false
-	aoe_visual.scale = Vector2(1,1)
+	var aoe_at_player_chance :int =randi_range(0,1)
+	if aoe_at_player_chance == 1{
+		aoe_projectile.global_position = target.global_position
+		EventBus.spawn_projectile.emit(aoe_projectile)
+	} 
+	else{
+		add_child(aoe_projectile)
+	}
 }

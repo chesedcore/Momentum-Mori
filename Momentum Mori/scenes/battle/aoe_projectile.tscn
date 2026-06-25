@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dw5ex5qxc0mtj"]
+
+[ext_resource type="Script" uid="uid://cy0jgapx7ttji" path="res://scripts/battle/aoe_projectile.gd" id="1_lf145"]
+[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_1qc8w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay0lp"]
+radius = 31.87251
+
+[node name="AoeProjectile" type="Node2D" unique_id=1907189828 node_paths=PackedStringArray("projectile_part", "hit_box_collision_shape_2d")]
+script = ExtResource("1_lf145")
+projectile_part = NodePath("projectile_part")
+hit_box_collision_shape_2d = NodePath("projectile_part/Area2D/CollisionShape2D")
+
+[node name="warning" type="Node2D" parent="." unique_id=1868244248]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Circle" type="Node2D" parent="warning" unique_id=1794879417]
+modulate = Color(0.5539286, 0, 0.11007296, 1)
+script = ExtResource("2_1qc8w")
+thickness = 350.0
+radius = 150.0
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="projectile_part" type="Node2D" parent="." unique_id=1064821968]
+visible = false
+
+[node name="Circle" type="Node2D" parent="projectile_part" unique_id=86333617]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("2_1qc8w")
+thickness = 2.5
+metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+
+[node name="Area2D" type="Area2D" parent="projectile_part" unique_id=161081458]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_part/Area2D" unique_id=85314199]
+shape = SubResource("CircleShape2D_ay0lp")
+disabled = true
+debug_color = Color(0.9808809, 0, 0.37990618, 0.41960785)
+
+[connection signal="body_entered" from="projectile_part/Area2D" to="." method="_on_area_2d_body_entered"]
