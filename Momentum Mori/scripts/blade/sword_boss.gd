@@ -1,7 +1,7 @@
 class_name SwordBoss extends  EnemyBlade
 
+@onready var sword_holder: CascadeV3 = $"sword holder"
 
-@onready var sword_holder: Node2D = $"sword holder"
 const SWORD = preload("res://scenes/battle/sword.tscn")
 
 
@@ -78,6 +78,7 @@ func  change_to_firing()->void{
 	current_state = STATES.FIRING
 	speed = 0
 	sword_holder.visible = true
+	sword_holder.cascade_in()
 	print("firing")
 	
 	

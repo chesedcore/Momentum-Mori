@@ -1,7 +1,8 @@
 class_name  CloneBoss extends EnemyBlade
 
 
-const ENEMY_BLADE = preload("res://scenes/blade/enemy_blade.tscn")
+const CLONE_BOSS_CLONE = preload("res://scenes/blade/clone_boss_clone.tscn")
+
 
 @export var max_clones :int = 4
 var num_of_clones :int = 0
@@ -10,7 +11,7 @@ var num_of_clones :int = 0
 
 
 func _on_clone_spawn_time_timeout() -> void:
-	var clone:EnemyBlade = ENEMY_BLADE.instantiate()
+	var clone:EnemyBlade = CLONE_BOSS_CLONE.instantiate()
 	clone.global_position = global_position
 	clone.target = target
 	clone.hp = clone_hp

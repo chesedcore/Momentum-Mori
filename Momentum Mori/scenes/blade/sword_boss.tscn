@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_r6lbf"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_tdkym"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="4_lli7x"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="5_jepn1"]
 [ext_resource type="Texture2D" uid="uid://do8k6oc28d2y7" path="res://assets/projectile/sword.png" id="5_tdkym"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="7_tdkym"]
 
@@ -24,7 +25,7 @@ radius = 26.019224
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_83sj8")
-attack_dist = 600.0
+attack_dist = 800.0
 incline = NodePath("Incline")
 blade_animator = NodePath("BladeAnimator")
 
@@ -62,24 +63,27 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
 shape = SubResource("CircleShape2D_qvk82")
 
-[node name="sword holder" type="Node2D" parent="." unique_id=593059260]
+[node name="sword holder" type="Control" parent="." unique_id=1540432409]
 visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_jepn1")
 
 [node name="sword" type="Sprite2D" parent="sword holder" unique_id=10504127]
 position = Vector2(0, 151)
-rotation = -3.1415927
+rotation = 3.1415925
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_tdkym")
 
 [node name="sword2" type="Sprite2D" parent="sword holder" unique_id=35205415]
 position = Vector2(-204, 0)
-rotation = -3.1415927
+rotation = 3.1415925
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_tdkym")
 
 [node name="sword3" type="Sprite2D" parent="sword holder" unique_id=1932782732]
 position = Vector2(0, -140)
-rotation = -3.1415927
+rotation = 3.1415925
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_tdkym")
 
