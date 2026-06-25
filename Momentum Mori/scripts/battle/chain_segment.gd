@@ -18,3 +18,10 @@ func sweep_area() -> void {
 	if not stuff: return
 	stuff_detected.emit(stuff)
 }
+
+func get_endpoint_vec() -> Option[Vector2] {
+	if not has_node(^"Marker") {
+		return Option.none()
+	}
+	return Option.some(get_node(^"Marker").global_position)
+}

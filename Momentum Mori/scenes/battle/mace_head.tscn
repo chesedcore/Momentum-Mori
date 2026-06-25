@@ -47,3 +47,6 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1609895172]
 position = Vector2(-14.75, -18.5)
 shape = SubResource("RectangleShape2D_m0p2c")
+
+[node name="Marker" type="Marker2D" parent="." unique_id=24101321]
+position = Vector2(198, -22)

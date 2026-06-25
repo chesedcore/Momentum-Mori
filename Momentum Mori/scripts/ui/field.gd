@@ -31,13 +31,17 @@ func _summon_chain() -> ChainWhip {
 	for w: ChainWhip in stadium.get_chain_dock().get_children() {
 		w.kill()
 	}
+	
+	var final_point := get_global_mouse_position()
+	
+	stadium.get_player().begin_chain_hold()
 	var chain := ChainWhip.summon_chain_from_start_to_end(
 		stadium.get_chain_dock(),
 		stadium.get_player().get_global_position(),
-		get_global_mouse_position()
+		final_point
 	)
 	
-	_try_setup_chain_raycast(chain)
+	_try_setup_chain_raycast(chain, final_point)
 	
 	get_tree().create_timer(time_until_chain_disappears)          \
 		.timeout.connect(chain.kill)
@@ -45,7 +49,9 @@ func _summon_chain() -> ChainWhip {
 	return chain
 }
 
-func _try_setup_chain_raycast(chain: ChainWhip) -> void {
+func _try_setup_chain_raycast(chain: ChainWhip, final: Vector2) -> void {
+	if not is_instance_valid(chain): return
+	
 	var time_to_complete_chain := chain.get_timing_until_chain_unroll()
 	
 	if time_to_complete_chain > time_until_chain_disappears {
@@ -53,24 +59,30 @@ func _try_setup_chain_raycast(chain: ChainWhip) -> void {
 		return
 	}
 	
-	get_tree().create_timer(time_to_complete_chain).timeout.connect(
-		_raycast_collidables_for_chain.bind(
-			chain,
-			stadium.get_player().get_global_position(),
-			get_global_mouse_position()
-		)
-	)
+	_raycast_collidables_for_chain(chain, final)
 }
 
 func _raycast_collidables_for_chain(
-	chain: ChainWhip,
-	start: Vector2,
-	end: Vector2
+	chain: ChainWhip, final: Vector2
 ) -> void {
 	if not is_instance_valid(chain): return
 	if chain.is_being_killed: return
 	
-	chain.stuff_hit.connect(print)
+	chain.fully_unrolled.connect(_on_chain_fully_unrolled.bind(chain, final))
+	chain.stuff_hit.connect(_on_stuff_hit.bind(chain, final))
+}
+
+func _on_chain_fully_unrolled(chain: ChainWhip, final: Vector2) -> void {
+	stadium.get_player().begin_chain_pull(chain.get_endpoint().unwrap_or(final))
+}
+
+func _on_stuff_hit(stuff_arr: Array, chain: ChainWhip, final: Vector2) -> void {
+	var stuff := Tools.flatten_array(stuff_arr) as PhysicsBody2D
+	print(stuff)
+	if chain.fully_unrolled.is_connected(_on_chain_fully_unrolled) {
+		chain.fully_unrolled.disconnect(_on_chain_fully_unrolled)
+	}
+	stadium.get_player().begin_chain_pull(chain.get_endpoint().unwrap_or(final))
 }
 
 func _setup_chain_destructor(chain: ChainWhip) -> void {

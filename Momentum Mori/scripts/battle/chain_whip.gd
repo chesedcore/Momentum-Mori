@@ -1,6 +1,7 @@
 class_name ChainWhip extends Node2D
 
 signal stuff_hit(stuff: Node2D)
+signal fully_unrolled
 
 @export var segments: Segments
 
@@ -36,11 +37,11 @@ var promise: Promise
 func launch_and_detect_collidables() -> void {
 	assert(not promise, "A promise has already been made!")
 	promise = await segments.launch()
-	promise.resolved.connect(_on_promise_resolved)
+	segments.last_element_cascaded_in.connect(fully_unrolled.emit)
+	if promise: promise.resolved.connect(_on_promise_resolved)
 }
 
 func _on_promise_resolved(results: Array) -> void {
-	print(results)
 	
 	assert(results, "This result array has nothing!")
 	
@@ -78,7 +79,7 @@ func kill() -> void {
 	if is_being_killed: return
 	is_being_killed = true
 	segments.cancel()
-	promise.deny()
+	if promise: promise.deny()
 	var children := segments.get_children()
 	
 	if children.is_empty() {
@@ -97,4 +98,8 @@ func get_timing_until_chain_unroll() -> float {
 	return TIME_PER_2_MEMBER_SEGMENT * segments.get_children().filter(
 		func(n: Node) -> bool: return not n.is_queued_for_deletion()
 	).size() + CASCADE_STAGGER
+}
+
+func get_endpoint() -> Option[Vector2] {
+	return segments.iter().back().get_endpoint_vec()
 }

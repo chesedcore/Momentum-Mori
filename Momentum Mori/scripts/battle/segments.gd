@@ -49,3 +49,9 @@ func _generate_promise() -> Promise {
 func cancel() -> void {
 	_launching = false
 }
+
+func iter() -> Array[SegmentCascade] {
+	var arr: Array[SegmentCascade]
+	arr.assign(get_children())
+	return arr
+}

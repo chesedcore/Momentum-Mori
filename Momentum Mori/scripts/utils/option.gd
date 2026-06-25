@@ -62,6 +62,15 @@ func unwrap_or(default: T) -> T {
 	return default
 }
 
+##type unsafe!!! make sure default_callable takes nothing and returns T
+func unwrap_or_else(default_callable: Callable) -> T {
+	if _is_some {
+		return _value_held
+	}
+	
+	return default_callable.call() as T
+}
+
 ##take the value out of this hopefully non-empty Option, leaving None behind
 func take() -> T {
 	if not _is_some {
