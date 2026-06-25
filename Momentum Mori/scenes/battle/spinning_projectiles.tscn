@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6aswt1jl6aic" path="res://scripts/battle/spinning_projectiles.gd" id="1_83576"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_83576"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="2_xt08g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygtp1"]
 radius = 33.985218
@@ -15,8 +16,11 @@ radius = 33.985218
 script = ExtResource("1_83576")
 projectile_holder = NodePath("ProjectileHolder")
 
-[node name="ProjectileHolder" type="Node2D" parent="." unique_id=834056729]
+[node name="ProjectileHolder" type="Control" parent="." unique_id=1481703720]
+layout_mode = 3
+anchors_preset = 0
 rotation = 0.81110996
+script = ExtResource("2_xt08g")
 
 [node name="projectile" type="Node2D" parent="ProjectileHolder" unique_id=303254487]
 position = Vector2(150, 0)
