@@ -1,7 +1,10 @@
 class_name ChainWhip extends Node2D
 
 @export var segments: Segments
+
 const SEGMENT_LENGTH_X := 220
+const TIME_PER_2_MEMBER_SEGMENT := 0.1
+const CASCADE_STAGGER := 0.01
 
 var is_being_killed := false
 
@@ -59,4 +62,10 @@ func kill() -> void {
 	for c: CascadeV3 in children {
 		c.cascade_out()
 	}
+}
+
+func get_timing_until_chain_unroll() -> float {
+	return TIME_PER_2_MEMBER_SEGMENT * segments.get_children().filter(
+		func(n: Node) -> bool: return not n.is_queued_for_deletion()
+	).size() + CASCADE_STAGGER
 }

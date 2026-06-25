@@ -5,6 +5,7 @@ signal chain_spawn_confirmed
 
 @export var stadium: Stadium
 @export var game_camera: GameCamera
+@export var time_until_chain_disappears := 2.0
 
 func _unhandled_input(event: InputEvent) -> void {
 	if event.is_action_pressed("action") {
@@ -35,8 +36,42 @@ func _summon_chain() -> ChainWhip {
 		stadium.get_player().get_global_position(),
 		get_global_mouse_position()
 	)
-	get_tree().create_timer(2.0).timeout.connect(chain.kill)
+	
+	_try_setup_chain_raycast(chain)
+	
+	get_tree().create_timer(time_until_chain_disappears)          \
+		.timeout.connect(chain.kill)
+	
 	return chain
+}
+
+func _try_setup_chain_raycast(chain: ChainWhip) -> void {
+	var time_to_complete_chain := chain.get_timing_until_chain_unroll()
+	
+	if time_to_complete_chain > time_until_chain_disappears {
+		push_error("The chain will take too long to complete!", time_to_complete_chain)
+		return
+	}
+	
+	get_tree().create_timer(time_to_complete_chain).timeout.connect(
+		_raycast_collidables_for_chain.bind(
+			chain,
+			stadium.get_player().get_global_position(),
+			get_global_mouse_position()
+		)
+	)
+}
+
+func _raycast_collidables_for_chain(
+	chain: ChainWhip,
+	start: Vector2,
+	end: Vector2
+) -> void {
+	if not is_instance_valid(chain): return
+	if chain.is_being_killed: return
+	
+	var raycast_res := ChainDock.raycast_for_collidables(stadium, start, end, 2)
+	print_rich(raycast_res)
 }
 
 func _setup_chain_destructor(chain: ChainWhip) -> void {
