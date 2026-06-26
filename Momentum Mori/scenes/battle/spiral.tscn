@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://4xq5n78lncym"]
+
+[ext_resource type="Script" uid="uid://b8008u5dkrxnp" path="res://scenes/battle/spiral_attack.gd" id="1_nqsd6"]
+[ext_resource type="Script" uid="uid://cu10cjw5kqp07" path="res://scripts/battle/spiral.gd" id="1_oieku"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay0lp"]
+radius = 1045.0579
+
+[node name="Spiral" type="Node2D" unique_id=1555681892]
+script = ExtResource("1_nqsd6")
+
+[node name="Spiral_line_1" type="Node2D" parent="." unique_id=1168533385]
+modulate = Color(0.7151104, 0.22075054, 0.1405124, 1)
+script = ExtResource("1_oieku")
+turns = 2.0
+spacing = 500.0
+thickness = 80.0
+resolution = 150
+
+[node name="Spiral_line_2" type="Node2D" parent="." unique_id=1733732393]
+modulate = Color(0.7151104, 0.22075054, 0.1405124, 1)
+rotation = 2.9680083
+script = ExtResource("1_oieku")
+turns = 2.0
+spacing = 500.0
+thickness = 80.0
+resolution = 150
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2052629143]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=131989488]
+shape = SubResource("CircleShape2D_ay0lp")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

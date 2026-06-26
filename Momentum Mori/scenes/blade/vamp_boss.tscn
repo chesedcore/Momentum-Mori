@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbgksp6uiqham" path="res://vamp_boss.gd" id="1_jlrj6"]
 [ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_qemca"]
+[ext_resource type="PackedScene" uid="uid://4xq5n78lncym" path="res://scenes/battle/spiral.tscn" id="2_tlmub"]
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="3_tlmub"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="4_68m3t"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="5_x8skt"]
@@ -24,18 +25,19 @@ collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_jlrj6")
 visual = NodePath("Incline/Visual/Visual")
-attack_cooldown = null
 attack_speed = 2500.0
 attack_dist = 800.0
 incline = NodePath("Incline")
 chasing_speed = 1400.0
 turn_speed = 4.0
-escape_duration = null
 minimum_distance_to_target = 400.0
-recoil_resistance = null
-hp = null
-base_dmg = null
 blade_animator = NodePath("BladeAnimator")
+
+[node name="Spiral" parent="." unique_id=1555681892 node_paths=PackedStringArray("host") instance=ExtResource("2_tlmub")]
+visible = false
+z_index = -1
+rotation = 0.0015055762
+host = NodePath("..")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]
 material = SubResource("ShaderMaterial_jepn1")
@@ -84,3 +86,15 @@ blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_8ofx1")]
+
+[node name="SpiralAttackDuration" type="Timer" parent="." unique_id=1551065394]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpiralAttackCooldown" type="Timer" parent="." unique_id=1567875789]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SpiralAttackDuration" to="." method="_on_spiral_attack_duration_timeout"]
+[connection signal="timeout" from="SpiralAttackCooldown" to="." method="_on_spiral_cooldown_timeout"]
