@@ -113,11 +113,13 @@ func _physics_process(delta: float) -> void {
 				velocity = to_dig.normalized() * chain_pull_speed
 				pre_collision_velocity = velocity
 				move_and_slide()
-				for i in get_slide_collision_count(){
+				for i in get_slide_collision_count() {
 					var collision = get_slide_collision(i)
 					var collider = collision.get_collider()
-					if collider is Blade{blade_collision.emit(self,collision,pre_collision_velocity)}
+					if collider is Blade {
+						blade_collision.emit(self, collision, pre_collision_velocity)
 					}
+				}
 			}
 			return
 

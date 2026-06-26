@@ -150,6 +150,12 @@ func _process(delta: float) -> void{
 	}
 }
 
+func iter_enemies() -> Array[Blade] {
+	var arr: Array[Blade]
+	arr.assign(enemies.get_children())
+	return arr
+}
+
 func iter_blades() -> Array[Blade] {
 	var arr: Array[Blade]
 	arr.assign(enemies.get_children())
@@ -157,7 +163,7 @@ func iter_blades() -> Array[Blade] {
 	return arr
 }
 
-func  _ready() -> void{
+func  _ready() -> void {
 	_starting_camera_zoom = camera.zoom
 	_wire_signals()
 }

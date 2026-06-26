@@ -75,7 +75,7 @@ metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1705093046]
 collision_layer = 4
 collision_mask = 3
-collision_priority = 30.0
+collision_priority = 200.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1761124410]
 scale = Vector2(4.1341543, 4.1341543)
