@@ -78,3 +78,5 @@ script = ExtResource("3_phrk6")
 blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_j7qga")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360801447]

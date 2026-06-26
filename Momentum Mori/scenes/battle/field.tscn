@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://cklxfpoodsfrt" path="res://scripts/ui/field.gd" id="1_wud16"]
 [ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
 [ext_resource type="PackedScene" uid="uid://cdfy7bn17qm0m" path="res://scenes/blade/player.tscn" id="2_3ghxc"]
-[ext_resource type="PackedScene" uid="uid://dcc3wec2eedea" path="res://scenes/blade/angry_boss.tscn" id="4_0lnkb"]
 [ext_resource type="Script" uid="uid://bj3570t7qljh" path="res://scripts/battle/chain_dock.gd" id="5_gsd1j"]
+[ext_resource type="PackedScene" uid="uid://dcc3wec2eedea" path="res://scenes/blade/angry_boss.tscn" id="5_ismwb"]
 [ext_resource type="Script" uid="uid://c6uguv8v6oa8i" path="res://scripts/battle/game_camera.gd" id="5_pdtp2"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_xuj4y"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sncn5"]
+[ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="9_7t1gd"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
 [ext_resource type="PackedScene" uid="uid://bo3bvipr0rvlh" path="res://scenes/ui/ui.tscn" id="11_bufal"]
 
@@ -57,8 +58,11 @@ motion_mode = 1
 
 [node name="Enemies" type="Node2D" parent="Stadium" unique_id=235092122]
 
-[node name="AngryBoss" parent="Stadium/Enemies" unique_id=799094343 node_paths=PackedStringArray("target") instance=ExtResource("4_0lnkb")]
-position = Vector2(420, -151)
+[node name="AngryBoss" parent="Stadium/Enemies" unique_id=1743540527 node_paths=PackedStringArray("target") instance=ExtResource("5_ismwb")]
+position = Vector2(-133, 296)
+target = NodePath("../../Player")
+
+[node name="SwordBoss" parent="Stadium/Enemies" unique_id=324096699 node_paths=PackedStringArray("target") instance=ExtResource("9_7t1gd")]
 target = NodePath("../../Player")
 
 [node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]
