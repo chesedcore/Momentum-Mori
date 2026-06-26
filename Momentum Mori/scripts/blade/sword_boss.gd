@@ -45,6 +45,9 @@ func _physics_process(delta: float) -> void{
 			dir = players_last_loc
 			update_attack_state(delta)
 		}
+		elif current_state == STATES.SPIRALING{
+			update_spiral_state(delta)
+		}
 		
 		calculate_movement(delta)
 		
@@ -52,12 +55,7 @@ func _physics_process(delta: float) -> void{
 	}
 }
 
-func change_to_attack(attack_dir : Vector2)->void{
-	players_last_loc  = attack_dir
-	remaining_attack_cooldown = 0
-	current_state = STATES.ATTACKING
-	speed =attack_speed
-	}
+
 
 
 func update_attack_state(delta : float)->void{
@@ -117,5 +115,29 @@ func update_firing_state(delta:float)-> void {
 		sword.fire()
 		fire_cooldown = 0
 		
+	}
+}
+
+
+func update_spiral_state(delta: float) -> void{
+	remaining_spiral_duration -= delta
+	if remaining_spiral_duration <= 0{
+		attack_counter+=1
+		if attack_counter == num_of_attacks_to_fire{
+			change_to_firing()
+		}
+		else{
+			change_to_chasing()
+		}
+		return
+	}
+	spiral_angle += spiral_angular_speed * delta
+	spiral_radius += spiral_expand_rate * delta
+	var spiral_offset := Vector2(cos(spiral_angle), sin(spiral_angle)) * spiral_radius
+	var next_pos := spiral_origin + spiral_offset
+	var move_vec := next_pos - global_position
+	if move_vec.length() > 0{
+		dir = move_vec.normalized()
+		speed = move_vec.length()
 	}
 }
