@@ -520,6 +520,9 @@ offset_left = 586.0
 offset_top = 402.0
 offset_right = 995.0
 offset_bottom = 427.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 metadata/_edit_lock_ = true
 
 [node name="Music" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=828954697]
@@ -557,6 +560,9 @@ offset_left = 586.0
 offset_top = 450.0
 offset_right = 995.0
 offset_bottom = 475.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="SFX" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1795204556]
 modulate = Color(1, 0, 0, 1)
@@ -591,6 +597,9 @@ offset_left = 586.0
 offset_top = 494.0
 offset_right = 995.0
 offset_bottom = 519.0
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="BACK" parent="ActualOptionsCascade" unique_id=1664075844 instance=ExtResource("7_v6odt")]
 layout_mode = 1
