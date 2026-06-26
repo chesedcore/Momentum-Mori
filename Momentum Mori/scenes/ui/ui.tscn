@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dv64mhjh5k52a" path="res://scripts/ui/black_bars.gd" id="2_g5kmx"]
 [ext_resource type="Script" uid="uid://dkkqcw4f3gnx0" path="res://scripts/ui/time_rect.gd" id="3_aac20"]
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="5_0dwhk"]
+[ext_resource type="Script" uid="uid://df64k6eyhrlov" path="res://scenes/ui/hi_fidelity_label.gd" id="5_pfayw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7n8c"]
 shader = ExtResource("1_u7n8c")
@@ -59,10 +60,12 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars")]
+[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars", "hi_fidelity_label", "hi_fidelity_label_2")]
 script = ExtResource("1_f5cxw")
 time_rect = NodePath("ScreenRect/BackRect/TimeRect")
 black_bars = NodePath("ScreenRect/BlackBars")
+hi_fidelity_label = NodePath("ScreenRect/HiFidelityLabel")
+hi_fidelity_label_2 = NodePath("ScreenRect/HiFidelityLabel/HiFidelityLabel2")
 
 [node name="ScreenRect" type="Control" parent="." unique_id=722479326]
 layout_mode = 3
@@ -118,6 +121,39 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
+[node name="HiFidelityLabel" type="Control" parent="ScreenRect" unique_id=541442722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 626.0
+offset_top = 605.0
+offset_right = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_pfayw")
+max_glyphs = 120
+font_size = 60
+alignment = 2
+metadata/_custom_type_script = "uid://cqrq67kn0s1uh"
+
+[node name="HiFidelityLabel2" type="Control" parent="ScreenRect/HiFidelityLabel" unique_id=14620084]
+modulate = Color(1.070584, 0.15451749, 0.10740551, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+script = ExtResource("5_pfayw")
+max_glyphs = 120
+font_size = 60
+alignment = 2
+metadata/_custom_type_script = "uid://cqrq67kn0s1uh"
+metadata/_edit_lock_ = true
+
 [node name="BackRect" type="ColorRect" parent="ScreenRect" unique_id=1366351624]
 material = SubResource("ShaderMaterial_u7n8c")
 layout_mode = 1
@@ -160,3 +196,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
