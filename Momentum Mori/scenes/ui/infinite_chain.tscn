@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://da7g43152yc8t"]
+
+[ext_resource type="Texture2D" uid="uid://b0bpqeey3qope" path="res://assets/chain/tileable_chain.png" id="1_b7pry"]
+[ext_resource type="Shader" uid="uid://0wwe8asxyg2b" path="res://shaderslop/infinite_scroll.gdshader" id="1_p2qm4"]
+[ext_resource type="Script" uid="uid://coq1vsfv8x2ns" path="res://scripts/ui/infinite_chain.gd" id="3_8nbij"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7pry"]
+shader = ExtResource("1_p2qm4")
+shader_parameter/tex = ExtResource("1_b7pry")
+shader_parameter/scroll_speed = Vector2(0.1, 0)
+
+[node name="InfiniteChain" type="TextureRect" unique_id=2003126295]
+material = SubResource("ShaderMaterial_b7pry")
+custom_minimum_size = Vector2(1177, 42)
+custom_maximum_size = Vector2(1177, 42)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -103.0
+offset_bottom = -678.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_b7pry")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("3_8nbij")
