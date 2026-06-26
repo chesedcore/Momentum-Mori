@@ -28,11 +28,11 @@ func _unhandled_input(event: InputEvent) -> void {
 	if event.is_action_pressed(&"action") {
 		action_requested.emit()
 	}
-	
+
 	if event.is_action_pressed(&"adrenaline") {
 		request_start_adrenaline.emit()
 	}
-	
+
 	if event.is_action_released(&"adrenaline") {
 		request_stop_adrenaline.emit()
 	}
@@ -88,12 +88,12 @@ func _physics_process(delta: float) -> void {
 func tick_up_adrenaline(delta: float) -> void {
 	if _is_under_adrenaline: return
 	var eff_delta := delta
-	
+
 	timer.wait_time = minf(
-		max_adrenaline_time_in_seconds, 
+		max_adrenaline_time_in_seconds,
 		timer.wait_time + eff_delta
 	)
-	
+
 	#print(timer.wait_time)
 }
 

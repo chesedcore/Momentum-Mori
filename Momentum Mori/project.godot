@@ -15,6 +15,10 @@ run/main_scene="uid://bj7kad1rgpufv"
 config/features=PackedStringArray("4.8", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cc8cg16w0ph7n"
+
 [autoload]
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
@@ -26,6 +30,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://b3i85fl6ya5xe"
 
 [editor_plugins]
 

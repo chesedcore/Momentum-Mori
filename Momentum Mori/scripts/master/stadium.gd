@@ -21,6 +21,9 @@ func _on_blade_blade_collision(_player: Player, collision: KinematicCollision2D,
 	if collision_cooldown > 0.0 {
 		return
 	}
+
+	SFXPlayer.play_sfx(preload("res://assets/audio/impact.ogg"), _player.global_position)
+
 	pcam.play_impact_shake(_player.velocity.length() / 2500)
 
 	collision_cooldown = COLLISION_COOLDOWN_DURATION

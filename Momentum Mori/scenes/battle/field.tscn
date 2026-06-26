@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="9_7t1gd"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
 [ext_resource type="PackedScene" uid="uid://bo3bvipr0rvlh" path="res://scenes/ui/ui.tscn" id="11_bufal"]
+[ext_resource type="Script" uid="uid://b433cip5vxv1x" path="res://scripts/master/sfx_player.gd" id="12_bufal"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
 background_mode = 3
@@ -75,6 +76,7 @@ environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 physics_interpolation_mode = 1
+visible = false
 top_level = true
 rotation = -0.0024651876
 zoom = Vector2(0.3, 0.3)
@@ -105,6 +107,10 @@ one_shot = true
 ignore_time_scale = true
 
 [node name="UISlop" parent="." unique_id=23665878 instance=ExtResource("11_bufal")]
+
+[node name="SFXPlayer" type="Node" parent="." unique_id=259631935]
+script = ExtResource("12_bufal")
+metadata/_custom_type_script = "uid://b433cip5vxv1x"
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
 [connection signal="stadium_collision" from="Stadium/Player" to="Stadium" method="_on_player_stadium_collision"]
