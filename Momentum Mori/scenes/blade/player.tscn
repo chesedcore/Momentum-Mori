@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_m31ts"]
 [ext_resource type="Script" uid="uid://c8e4wb3ndpout" path="res://scripts/blade/blade_animator.gd" id="3_phrk6"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_j7qga"]
+[ext_resource type="PackedScene" uid="uid://6ddbg057cc0p" path="res://scenes/particles/blade_sparks.tscn" id="7_btcr0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gejl"]
 resource_local_to_scene = true
@@ -19,12 +20,13 @@ shader_parameter/inset = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 64.0
 
-[node name="Blade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_animator")]
+[node name="Blade" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("incline", "blade_sparks", "blade_animator")]
 collision_mask = 6
 script = ExtResource("1_2ibuj")
 orbit_radius = 80.0
 incline = NodePath("Incline")
 chain_pull_speed = 8000.0
+blade_sparks = NodePath("BladeSparks")
 hp = 300.0
 blade_animator = NodePath("BladeAnimator")
 metadata/_edit_lock_ = true
@@ -80,3 +82,5 @@ blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_j7qga")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360801447]
+
+[node name="BladeSparks" parent="." unique_id=1239502658 instance=ExtResource("7_btcr0")]
