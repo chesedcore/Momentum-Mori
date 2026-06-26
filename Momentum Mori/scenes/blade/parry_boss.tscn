@@ -23,7 +23,7 @@ shader_parameter/inset = 0.0
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_hpdak")
-visual = NodePath("Incline/Visual/Visual/Circle")
+visual = NodePath("Incline/Visual/Visual/Control/Circle")
 incline = NodePath("Incline")
 chasing_speed = 400.0
 recoil_resistance = 0.3
@@ -36,37 +36,43 @@ shape = SubResource("CircleShape2D_qvk82")
 
 [node name="BladeAnimator" type="Node" parent="." unique_id=1797960383 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("2_w4egg")
-blade_visual_node = NodePath("../Incline/Visual/Visual")
+blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=2033758320 node_paths=PackedStringArray("target_center_dock")]
 material = SubResource("ShaderMaterial_b54ou")
-custom_minimum_size = Vector2(500, 500)
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 stretch = true
 script = ExtResource("4_a3fxq")
-target_size = Vector2(500, 500)
+target_size = Vector2(1000, 1000)
 target_center_dock = NodePath("Visual/Visual")
 
 [node name="Visual" type="SubViewport" parent="Incline" unique_id=1499841731]
 transparent_bg = true
 handle_input_locally = false
 use_hdr_2d = true
-size = Vector2i(500, 500)
+size = Vector2i(1000, 1000)
 render_target_update_mode = 4
 
 [node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=105600063]
-position = Vector2(173, 175)
 scale = Vector2(2, 2)
 
-[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=614851873]
+[node name="Control" type="Control" parent="Incline/Visual/Visual" unique_id=1786459547]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 252.0
+offset_top = 250.0
+offset_right = 292.0
+offset_bottom = 290.0
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual/Control" unique_id=614851873]
 modulate = Color(0.95237297, 0.7607871, 0, 1)
-position = Vector2(38, 37.5)
 script = ExtResource("5_wpxnr")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 

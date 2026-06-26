@@ -31,29 +31,36 @@ metadata/_edit_lock_ = true
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=761569899 node_paths=PackedStringArray("target_center_dock")]
 material = SubResource("ShaderMaterial_8gejl")
-custom_minimum_size = Vector2(150, 150)
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 stretch = true
 script = ExtResource("2_8gejl")
-target_size = Vector2(150, 150)
+target_size = Vector2(1000, 1000)
 target_center_dock = NodePath("Visual/Visual")
 
 [node name="Visual" type="SubViewport" parent="Incline" unique_id=1133772780]
 transparent_bg = true
 handle_input_locally = false
 use_hdr_2d = true
-size = Vector2i(150, 150)
+size = Vector2i(1000, 1000)
 render_target_update_mode = 4
 
 [node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=1176094575]
-position = Vector2(75, 75)
 
-[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=1357358368]
+[node name="Control" type="Control" parent="Incline/Visual/Visual" unique_id=1164609551]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 501.0
+offset_top = 500.0
+offset_right = 541.0
+offset_bottom = 540.0
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual/Control" unique_id=1357358368]
 modulate = Color(0, 1.4842072, 2.454227, 1)
 z_index = 3
 script = ExtResource("2_m31ts")
@@ -68,6 +75,6 @@ metadata/_edit_lock_ = true
 
 [node name="BladeAnimator" type="Node" parent="." unique_id=2026629979 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("3_phrk6")
-blade_visual_node = NodePath("../Incline/Visual/Visual/Circle")
+blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_j7qga")]

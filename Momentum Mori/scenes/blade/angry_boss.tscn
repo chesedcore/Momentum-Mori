@@ -24,7 +24,7 @@ collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_civc3")
 attack_cooldown = 0.1
-attack_speed = 2000.0
+attack_speed = 3000.0
 attack_dist = 3000.0
 incline = NodePath("Incline")
 hp = 150.0
@@ -51,12 +51,19 @@ use_hdr_2d = true
 size = Vector2i(1000, 1000)
 render_target_update_mode = 4
 
-[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=2145432538]
+[node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=669961810]
 scale = Vector2(2, 2)
 
-[node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=1357358368]
+[node name="Control" type="Control" parent="Incline/Visual/Visual" unique_id=1084144701]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 251.0
+offset_top = 251.0
+offset_right = 291.0
+offset_bottom = 291.0
+
+[node name="Circle" type="Node2D" parent="Incline/Visual/Visual/Control" unique_id=1357358368]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(251, 250)
 script = ExtResource("4_yqvt8")
 thickness = 15.0
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
@@ -67,7 +74,7 @@ shape = SubResource("CircleShape2D_qvk82")
 
 [node name="BladeAnimator" type="Node" parent="." unique_id=2068761957 node_paths=PackedStringArray("blade_visual_node")]
 script = ExtResource("5_aqyhs")
-blade_visual_node = NodePath("../Incline/Visual/Visual")
+blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_simiw")]
