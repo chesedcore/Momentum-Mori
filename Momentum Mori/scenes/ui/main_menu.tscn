@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="7_877pj"]
 [ext_resource type="Shader" uid="uid://gn2uk1od0xat" path="res://shaderslop/filmgrain.gdshader" id="8_ayp64"]
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="9_y2j7i"]
+[ext_resource type="AudioStream" uid="uid://ngu7lwgs305r" path="res://assets/audio/music/MOMENTUM_MORI.ogg" id="11_7suek"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ow5"]
 shader = ExtResource("1_q85j6")
@@ -76,7 +77,7 @@ shader_parameter/vignette_intensity = 0.6
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock")]
+[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock", "menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,6 +90,7 @@ options = NodePath("MenuElements/ButtonCascade/OPTIONS")
 credits = NodePath("MenuElements/ButtonCascade/CREDITS")
 menu_rect = NodePath("MenuElements")
 options_dock = NodePath("OptionsDock")
+menu_music = NodePath("MenuMusic")
 metadata/_edit_lock_ = true
 
 [node name="Bg" type="ColorRect" parent="." unique_id=307941373]
@@ -114,6 +116,21 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
+
+[node name="GameDock" type="Control" parent="." unique_id=964569330]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StageSelectDock" type="Control" parent="." unique_id=1650247216]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="OptionsDock" type="Control" parent="." unique_id=486229764]
 layout_mode = 1
@@ -711,6 +728,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=1393711681]
+stream = ExtResource("11_7suek")
+autoplay = true
 
 [editable path="MenuElements/ButtonCascade/OPTIONS"]
 [editable path="MenuElements/ButtonCascade/CREDITS"]

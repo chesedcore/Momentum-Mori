@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="StageData" format=3 uid="uid://c3scngnayjfoh"]
+
+[ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="1_6m02x"]
+[ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="2_g44tv"]
+
+[sub_resource type="Resource" id="Resource_6m02x"]
+script = ExtResource("2_g44tv")
+enemy_map = Dictionary[int, int]({
+5: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_g44tv"]
+script = ExtResource("2_g44tv")
+enemy_map = Dictionary[int, int]({
+5: 2
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_c46fg"]
+script = ExtResource("2_g44tv")
+enemy_map = Dictionary[int, int]({
+1: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[resource]
+script = ExtResource("1_6m02x")
+intro_lines = Array[String](["if they talk behind yo back", "then fart"])
+waves = Array[ExtResource("2_g44tv")]([SubResource("Resource_6m02x"), SubResource("Resource_g44tv"), SubResource("Resource_c46fg")])
+boss = 3
+metadata/_custom_type_script = "uid://b5sydn74avxfp"
