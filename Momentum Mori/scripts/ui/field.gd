@@ -48,6 +48,11 @@ func _ready() -> void {
 
 func _process(delta: float) -> void {
 	music_player.pitch_scale = lerpf(music_player.pitch_scale, Engine.time_scale, 10.0 * delta)
+	if _is_under_adrenaline {
+		ui.set_vignette(1.0)
+	} else {
+		ui.set_vignette(0.4)
+	}
 }
 
 
