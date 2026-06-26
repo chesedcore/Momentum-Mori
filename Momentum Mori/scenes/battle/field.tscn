@@ -6,15 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dcc3wec2eedea" path="res://scenes/blade/angry_boss.tscn" id="4_0lnkb"]
 [ext_resource type="Script" uid="uid://bj3570t7qljh" path="res://scripts/battle/chain_dock.gd" id="5_gsd1j"]
 [ext_resource type="Script" uid="uid://c6uguv8v6oa8i" path="res://scripts/battle/game_camera.gd" id="5_pdtp2"]
-[ext_resource type="PackedScene" uid="uid://15toacbnjdhk" path="res://scripts/blade/dracula.tscn" id="5_wtii6"]
-[ext_resource type="PackedScene" uid="uid://ckdvewdxcovni" path="res://scenes/blade/aoe_boss.tscn" id="6_msuqh"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_xuj4y"]
-[ext_resource type="PackedScene" uid="uid://cvxgu03uhrdaa" path="res://scenes/blade/clone_boss.tscn" id="7_lhqxs"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sncn5"]
-[ext_resource type="PackedScene" uid="uid://b52k08ccyw5li" path="res://scenes/blade/parry_boss.tscn" id="8_lw5eb"]
-[ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="9_7t1gd"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
-[ext_resource type="PackedScene" uid="uid://c10r7tej3wl6d" path="res://scenes/blade/vamp_boss.tscn" id="10_6nqjl"]
 [ext_resource type="PackedScene" uid="uid://bo3bvipr0rvlh" path="res://scenes/ui/ui.tscn" id="11_bufal"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
@@ -67,30 +61,6 @@ motion_mode = 1
 position = Vector2(420, -151)
 target = NodePath("../../Player")
 
-[node name="Dracula" parent="Stadium/Enemies" unique_id=1683499357 node_paths=PackedStringArray("target") instance=ExtResource("5_wtii6")]
-position = Vector2(1136, -118)
-target = NodePath("../../Player")
-
-[node name="AoeBoss" parent="Stadium/Enemies" unique_id=1132384173 node_paths=PackedStringArray("target") instance=ExtResource("6_msuqh")]
-position = Vector2(99, -365)
-target = NodePath("../../Player")
-
-[node name="CloneBoss" parent="Stadium/Enemies" unique_id=2025231722 node_paths=PackedStringArray("target") instance=ExtResource("7_lhqxs")]
-position = Vector2(-766, -24)
-target = NodePath("../../Player")
-
-[node name="ParryBoss" parent="Stadium/Enemies" unique_id=1959400561 node_paths=PackedStringArray("target") instance=ExtResource("8_lw5eb")]
-position = Vector2(-452, 173)
-target = NodePath("../../Player")
-
-[node name="SwordBoss" parent="Stadium/Enemies" unique_id=221376277 node_paths=PackedStringArray("target") instance=ExtResource("9_7t1gd")]
-position = Vector2(-265, -579)
-target = NodePath("../../Player")
-
-[node name="VampBoss" parent="Stadium/Enemies" unique_id=816282261 node_paths=PackedStringArray("target") instance=ExtResource("10_6nqjl")]
-position = Vector2(-719, -479)
-target = NodePath("../../Player")
-
 [node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]
 
 [node name="ChainDock" type="Node2D" parent="Stadium" unique_id=1199319302]
@@ -120,7 +90,8 @@ follow_target = NodePath("../Stadium/Player")
 zoom = Vector2(0.3, 0.3)
 tween_resource = SubResource("Resource_xuj4y")
 follow_damping = true
-follow_damping_value = Vector2(2, 2)
+follow_damping_value = Vector2(0.75, 0.75)
+lookahead = true
 noise = SubResource("Resource_gsd1j")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
