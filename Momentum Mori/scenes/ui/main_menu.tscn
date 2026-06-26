@@ -6,12 +6,9 @@
 [ext_resource type="Script" uid="uid://cj41lfnkvu1y" path="res://scripts/ui/grunged_rect_menu.gd" id="3_7suek"]
 [ext_resource type="Shader" uid="uid://dsrapryeiwe8a" path="res://shaderslop/halftone.gdshader" id="4_otr3d"]
 [ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="5_8ekit"]
-[ext_resource type="Script" uid="uid://da2rcynyf2hfv" path="res://scripts/ui/options.gd" id="5_n4uci"]
 [ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="6_n4uci"]
 [ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="7_877pj"]
 [ext_resource type="Shader" uid="uid://gn2uk1od0xat" path="res://shaderslop/filmgrain.gdshader" id="8_ayp64"]
-[ext_resource type="FontFile" uid="uid://c4ku2pwo16apq" path="res://assets/fonts/EngravingCC.ttf" id="9_7suek"]
-[ext_resource type="Shader" uid="uid://0wwe8asxyg2b" path="res://shaderslop/infinite_scroll.gdshader" id="9_otr3d"]
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="9_y2j7i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ow5"]
@@ -35,38 +32,6 @@ shader_parameter/end_size = 0.1
 shader_parameter/dot_color = Color(0, 0, 0, 1)
 shader_parameter/strength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5eo"]
-shader = ExtResource("6_n4uci")
-shader_parameter/color_gap = Color(0, 0, 0, 1)
-shader_parameter/color_stripe = Color(0.7764706, 0, 0, 1)
-shader_parameter/divisions = 8.0
-shader_parameter/stripe_bias = 2.5
-shader_parameter/speed = 0.1
-shader_parameter/angle = 1.785
-shader_parameter/skew = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7suek"]
-shader = ExtResource("6_n4uci")
-shader_parameter/color_gap = Color(0, 0, 0, 1)
-shader_parameter/color_stripe = Color(0.7764706, 0, 0, 1)
-shader_parameter/divisions = 8.0
-shader_parameter/stripe_bias = 2.5
-shader_parameter/speed = 0.2
-shader_parameter/angle = 1.785
-shader_parameter/skew = 0.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_8ekit"]
-viewport_path = NodePath("OptionsDock/Options/OptionsRandomShitCascade/SETTINGS/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_otr3d"]
-resource_local_to_scene = true
-shader = ExtResource("9_otr3d")
-shader_parameter/tex = SubResource("ViewportTexture_8ekit")
-shader_parameter/scroll_speed = Vector2(0.1, 0)
-
-[sub_resource type="FontVariation" id="FontVariation_8g5eo"]
-base_font = ExtResource("9_7suek")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqp2i"]
 shader = ExtResource("6_n4uci")
 shader_parameter/color_gap = Color(0, 0, 0, 1)
@@ -87,16 +52,16 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 1.1
 shader_parameter/skew = 0.0
 
+[sub_resource type="FontVariation" id="FontVariation_7suek"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_otr3d"]
+resource_local_to_scene = true
+
 [sub_resource type="FontVariation" id="FontVariation_8ekit"]
 resource_local_to_scene = true
 
 [sub_resource type="FontVariation" id="FontVariation_n4uci"]
-resource_local_to_scene = true
-
-[sub_resource type="FontVariation" id="FontVariation_877pj"]
-resource_local_to_scene = true
-
-[sub_resource type="FontVariation" id="FontVariation_ayp64"]
 resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8uuw"]
@@ -111,7 +76,7 @@ shader_parameter/vignette_intensity = 0.6
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_random_shit_cascade")]
+[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +88,7 @@ begin = NodePath("MenuElements/ButtonCascade/BEGIN")
 options = NodePath("MenuElements/ButtonCascade/OPTIONS")
 credits = NodePath("MenuElements/ButtonCascade/CREDITS")
 menu_rect = NodePath("MenuElements")
-options_random_shit_cascade = NodePath("OptionsDock/Options/OptionsRandomShitCascade")
+options_dock = NodePath("OptionsDock")
 metadata/_edit_lock_ = true
 
 [node name="Bg" type="ColorRect" parent="." unique_id=307941373]
@@ -160,19 +125,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Options" type="Control" parent="OptionsDock" unique_id=475257402 node_paths=PackedStringArray("options_random_shit_cascade", "actual_options_cascade")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_n4uci")
-options_random_shit_cascade = NodePath("OptionsRandomShitCascade")
-actual_options_cascade = NodePath("ActualOptionsCascade")
-metadata/_edit_lock_ = true
-
-[node name="OptionsRandomShitCascade" type="Control" parent="OptionsDock/Options" unique_id=194564501]
+[node name="MenuElements" type="Control" parent="." unique_id=1335118090 node_paths=PackedStringArray("menu_element_cascade", "trigger_rect", "title_cascades", "button_cascade")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,1154 +133,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("5_8ekit")
-start_on_ready = false
-tween_in_time = 0.2
-stagger = 0.01
-metadata/_custom_type_script = "uid://bgshvuao8jk2q"
-metadata/_edit_lock_ = true
-
-[node name="BarLeftLeft" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1704644088]
-material = SubResource("ShaderMaterial_8g5eo")
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.99600005
-offset_left = -101.53735
-offset_top = -50.060295
-offset_right = -60.752823
-offset_bottom = 237.81964
-rotation = -0.3369372
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarLeftLeft2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1386307021]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.99600005
-offset_left = -96.0
-offset_top = -52.0
-offset_right = -66.95
-offset_bottom = 235.87994
-rotation = -0.3369372
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1159219108]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 183.52261
-offset_top = 655.0
-offset_right = 245.39017
-offset_bottom = 716.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2131014479]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 183.2214
-offset_top = 659.8508
-offset_right = 237.82034
-offset_bottom = 714.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit3" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1071543389]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 183.2344
-offset_top = 665.5991
-offset_right = 229.21988
-offset_bottom = 711.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit4" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=683470447]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 998.5226
-offset_top = 651.0
-offset_right = 1060.3901
-offset_bottom = 712.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit5" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2024293280]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 998.22144
-offset_top = 655.8508
-offset_right = 1052.8203
-offset_bottom = 710.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit6" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=215449271]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 998.2344
-offset_top = 661.5991
-offset_right = 1044.2198
-offset_bottom = 707.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit7" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1525211666]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 29.522583
-offset_top = 578.0
-offset_right = 91.39014
-offset_bottom = 639.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit8" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=835779226]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 29.221436
-offset_top = 582.8508
-offset_right = 83.82031
-offset_bottom = 637.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit9" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=173726816]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 29.234375
-offset_top = 588.5991
-offset_right = 75.21985
-offset_bottom = 634.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarRight" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1671516262]
-material = SubResource("ShaderMaterial_8g5eo")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.99700004
-anchor_top = -0.004
-anchor_right = 0.99700004
-anchor_bottom = 0.99600005
-offset_left = -582.16003
-offset_top = -127.65652
-offset_right = -547.59033
-offset_bottom = 157.34344
-rotation = -0.871835
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarRight2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1994548051]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 0.998
-offset_left = -580.79944
-offset_top = -132.07549
-offset_right = -556.91736
-offset_bottom = 154.3645
-rotation = -0.871835
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarLeftRight" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=622782269]
-material = SubResource("ShaderMaterial_7suek")
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.99600005
-offset_left = 302.79572
-offset_top = -110.6413
-offset_right = 340.8723
-offset_bottom = 177.23865
-rotation = 0.372194
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarLeftRight2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1469678210]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.99600005
-offset_left = 306.51593
-offset_top = -109.18897
-offset_right = 336.6053
-offset_bottom = 178.69098
-rotation = 0.372194
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarRightRight" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2023120213]
-material = SubResource("ShaderMaterial_8g5eo")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 14.174805
-offset_top = -82.46103
-offset_right = 48.744507
-offset_bottom = 202.53882
-rotation = 0.39439914
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BarRightRight2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=162754893]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0020001
-offset_left = 19.375244
-offset_top = -84.0
-offset_right = 43.257324
-offset_bottom = 199.55975
-rotation = 0.39439914
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit10" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=473126791]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 145.5226
-offset_top = 537.0
-offset_right = 207.39015
-offset_bottom = 598.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit11" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=309458685]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 145.22145
-offset_top = 541.8508
-offset_right = 199.82033
-offset_bottom = 596.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit12" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2123609761]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 145.23439
-offset_top = 547.5991
-offset_right = 191.21986
-offset_bottom = 593.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit13" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1742858514]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1261.5226
-offset_top = 287.0
-offset_right = 1323.3901
-offset_bottom = 348.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit14" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1538081809]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1261.2214
-offset_top = 291.85083
-offset_right = 1315.8203
-offset_bottom = 346.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit15" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1693910785]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1261.2344
-offset_top = 297.59912
-offset_right = 1307.2198
-offset_bottom = 343.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit16" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=926078449]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 134.5226
-offset_top = 598.0
-offset_right = 196.39015
-offset_bottom = 659.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit17" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1103519420]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 134.22145
-offset_top = 602.8508
-offset_right = 188.82033
-offset_bottom = 657.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit18" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1228471542]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 134.23439
-offset_top = 608.5991
-offset_right = 180.21986
-offset_bottom = 654.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit19" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1300378085]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 990.5226
-offset_top = 574.0
-offset_right = 1052.3901
-offset_bottom = 635.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit20" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1104500348]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 990.22144
-offset_top = 578.8508
-offset_right = 1044.8203
-offset_bottom = 633.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit21" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2107045405]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 990.2344
-offset_top = 584.5991
-offset_right = 1036.2198
-offset_bottom = 630.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit22" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=332221684]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1061.5226
-offset_top = 523.0
-offset_right = 1123.3901
-offset_bottom = 584.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit23" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=298568314]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1061.2214
-offset_top = 527.8508
-offset_right = 1115.8203
-offset_bottom = 582.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit24" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=515299792]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1061.2344
-offset_top = 533.5991
-offset_right = 1107.2198
-offset_bottom = 579.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit25" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=596838095]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 52.522583
-offset_top = 344.0
-offset_right = 114.39014
-offset_bottom = 405.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit26" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=959571977]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 52.221436
-offset_top = 348.85083
-offset_right = 106.82031
-offset_bottom = 403.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit27" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2129091017]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 52.234375
-offset_top = 354.59912
-offset_right = 98.21985
-offset_bottom = 400.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit28" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1555282592]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1051.5226
-offset_top = 437.0
-offset_right = 1113.3901
-offset_bottom = 498.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit29" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=511869039]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1051.2214
-offset_top = 441.85083
-offset_right = 1105.8203
-offset_bottom = 496.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit30" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=153308265]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1051.2344
-offset_top = 447.59912
-offset_right = 1097.2198
-offset_bottom = 493.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit31" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2062317238]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 79.52258
-offset_top = 283.0
-offset_right = 141.39014
-offset_bottom = 344.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit32" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2109550725]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 79.221436
-offset_top = 287.85083
-offset_right = 133.82031
-offset_bottom = 342.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit33" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2034244159]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 79.234375
-offset_top = 293.59912
-offset_right = 125.21985
-offset_bottom = 339.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit34" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1184186939]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.5226
-offset_top = 382.0
-offset_right = 1187.3901
-offset_bottom = 443.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit35" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1478452910]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.2214
-offset_top = 386.85083
-offset_right = 1179.8203
-offset_bottom = 441.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit36" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=858834039]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.2344
-offset_top = 392.59912
-offset_right = 1171.2198
-offset_bottom = 438.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit37" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2081415416]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 27.522583
-offset_top = 216.0
-offset_right = 89.39014
-offset_bottom = 277.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit38" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1482729481]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 27.221436
-offset_top = 220.85083
-offset_right = 81.82031
-offset_bottom = 275.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit39" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=612285891]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 27.234375
-offset_top = 226.59912
-offset_right = 73.21985
-offset_bottom = 272.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit40" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1508469517]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.5226
-offset_top = 283.0
-offset_right = 1187.3901
-offset_bottom = 344.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit41" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1465255250]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.2214
-offset_top = 287.85083
-offset_right = 1179.8203
-offset_bottom = 342.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit42" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1362701519]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1125.2344
-offset_top = 293.59912
-offset_right = 1171.2198
-offset_bottom = 339.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit43" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1649384891]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 143.52258
-offset_top = 336.0
-offset_right = 205.39014
-offset_bottom = 397.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit44" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=808276905]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 143.22144
-offset_top = 340.85083
-offset_right = 197.82031
-offset_bottom = 395.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit45" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1280013088]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 143.23438
-offset_top = 346.59912
-offset_right = 189.21985
-offset_bottom = 392.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit46" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=665170456]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1083.5226
-offset_top = 167.0
-offset_right = 1145.3901
-offset_bottom = 228.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit47" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=648076648]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1083.2214
-offset_top = 171.85083
-offset_right = 1137.8203
-offset_bottom = 226.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit48" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=57844074]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1083.2344
-offset_top = 177.59912
-offset_right = 1129.2198
-offset_bottom = 223.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit49" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=544106039]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 196.52258
-offset_top = 281.0
-offset_right = 258.39014
-offset_bottom = 342.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit50" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=698850898]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 196.22144
-offset_top = 285.85083
-offset_right = 250.82031
-offset_bottom = 340.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit51" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=524819255]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 196.23438
-offset_top = 291.59912
-offset_right = 242.21985
-offset_bottom = 337.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit52" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1394660255]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1065.5226
-offset_top = 92.0
-offset_right = 1127.3901
-offset_bottom = 153.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit53" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=278408532]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1065.2214
-offset_top = 96.85083
-offset_right = 1119.8203
-offset_bottom = 151.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit54" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1157502668]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1065.2344
-offset_top = 102.59912
-offset_right = 1111.2198
-offset_bottom = 148.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit55" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1700836520]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 176.52258
-offset_top = 211.0
-offset_right = 238.39014
-offset_bottom = 272.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit56" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=761849726]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 176.22144
-offset_top = 215.85083
-offset_right = 230.82031
-offset_bottom = 270.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit57" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=402524589]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 176.23438
-offset_top = 221.59912
-offset_right = 222.21985
-offset_bottom = 267.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit58" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=922683334]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 157.5226
-offset_top = 140.0
-offset_right = 219.39015
-offset_bottom = 201.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit59" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1543749461]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 157.22145
-offset_top = 144.85083
-offset_right = 211.82033
-offset_bottom = 199.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit60" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1071797485]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 157.23439
-offset_top = 150.59912
-offset_right = 203.21986
-offset_bottom = 196.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit61" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2012518441]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1202.5226
-offset_top = 110.0
-offset_right = 1264.3901
-offset_bottom = 171.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit62" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=223562365]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1202.2214
-offset_top = 114.85083
-offset_right = 1256.8203
-offset_bottom = 169.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit63" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=328876960]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 1202.2344
-offset_top = 120.59912
-offset_right = 1248.2198
-offset_bottom = 166.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit64" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=239882700]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 250.52258
-offset_top = 99.0
-offset_right = 312.39014
-offset_bottom = 160.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit65" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1671477393]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 250.22144
-offset_top = 103.85083
-offset_right = 304.8203
-offset_bottom = 158.4497
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit66" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1647488342]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 250.23438
-offset_top = 109.59912
-offset_right = 296.21985
-offset_bottom = 155.5846
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit67" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=49392581]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 233.5226
-offset_top = 3.0
-offset_right = 295.39014
-offset_bottom = 64.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit68" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1755307609]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 233.22145
-offset_top = 7.85083
-offset_right = 287.8203
-offset_bottom = 62.449707
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit69" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1706463382]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 233.23439
-offset_top = 13.599121
-offset_right = 279.21985
-offset_bottom = 59.584595
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit70" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=181091882]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 973.5226
-offset_top = 60.0
-offset_right = 1035.3901
-offset_bottom = 121.86755
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit71" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1529252617]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 973.22144
-offset_top = 64.85083
-offset_right = 1027.8203
-offset_bottom = 119.44971
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit72" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1058859151]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 973.2344
-offset_top = 70.59912
-offset_right = 1019.21985
-offset_bottom = 116.584595
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit73" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1666149068]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 944.5226
-offset_top = -11.0
-offset_right = 1006.39014
-offset_bottom = 50.867554
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="RandomShit74" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=479127368]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 944.22144
-offset_top = -6.14917
-offset_right = 998.8203
-offset_bottom = 48.449707
-rotation = 0.7802825
-metadata/_edit_lock_ = true
-
-[node name="RandomShit75" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=35301057]
-modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
-z_index = -1
-layout_mode = 0
-offset_left = 944.2344
-offset_top = -0.4008789
-offset_right = 990.21985
-offset_bottom = 45.584595
-rotation = 0.7802825
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TodayIsADiamond" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1187387861]
-layout_mode = 0
-offset_left = 76.980705
-offset_top = 397.08942
-offset_right = 177.22089
-offset_bottom = 497.3296
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TodayIsADiamond2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=662547987]
-layout_mode = 0
-offset_left = 79.01925
-offset_top = 402.91058
-offset_right = 170.53683
-offset_bottom = 494.42816
-rotation = 0.44854963
-metadata/_edit_lock_ = true
-
-[node name="TodayIsADiamond3" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1030057574]
-z_index = 1
-layout_mode = 0
-offset_left = 80.730736
-offset_top = 407.79782
-offset_right = 164.92517
-offset_bottom = 491.99225
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TodayIsADiamond4" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=80684527]
-z_index = 1
-layout_mode = 0
-offset_left = 82.80742
-offset_top = 413.7279
-offset_right = 158.11607
-offset_bottom = 489.03656
-rotation = 0.44854963
-color = Color(1, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TodayIsADiamond5" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2054889512]
-z_index = 1
-layout_mode = 0
-offset_left = 86.041405
-offset_top = 422.96274
-offset_right = 147.51239
-offset_bottom = 484.43372
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="DiamondRight" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=648183072]
-layout_mode = 0
-offset_left = 1150.4701
-offset_top = 182.0
-offset_right = 1250.7103
-offset_bottom = 282.24017
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="DiamondRight2" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1590530841]
-layout_mode = 0
-offset_left = 1152.5087
-offset_top = 187.82117
-offset_right = 1244.0262
-offset_bottom = 279.33875
-rotation = 0.44854963
-metadata/_edit_lock_ = true
-
-[node name="DiamondRight3" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=1378322193]
-z_index = 1
-layout_mode = 0
-offset_left = 1154.2201
-offset_top = 192.7084
-offset_right = 1238.4146
-offset_bottom = 276.90283
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="DiamondRight4" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=635260546]
-z_index = 1
-layout_mode = 0
-offset_left = 1156.2968
-offset_top = 198.63849
-offset_right = 1231.6055
-offset_bottom = 273.94714
-rotation = 0.44854963
-color = Color(1, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="DiamondRight5" type="ColorRect" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=2113019591]
-z_index = 1
-layout_mode = 0
-offset_left = 1159.5308
-offset_top = 207.87332
-offset_right = 1221.0017
-offset_bottom = 269.3443
-rotation = 0.44854963
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="SETTINGS" type="SubViewportContainer" parent="OptionsDock/Options/OptionsRandomShitCascade" unique_id=17749601]
-z_index = -1
-material = SubResource("ShaderMaterial_otr3d")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 132.0
-offset_bottom = -612.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-metadata/_edit_lock_ = true
-
-[node name="SubViewport" type="SubViewport" parent="OptionsDock/Options/OptionsRandomShitCascade/SETTINGS" unique_id=1301870187]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1412, 108)
-size_2d_override = Vector2i(1900, 0)
-size_2d_override_stretch = true
-render_target_update_mode = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="OptionsDock/Options/OptionsRandomShitCascade/SETTINGS/SubViewport" unique_id=1232311093]
-offset_left = -97.0
-offset_right = 1443.0
-offset_bottom = 111.0
-theme_override_fonts/normal_font = SubResource("FontVariation_8g5eo")
-theme_override_font_sizes/normal_font_size = 80
-text = "settings   settings"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ActualOptionsCascade" type="Control" parent="OptionsDock/Options" unique_id=378918585]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_8ekit")
-metadata/_custom_type_script = "uid://bgshvuao8jk2q"
-metadata/_edit_lock_ = true
-
-[node name="MenuElements" type="Control" parent="." unique_id=1335118090 node_paths=PackedStringArray("menu_element_cascade", "trigger_rect", "title_cascades", "button_cascade")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("3_7suek")
 menu_element_cascade = NodePath("MenuElementCascade")
 trigger_rect = NodePath("MenuElementCascade/Black")
@@ -1342,6 +147,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("5_8ekit")
 tween_in_time = 0.6
 metadata/_custom_type_script = "uid://bgshvuao8jk2q"
@@ -1478,6 +284,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="MOMENTUM_MORI" type="HBoxContainer" parent="MenuElements/Control" unique_id=655379680]
@@ -1487,6 +294,7 @@ offset_top = 108.00001
 offset_right = 849.0
 offset_bottom = 249.0
 rotation = 0.15707964
+mouse_filter = 2
 script = ExtResource("5_8ekit")
 start_on_ready = false
 tween_in_time = 0.6
@@ -1497,6 +305,7 @@ affect_offsets_instead = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1509,6 +318,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "o
 "
@@ -1522,6 +332,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1534,6 +345,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "E"
 fit_content = true
@@ -1546,6 +358,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "N"
 fit_content = true
@@ -1558,6 +371,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "T"
 fit_content = true
@@ -1570,6 +384,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "U"
 fit_content = true
@@ -1582,6 +397,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1593,6 +409,7 @@ metadata/_edit_lock_ = true
 [node name="SPACE" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI" unique_id=468886452]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = " "
 fit_content = true
@@ -1605,6 +422,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1617,6 +435,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "o"
 fit_content = true
@@ -1629,6 +448,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "R"
 fit_content = true
@@ -1641,6 +461,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "I"
 fit_content = true
@@ -1656,6 +477,7 @@ offset_top = 100.0
 offset_right = 856.05725
 offset_bottom = 241.0
 rotation = 0.15707964
+mouse_filter = 2
 script = ExtResource("5_8ekit")
 start_on_ready = false
 tween_in_time = 0.6
@@ -1666,6 +488,7 @@ metadata/_edit_lock_ = true
 [node name="M" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=175853303]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1677,6 +500,7 @@ metadata/_edit_lock_ = true
 [node name="O" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=250989415]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "o
 "
@@ -1689,6 +513,7 @@ metadata/_edit_lock_ = true
 [node name="M2" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=511051947]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1700,6 +525,7 @@ metadata/_edit_lock_ = true
 [node name="E" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=67094450]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "E"
 fit_content = true
@@ -1711,6 +537,7 @@ metadata/_edit_lock_ = true
 [node name="N" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=485607771]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "N"
 fit_content = true
@@ -1722,6 +549,7 @@ metadata/_edit_lock_ = true
 [node name="T" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=1464964755]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "T"
 fit_content = true
@@ -1733,6 +561,7 @@ metadata/_edit_lock_ = true
 [node name="U" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=857565593]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "U"
 fit_content = true
@@ -1744,6 +573,7 @@ metadata/_edit_lock_ = true
 [node name="M3" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=575411487]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1755,6 +585,7 @@ metadata/_edit_lock_ = true
 [node name="SPACE" type="RichTextLabel" parent="MenuElements/Control/MOMENTUM_MORI2" unique_id=639717006]
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = " "
 fit_content = true
@@ -1767,6 +598,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.07450981, 0.0627451, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "M"
 fit_content = true
@@ -1779,6 +611,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.07450981, 0.0627451, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "o"
 fit_content = true
@@ -1791,6 +624,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.07450981, 0.0627451, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "R"
 fit_content = true
@@ -1803,6 +637,7 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.07450981, 0.0627451, 1)
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 120
 text = "I"
 fit_content = true
@@ -1819,6 +654,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.15707964
+mouse_filter = 2
 script = ExtResource("5_8ekit")
 start_on_ready = false
 tween_in_time = 0.6
@@ -1826,7 +662,7 @@ stagger = 0.2
 metadata/_custom_type_script = "uid://bgshvuao8jk2q"
 metadata/_edit_lock_ = true
 
-[node name="BEGIN" parent="MenuElements/ButtonCascade" unique_id=1664075844 instance=ExtResource("7_877pj")]
+[node name="BEGIN" parent="MenuElements/ButtonCascade" unique_id=1744241492 instance=ExtResource("7_877pj")]
 layout_mode = 1
 
 [node name="OPTIONS" parent="MenuElements/ButtonCascade" unique_id=1325575975 instance=ExtResource("7_877pj")]
@@ -1835,11 +671,11 @@ offset_top = 90.712074
 offset_right = 0.04334259
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/OPTIONS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
+theme_override_fonts/normal_font = SubResource("FontVariation_7suek")
 text = "OPTIONS"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/OPTIONS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
+theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
 text = "OPTIONS"
 
 [node name="CREDITS" parent="MenuElements/ButtonCascade" unique_id=996543734 instance=ExtResource("7_877pj")]
@@ -1847,11 +683,11 @@ layout_mode = 1
 offset_top = 185.02118
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/CREDITS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_877pj")
+theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
 text = "credits"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/CREDITS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_ayp64")
+theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
 text = "credits"
 
 [node name="FilmGrain" type="ColorRect" parent="." unique_id=223929882]

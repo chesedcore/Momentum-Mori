@@ -31,3 +31,7 @@ func unroll() -> void {
 	title_cascades.map(func(c: CascadeV3): c.cascade_out())
 	button_cascade.cascade_out()
 }
+
+func roll() -> void {
+	menu_element_cascade.cascade_in()
+}

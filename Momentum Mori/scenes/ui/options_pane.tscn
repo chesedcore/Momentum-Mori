@@ -1,0 +1,619 @@
+[gd_scene format=3 uid="uid://ciq0mm8wu3wpm"]
+
+[ext_resource type="Script" uid="uid://da2rcynyf2hfv" path="res://scripts/ui/options.gd" id="1_yji02"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="2_q60j8"]
+[ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="3_vvpa4"]
+[ext_resource type="Shader" uid="uid://0wwe8asxyg2b" path="res://shaderslop/infinite_scroll.gdshader" id="4_4g6gd"]
+[ext_resource type="FontFile" uid="uid://c4ku2pwo16apq" path="res://assets/fonts/EngravingCC.ttf" id="5_hm06d"]
+[ext_resource type="Script" uid="uid://df2u4la3471ue" path="res://scripts/ui/settings.gd" id="6_jb2um"]
+[ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="7_v6odt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5eo"]
+shader = ExtResource("3_vvpa4")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(0.7764706, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 1.785
+shader_parameter/skew = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7suek"]
+shader = ExtResource("3_vvpa4")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(0.7764706, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.2
+shader_parameter/angle = 1.785
+shader_parameter/skew = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yji02"]
+viewport_path = NodePath("OptionsRandomShitCascade/SETTINGS/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otr3d"]
+resource_local_to_scene = true
+shader = ExtResource("4_4g6gd")
+shader_parameter/tex = SubResource("ViewportTexture_yji02")
+shader_parameter/scroll_speed = Vector2(0.1, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_8g5eo"]
+base_font = ExtResource("5_hm06d")
+
+[sub_resource type="FontVariation" id="FontVariation_yji02"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_q60j8"]
+resource_local_to_scene = true
+
+[node name="Options" type="Control" unique_id=1048909407 node_paths=PackedStringArray("options_random_shit_cascade", "actual_options_cascade", "back")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yji02")
+options_random_shit_cascade = NodePath("OptionsRandomShitCascade")
+actual_options_cascade = NodePath("ActualOptionsCascade")
+back = NodePath("ActualOptionsCascade/BACK")
+metadata/_edit_lock_ = true
+
+[node name="OptionsRandomShitCascade" type="Control" parent="." unique_id=768844993]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_q60j8")
+start_on_ready = false
+tween_in_time = 0.2
+stagger = 0.01
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+metadata/_edit_lock_ = true
+
+[node name="BarLeftLeft" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=957014401]
+material = SubResource("ShaderMaterial_8g5eo")
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.99600005
+offset_left = -101.53735
+offset_top = -50.060295
+offset_right = -60.752823
+offset_bottom = 237.81964
+rotation = -0.3369372
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarLeftLeft2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1096011647]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.99600005
+offset_left = -96.0
+offset_top = -52.0
+offset_right = -66.95
+offset_bottom = 235.87994
+rotation = -0.3369372
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarRight" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1674063462]
+material = SubResource("ShaderMaterial_8g5eo")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99700004
+anchor_top = -0.004
+anchor_right = 0.99700004
+anchor_bottom = 0.99600005
+offset_left = -582.16003
+offset_top = -127.65652
+offset_right = -547.59033
+offset_bottom = 157.34344
+rotation = -0.871835
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarRight2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1673793339]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_left = -580.79944
+offset_top = -132.07549
+offset_right = -556.91736
+offset_bottom = 154.3645
+rotation = -0.871835
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarLeftRight" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=688077990]
+material = SubResource("ShaderMaterial_7suek")
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.99600005
+offset_left = 302.79572
+offset_top = -110.6413
+offset_right = 340.8723
+offset_bottom = 177.23865
+rotation = 0.372194
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarLeftRight2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=63009622]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.99600005
+offset_left = 306.51593
+offset_top = -109.18897
+offset_right = 336.6053
+offset_bottom = 178.69098
+rotation = 0.372194
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarRightRight" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=37904331]
+material = SubResource("ShaderMaterial_8g5eo")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.174805
+offset_top = -82.46103
+offset_right = 48.744507
+offset_bottom = 202.53882
+rotation = 0.39439914
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BarRightRight2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1210362820]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0020001
+offset_left = 19.375244
+offset_top = -84.0
+offset_right = 43.257324
+offset_bottom = 199.55975
+rotation = 0.39439914
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TodayIsADiamond" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=2144648778]
+layout_mode = 0
+offset_left = 76.980705
+offset_top = 397.08942
+offset_right = 177.22089
+offset_bottom = 497.3296
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TodayIsADiamond2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1635023205]
+layout_mode = 0
+offset_left = 79.01925
+offset_top = 402.91058
+offset_right = 170.53683
+offset_bottom = 494.42816
+rotation = 0.44854963
+metadata/_edit_lock_ = true
+
+[node name="TodayIsADiamond3" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=2082920086]
+z_index = 1
+layout_mode = 0
+offset_left = 80.730736
+offset_top = 407.79782
+offset_right = 164.92517
+offset_bottom = 491.99225
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TodayIsADiamond4" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=981359233]
+z_index = 1
+layout_mode = 0
+offset_left = 82.80742
+offset_top = 413.7279
+offset_right = 158.11607
+offset_bottom = 489.03656
+rotation = 0.44854963
+color = Color(1, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TodayIsADiamond5" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=75477045]
+z_index = 1
+layout_mode = 0
+offset_left = 86.041405
+offset_top = 422.96274
+offset_right = 147.51239
+offset_bottom = 484.43372
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DiamondRight" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1372428541]
+layout_mode = 0
+offset_left = 1150.4701
+offset_top = 182.0
+offset_right = 1250.7103
+offset_bottom = 282.24017
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DiamondRight2" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=486082010]
+layout_mode = 0
+offset_left = 1152.5087
+offset_top = 187.82117
+offset_right = 1244.0262
+offset_bottom = 279.33875
+rotation = 0.44854963
+metadata/_edit_lock_ = true
+
+[node name="DiamondRight3" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=802651880]
+z_index = 1
+layout_mode = 0
+offset_left = 1154.2201
+offset_top = 192.7084
+offset_right = 1238.4146
+offset_bottom = 276.90283
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DiamondRight4" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1704702726]
+z_index = 1
+layout_mode = 0
+offset_left = 1156.2968
+offset_top = 198.63849
+offset_right = 1231.6055
+offset_bottom = 273.94714
+rotation = 0.44854963
+color = Color(1, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DiamondRight5" type="ColorRect" parent="OptionsRandomShitCascade" unique_id=1432470261]
+z_index = 1
+layout_mode = 0
+offset_left = 1159.5308
+offset_top = 207.87332
+offset_right = 1221.0017
+offset_bottom = 269.3443
+rotation = 0.44854963
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="SETTINGS" type="SubViewportContainer" parent="OptionsRandomShitCascade" unique_id=70859464]
+z_index = -1
+material = SubResource("ShaderMaterial_otr3d")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 132.0
+offset_bottom = -612.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="OptionsRandomShitCascade/SETTINGS" unique_id=270777518]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1412, 108)
+size_2d_override = Vector2i(1900, 0)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsRandomShitCascade/SETTINGS/SubViewport" unique_id=1697151943]
+offset_left = -97.0
+offset_right = 1443.0
+offset_bottom = 111.0
+theme_override_fonts/normal_font = SubResource("FontVariation_8g5eo")
+theme_override_font_sizes/normal_font_size = 80
+text = "settings   settings"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActualOptionsCascade" type="Control" parent="." unique_id=1880125493 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_jb2um")
+master_slider = NodePath("MasterSlider")
+music_slider = NodePath("MusicSlider")
+sfx_slider = NodePath("SFXSlider")
+start_on_ready = false
+stagger = 0.02
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+metadata/_edit_lock_ = true
+
+[node name="KEYBINDS" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1883951871]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 222.0
+offset_top = 103.0
+offset_right = 503.0
+offset_bottom = 197.0
+theme_override_font_sizes/normal_font_size = 80
+text = "KEYBINDS"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="KEYBINDS2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=785759569]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 106.0
+offset_right = 509.0
+offset_bottom = 200.0
+theme_override_font_sizes/normal_font_size = 80
+text = "KEYBINDS"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Release Chain Whip" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=339474246]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 205.0
+offset_top = 200.0
+offset_right = 508.0
+offset_bottom = 247.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Release chain whip"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Release Chain Whip2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=2135119531]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 203.0
+offset_right = 511.0
+offset_bottom = 250.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Release chain whip"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ChainBinds" type="HBoxContainer" parent="ActualOptionsCascade" unique_id=1912328546]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 197.0
+offset_right = 942.0
+offset_bottom = 237.0
+
+[node name="Button" type="Button" parent="ActualOptionsCascade/ChainBinds" unique_id=1438233182]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "E"
+
+[node name="Button2" type="Button" parent="ActualOptionsCascade/ChainBinds" unique_id=1368298437]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LMB"
+
+[node name="Spin Focus Mode" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=692335651]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 205.0
+offset_top = 250.0
+offset_right = 508.0
+offset_bottom = 297.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Spin focus mode (hold)"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Spin Focus Mode2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=186144112]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 253.0
+offset_right = 511.0
+offset_bottom = 300.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Spin focus mode (hold)"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="FocusBinds" type="HBoxContainer" parent="ActualOptionsCascade" unique_id=1591668656]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 254.0
+offset_right = 943.0
+offset_bottom = 294.0
+
+[node name="Button" type="Button" parent="ActualOptionsCascade/FocusBinds" unique_id=1165186630]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "q"
+metadata/_edit_lock_ = true
+
+[node name="Button2" type="Button" parent="ActualOptionsCascade/FocusBinds" unique_id=385808546]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RMB"
+metadata/_edit_lock_ = true
+
+[node name="Sounds" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1263806427]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 708.0
+offset_top = 300.0
+offset_right = 989.0
+offset_bottom = 394.0
+theme_override_font_sizes/normal_font_size = 80
+text = "sounds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Sounds2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1257454008]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 303.0
+offset_right = 995.0
+offset_bottom = 397.0
+theme_override_font_sizes/normal_font_size = 80
+text = "sounds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Master" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=427267893]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 205.0
+offset_top = 394.0
+offset_right = 508.0
+offset_bottom = 441.0
+theme_override_font_sizes/normal_font_size = 40
+text = "master"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=457404857]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 397.0
+offset_right = 511.0
+offset_bottom = 444.0
+theme_override_font_sizes/normal_font_size = 40
+text = "master"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="ActualOptionsCascade" unique_id=1241809553]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 402.0
+offset_right = 995.0
+offset_bottom = 427.0
+metadata/_edit_lock_ = true
+
+[node name="Music" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=828954697]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 208.0
+offset_top = 447.0
+offset_right = 511.0
+offset_bottom = 494.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Music"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Music2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1580151742]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 450.0
+offset_right = 514.0
+offset_bottom = 497.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Music"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MusicSlider" type="HSlider" parent="ActualOptionsCascade" unique_id=2081437538]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 450.0
+offset_right = 995.0
+offset_bottom = 475.0
+
+[node name="SFX" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=1795204556]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 208.0
+offset_top = 494.0
+offset_right = 511.0
+offset_bottom = 541.0
+theme_override_font_sizes/normal_font_size = 40
+text = "SFX"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX2" type="RichTextLabel" parent="ActualOptionsCascade" unique_id=787437873]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 497.0
+offset_right = 514.0
+offset_bottom = 544.0
+theme_override_font_sizes/normal_font_size = 40
+text = "SFX"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="ActualOptionsCascade" unique_id=772824321]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 494.0
+offset_right = 995.0
+offset_bottom = 519.0
+
+[node name="BACK" parent="ActualOptionsCascade" unique_id=1664075844 instance=ExtResource("7_v6odt")]
+layout_mode = 1
+offset_left = -139.22905
+offset_top = 252.15108
+offset_right = 12.205673
+offset_bottom = -19.338257
+rotation = 0.13613568
+
+[node name="Backstripes" parent="ActualOptionsCascade/BACK" index="0" unique_id=756467404]
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" parent="ActualOptionsCascade/BACK/Backstripes" index="0" unique_id=1642753874]
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="ActualOptionsCascade/BACK" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_yji02")
+text = "BACK"
+metadata/_edit_lock_ = true
+
+[node name="BEGIN2" parent="ActualOptionsCascade/BACK" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_q60j8")
+text = "BACK"
+metadata/_edit_lock_ = true
+
+[editable path="ActualOptionsCascade/BACK"]
