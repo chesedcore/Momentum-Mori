@@ -53,9 +53,6 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 1.1
 shader_parameter/skew = 0.0
 
-[sub_resource type="FontVariation" id="FontVariation_8g5eo"]
-resource_local_to_scene = true
-
 [sub_resource type="FontVariation" id="FontVariation_7suek"]
 resource_local_to_scene = true
 
@@ -63,6 +60,9 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 
 [sub_resource type="FontVariation" id="FontVariation_8ekit"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_n4uci"]
 resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8uuw"]
@@ -688,11 +688,11 @@ offset_top = 90.712074
 offset_right = 0.04334259
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/OPTIONS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_8g5eo")
+theme_override_fonts/normal_font = SubResource("FontVariation_7suek")
 text = "OPTIONS"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/OPTIONS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_7suek")
+theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
 text = "OPTIONS"
 
 [node name="CREDITS" parent="MenuElements/ButtonCascade" unique_id=996543734 instance=ExtResource("7_877pj")]
@@ -700,11 +700,11 @@ layout_mode = 1
 offset_top = 185.02118
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/CREDITS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
+theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
 text = "credits"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/CREDITS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
+theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
 text = "credits"
 
 [node name="FilmGrain" type="ColorRect" parent="." unique_id=223929882]
@@ -732,6 +732,7 @@ metadata/_edit_lock_ = true
 [node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=1393711681]
 stream = ExtResource("11_7suek")
 autoplay = true
+bus = &"Music"
 
 [editable path="MenuElements/ButtonCascade/OPTIONS"]
 [editable path="MenuElements/ButtonCascade/CREDITS"]

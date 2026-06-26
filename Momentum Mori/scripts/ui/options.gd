@@ -35,7 +35,7 @@ func cascade_out() -> void {
 	options_random_shit_cascade.cascade_out_chain_finished.connect(
 		_on_random_shit_cascaded_out, CONNECT_ONE_SHOT
 	)
-	
+
 }
 
 func _on_random_shit_cascaded_out() -> void {
