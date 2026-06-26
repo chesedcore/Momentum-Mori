@@ -1,6 +1,6 @@
 class_name BladeAnimator extends Node
 
-@export var shake_multiplier: float = 100.0
+@export var shake_multiplier: float = 50 
 @export var amp: float = 0.15
 @export var freq: float = 75.0
 @export var blade_visual_node: Node2D

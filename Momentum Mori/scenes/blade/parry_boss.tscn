@@ -41,26 +41,27 @@ metadata/_custom_type_script = "uid://c8e4wb3ndpout"
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=2033758320 node_paths=PackedStringArray("target_center_dock")]
 material = SubResource("ShaderMaterial_b54ou")
-custom_minimum_size = Vector2(150, 150)
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
+custom_minimum_size = Vector2(500, 500)
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 stretch = true
 script = ExtResource("4_a3fxq")
-target_size = Vector2(150, 150)
+target_size = Vector2(500, 500)
 target_center_dock = NodePath("Visual/Visual")
 
 [node name="Visual" type="SubViewport" parent="Incline" unique_id=1499841731]
 transparent_bg = true
 handle_input_locally = false
 use_hdr_2d = true
-size = Vector2i(150, 150)
+size = Vector2i(500, 500)
 render_target_update_mode = 4
 
 [node name="Visual" type="Node2D" parent="Incline/Visual" unique_id=105600063]
+position = Vector2(173, 175)
 scale = Vector2(2, 2)
 
 [node name="Circle" type="Node2D" parent="Incline/Visual/Visual" unique_id=614851873]

@@ -18,7 +18,7 @@ var is_parrying :bool = false
 @export var escape_duration := 0.5
 var escape_dir := Vector2.ZERO
 var escape_time := 0.0
-@export var minimum_distance_to_target: float = 150
+@export var minimum_distance_to_target: float = 300
 
 
 @export var recoil_resistance:float = 1 # 1 means no resist , 0 means no recoil

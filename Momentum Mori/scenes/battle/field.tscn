@@ -43,12 +43,12 @@ metadata/_edit_lock_ = true
 
 [node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "pcam", "camera") instance=ExtResource("1_xq1i4")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+base_knockback = 800.0
+recoil_duration = 0.25
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 projectiles = NodePath("ProjectilesHolder")
 chain_dock = NodePath("ChainDock")
-base_knockback = 800.0
-recoil_duration = 0.25
 pcam = NodePath("../Pcam")
 camera = NodePath("../Cam")
 

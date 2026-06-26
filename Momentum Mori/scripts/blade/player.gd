@@ -2,6 +2,8 @@ class_name Player extends Blade
 
 #signal to the stadium
 signal blade_collision
+signal stadium_collision
+
 
 ##how fast the blade spins around the orbit center (radians/sec^2)
 @export var spin_speed: float = 4.0
@@ -70,6 +72,7 @@ func _physics_process(delta: float) -> void {
 		velocity = recoil_velocity
 		pre_collision_velocity = velocity
 		move_and_slide()
+		check_for_collisions()
 		
 		_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
 		_orbit_center += _orbit_velocity * delta
@@ -79,13 +82,7 @@ func _physics_process(delta: float) -> void {
 			_orbit_center = global_position - Vector2.from_angle(angle) * orbit_radius
 		}
 		
-		for i in get_slide_collision_count() {
-			var collision = get_slide_collision(i)
-			var collider = collision.get_collider()
-			if collider is EnemyBlade {
-				blade_collision.emit(self, collision,pre_collision_velocity)
-			}
-		}
+		
 		return
 	}
 	
@@ -113,13 +110,8 @@ func _physics_process(delta: float) -> void {
 				velocity = to_dig.normalized() * chain_pull_speed
 				pre_collision_velocity = velocity
 				move_and_slide()
-				for i in get_slide_collision_count() {
-					var collision = get_slide_collision(i)
-					var collider = collision.get_collider()
-					if collider is Blade {
-						blade_collision.emit(self, collision, pre_collision_velocity)
-					}
-				}
+				check_for_collisions()
+
 			}
 			return
 
@@ -145,14 +137,24 @@ func _physics_process(delta: float) -> void {
 	velocity = (target_pos - global_position) / delta
 	pre_collision_velocity = velocity
 	move_and_slide()
+	check_for_collisions()
+	
+}
+
+
+func check_for_collisions()-> void{
 	for i in get_slide_collision_count(){
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider is Blade:
 			blade_collision.emit(self,collision,pre_collision_velocity)
+		#theres uh no way to get the collision for the stadiums static body so uh THIS WILL DOO!!!!
+		if collider is StaticBody2D{
+			stadium_collision.emit()
+			_chain_state = ChainState.NONE
+		}
 	}
 }
-
 
 
 #temp death logic

@@ -238,3 +238,11 @@ func get_player() -> Player {
 func get_chain_dock() -> ChainDock {
 	return chain_dock
 }
+
+
+func _on_player_stadium_collision() -> void{
+	pcam.play_impact_shake(player.velocity.length() / 2500)
+	player.apply_recoil(-player.velocity.normalized(),500,.5)
+	_on_spark_at_node(player)
+
+}
