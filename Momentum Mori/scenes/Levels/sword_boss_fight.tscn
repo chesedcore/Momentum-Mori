@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dc3vk5q4p28yp"]
+
+[ext_resource type="PackedScene" uid="uid://bj7kad1rgpufv" path="res://scenes/battle/field.tscn" id="1_1i82r"]
+[ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="2_5kl1r"]
+[ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="3_aoxlf"]
+
+[node name="SwordBossFight" type="Node2D" unique_id=2090532768]
+
+[node name="Field" parent="." unique_id=112534353 instance=ExtResource("1_1i82r")]
+
+[node name="SwordBoss" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="0" unique_id=221661367 node_paths=PackedStringArray("target") instance=ExtResource("2_5kl1r")]
+position = Vector2(-41, -468)
+attack_speed = 1500.0
+attack_dist = 1000.0
+chasing_speed = 800.0
+target = NodePath("../../Player")
+
+[node name="EnemyBlade" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="1" unique_id=67324589 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
+position = Vector2(705, -331)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade2" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="2" unique_id=191972200 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
+position = Vector2(-1043, -585)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade3" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="3" unique_id=137305363 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
+position = Vector2(377, -805)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade4" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="4" unique_id=2133347136 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
+position = Vector2(-1437, 609)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade5" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="5" unique_id=989283977 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
+position = Vector2(1264, 717)
+target = NodePath("../../Player")
+
+[editable path="Field"]

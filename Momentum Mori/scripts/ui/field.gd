@@ -162,7 +162,7 @@ func _on_stuff_hit(stuff_arr: Array, chain: ChainWhip, final: Vector2) -> void {
 
 func _setup_chain_destructor(chain: ChainWhip) -> void {
 	var t := create_tween()
-	t.tween_await(chain_spawn_confirmed).set_timeout(2)
+	t.tween_await(chain_spawn_confirmed).set_timeout(1)
 	t.tween_callback(chain.kill)
 }
 
