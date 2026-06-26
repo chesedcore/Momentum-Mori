@@ -7,15 +7,20 @@ signal request_start_adrenaline
 signal request_stop_adrenaline
 signal request_force_stop_adrenaline
 
+signal started_adrenaline
+signal stopped_adrenaline
+
 @export var stadium: Stadium
 @export var game_camera: GameCamera
 @export var timer: Timer
+@export var ui: UI
 
 @export var time_until_chain_disappears := 2.0
 
 @export var max_adrenaline_time_in_seconds := 3.0
 @export var adrenaline_recharge_rate := 0.33
 @export var time_slow_down_factor := 0.2
+@export var minimum_threshold_to_activate_adrenaline := 0.25
 
 var _is_under_adrenaline := false
 
@@ -49,25 +54,31 @@ func _wire_up_signals() -> void {
 
 func _on_requested_adrenaline_start() -> void {
 	if _is_under_adrenaline: return
+	if timer.wait_time < minimum_threshold_to_activate_adrenaline: return
 	_is_under_adrenaline = true
 	Engine.time_scale *= time_slow_down_factor
 	timer.start()
+	started_adrenaline.emit()
 }
 
 func _on_requested_adrenaline_stop() -> void {
-	print("balls")
 	if not _is_under_adrenaline: return
-	timer.wait_time = timer.wait_time - timer.time_left
+	var remaining := timer.time_left
+	timer.stop()
+	timer.wait_time = remaining
 	force_stop_adrenaline()
 }
 
 func _on_timer_expired() -> void {
+	timer.stop()
+	timer.wait_time = 0.001
 	force_stop_adrenaline()
 }
 
 func force_stop_adrenaline() -> void {
 	_is_under_adrenaline = false
 	Engine.time_scale = 1.0
+	stopped_adrenaline.emit()
 }
 
 func _physics_process(delta: float) -> void {
@@ -157,4 +168,5 @@ func _setup_chain_destructor(chain: ChainWhip) -> void {
 
 func _inject_deps() -> void {
 	game_camera.stadium = stadium
+	ui.setup_self_using_field(self)
 }

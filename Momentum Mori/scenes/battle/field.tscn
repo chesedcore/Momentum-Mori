@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_xuj4y"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sncn5"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
+[ext_resource type="PackedScene" uid="uid://bo3bvipr0rvlh" path="res://scenes/ui/ui.tscn" id="11_bufal"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
 background_mode = 3
@@ -25,7 +26,7 @@ amplitude = 0.0
 frequency = 5.0
 metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 
-[node name="Field" type="Control" unique_id=112534353 node_paths=PackedStringArray("stadium", "game_camera", "timer")]
+[node name="Field" type="Control" unique_id=112534353 node_paths=PackedStringArray("stadium", "game_camera", "timer", "ui")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 layout_mode = 3
 anchors_preset = 15
@@ -38,6 +39,7 @@ script = ExtResource("1_wud16")
 stadium = NodePath("Stadium")
 game_camera = NodePath("Pcam")
 timer = NodePath("Timer")
+ui = NodePath("UISlop")
 metadata/_edit_lock_ = true
 
 [node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "pcam", "camera") instance=ExtResource("1_xq1i4")]
@@ -102,15 +104,6 @@ wait_time = 3.0
 one_shot = true
 ignore_time_scale = true
 
-[node name="UISlop" type="CanvasLayer" parent="." unique_id=1323353158]
-
-[node name="Control" type="Control" parent="UISlop" unique_id=2064451056]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="UISlop" parent="." unique_id=23665878 instance=ExtResource("11_bufal")]
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]

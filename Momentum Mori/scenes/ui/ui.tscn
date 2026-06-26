@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://bo3bvipr0rvlh"]
+
+[ext_resource type="Script" uid="uid://dqdw8a6ujdllc" path="res://scripts/ui/ui.gd" id="1_f5cxw"]
+[ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="1_u7n8c"]
+[ext_resource type="Script" uid="uid://dv64mhjh5k52a" path="res://scripts/ui/black_bars.gd" id="2_g5kmx"]
+[ext_resource type="Script" uid="uid://dkkqcw4f3gnx0" path="res://scripts/ui/time_rect.gd" id="3_aac20"]
+[ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="5_0dwhk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7n8c"]
+shader = ExtResource("1_u7n8c")
+shader_parameter/color_gap = Color(1, 1, 1, 1)
+shader_parameter/color_stripe = Color(0, 0, 0, 0)
+shader_parameter/divisions = 5.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 2.785
+shader_parameter/skew = -1.0
+
+[sub_resource type="Shader" id="Shader_aac20"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: source_color = vec4(0.25);
+uniform vec4 color_stripe: source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+
+uniform float skew = 0;
+
+void vertex() {
+	VERTEX.x += VERTEX.y * skew;
+}
+
+
+void fragment() {
+    float w = cos(angle) * SCREEN_UV.x + sin(angle) * SCREEN_UV.y - speed * TIME;
+    if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+        COLOR = color_gap;
+    } else {
+        COLOR = color_stripe;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvk82"]
+shader = SubResource("Shader_aac20")
+shader_parameter/color_gap = Color(0.2509804, 0.2509804, 0.2509804, 0)
+shader_parameter/color_stripe = Color(1.353256, 0, 0, 1)
+shader_parameter/divisions = 67.1
+shader_parameter/stripe_bias = 1.6
+shader_parameter/speed = 0.045
+shader_parameter/angle = 2.785
+shader_parameter/skew = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g5kmx"]
+shader = ExtResource("5_0dwhk")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars")]
+script = ExtResource("1_f5cxw")
+time_rect = NodePath("ScreenRect/BackRect/TimeRect")
+black_bars = NodePath("ScreenRect/BlackBars")
+
+[node name="ScreenRect" type="Control" parent="." unique_id=722479326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="BlackBars" type="Control" parent="ScreenRect" unique_id=753951374 node_paths=PackedStringArray("top", "bottom")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_g5kmx")
+top = NodePath("Top")
+bottom = NodePath("Bottom")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="ColorRect" parent="ScreenRect/BlackBars" unique_id=1691891214]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -720.0
+offset_bottom = -670.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -50)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="ColorRect" parent="ScreenRect/BlackBars" unique_id=2060510030]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 50)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BackRect" type="ColorRect" parent="ScreenRect" unique_id=1366351624]
+material = SubResource("ShaderMaterial_u7n8c")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.59800005
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.440063
+offset_top = -67.0
+offset_right = -22.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0, 0.5)
+
+[node name="TimeRect" type="ColorRect" parent="ScreenRect/BackRect" unique_id=717132971]
+material = SubResource("ShaderMaterial_qvk82")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.59800005
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -314.09604
+offset_top = -38.0
+offset_right = -16.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0, 0.5)
+script = ExtResource("3_aac20")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1101039229]
+material = SubResource("ShaderMaterial_g5kmx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
