@@ -42,6 +42,7 @@ func _ready() -> void {
 
 ##use when a chain is summoned. freezes the player at their current spot.
 func begin_chain_hold() -> void {
+	SFXPlayer.play_sfx(preload("res://assets/audio/chain.ogg"), position)
 	_chain_state = ChainState.HELD
 	_chain_anchor = global_position
 	_orbit_center = global_position

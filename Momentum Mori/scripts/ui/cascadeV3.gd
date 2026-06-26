@@ -31,14 +31,14 @@ func _save_position(node: Node) -> void:
 	if _should_use_offsets_instead_for(node):
 		_node_to_position_map[node] = node.offset_transform_position
 		return
-	
+
 	_node_to_position_map[node] = node.position
 
 func _save_scale(node: Node) -> void:
 	if _should_use_offsets_instead_for(node):
 		_node_to_scale_map[node] = node.offset_transform_scale
 		return
-	
+
 	_node_to_scale_map[node] = node.scale
 
 func _implements_transform_trait(node: Node) -> bool:
@@ -60,14 +60,14 @@ func _set_scale_for(node: Node, target_scale: Vector2) -> void:
 	if _should_use_offsets_instead_for(node):
 		node.offset_transform_scale = target_scale
 		return
-	
+
 	node.scale = target_scale
 
 func _set_pos_for(node: Node, target_pos: Vector2) -> void:
 	if _should_use_offsets_instead_for(node):
 		node.offset_transform_position = target_pos
 		return
-	
+
 	node.position = target_pos
 
 func _reset_state() -> void:
@@ -144,25 +144,25 @@ func _cascade_engine_in() -> void:
 	var nodes := _get_nodes_in_map()
 	reset_top_level_tween()
 	_hitzone_scatter_pos(nodes)
-	
+
 	var delay_so_far := 0.0
 	top_level_t.tween_callback(cascade_in_chain_started.emit)
-	
+
 	for node in nodes:
 		top_level_t.parallel().tween_subtween(_subtween_hitzone_in(node, delay_so_far))
 		delay_so_far += stagger
-	
+
 	top_level_t.chain().tween_callback(cascade_in_chain_finished.emit)
 
 func _cascade_engine_out() -> void:
 	var nodes := _get_nodes_in_map()
 	reset_top_level_tween()
-	
+
 	top_level_t.tween_callback(cascade_out_chain_started.emit)
-	
+
 	for node in nodes:
 		top_level_t.parallel().tween_subtween(_subtween_hitzone_out(node))
-	
+
 	top_level_t.chain().tween_callback(_hitzone_reset_pos)
 	top_level_t.chain().tween_callback(cascade_out_chain_finished.emit)
 
@@ -179,5 +179,5 @@ func _ready() -> void:
 	if wait_a_frame: await get_tree().process_frame
 	_initialise()
 	_reset_state()
-	
+
 	if start_on_ready: cascade_in()

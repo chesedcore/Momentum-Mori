@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void {
 		elif  current_state == STATES.SPIRALING{
 			update_spiral_state(delta)
 		}
-		
+
 		calculate_movement(delta)
 	}
 }
@@ -98,7 +98,7 @@ func change_to_attack(attack_dir : Vector2)->void {
 	if attack_predict{
 		var target_vel : Vector2= target.velocity
 		players_last_loc = calculate_intercept(target.global_position, target_vel)
-	} 
+	}
 	else{
 		players_last_loc  = attack_dir
 	}
@@ -117,11 +117,11 @@ func update_attack_state(delta : float)->void {
 
 func calculate_intercept(target_pos: Vector2, target_vel: Vector2) -> Vector2{
 	var dist := global_position.distance_to(target_pos)
-	
+
 	var time_to_target := dist / attack_speed
-	
+
 	var predicted_pos := target_pos + target_vel * time_to_target * attack_predict_strength
-	
+
 	return global_position.direction_to(predicted_pos)
 }
 
@@ -159,7 +159,7 @@ func update_chasing_state(delta:float) -> void {
 
 func change_to_spiral() -> void{
 	current_state = STATES.SPIRALING
-	spiral_origin = global_position 
+	spiral_origin = global_position
 	spiral_angle = 0.0
 	spiral_radius = 0.0
 	remaining_spiral_duration = spiral_duration

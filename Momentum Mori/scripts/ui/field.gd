@@ -14,6 +14,7 @@ signal stopped_adrenaline
 @export var game_camera: GameCamera
 @export var timer: Timer
 @export var ui: UI
+@export var music_player: AudioStreamPlayer
 
 @export var time_until_chain_disappears := 2.0
 
@@ -43,6 +44,12 @@ func _ready() -> void {
 	_inject_deps()
 	_wire_up_signals()
 }
+
+
+func _process(delta: float) -> void {
+	music_player.pitch_scale = lerpf(music_player.pitch_scale, Engine.time_scale, 10.0 * delta)
+}
+
 
 func _wire_up_signals() -> void {
 	action_requested.connect(_on_action_requested)
