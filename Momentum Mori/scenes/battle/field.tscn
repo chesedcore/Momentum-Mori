@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cklxfpoodsfrt" path="res://scripts/ui/field.gd" id="1_wud16"]
 [ext_resource type="PackedScene" uid="uid://cwnwoawk8x6pl" path="res://scenes/battle/stadium.tscn" id="1_xq1i4"]
 [ext_resource type="PackedScene" uid="uid://cdfy7bn17qm0m" path="res://scenes/blade/player.tscn" id="2_3ghxc"]
-[ext_resource type="PackedScene" uid="uid://c10r7tej3wl6d" path="res://scenes/blade/vamp_boss.tscn" id="4_0lnkb"]
+[ext_resource type="PackedScene" uid="uid://dcc3wec2eedea" path="res://scenes/blade/angry_boss.tscn" id="4_0lnkb"]
 [ext_resource type="Script" uid="uid://bj3570t7qljh" path="res://scripts/battle/chain_dock.gd" id="5_gsd1j"]
 [ext_resource type="Script" uid="uid://c6uguv8v6oa8i" path="res://scripts/battle/game_camera.gd" id="5_pdtp2"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_xuj4y"]
@@ -43,12 +43,12 @@ metadata/_edit_lock_ = true
 
 [node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "pcam", "camera") instance=ExtResource("1_xq1i4")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
-base_knockback = 800.0
-recoil_duration = 0.25
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 projectiles = NodePath("ProjectilesHolder")
 chain_dock = NodePath("ChainDock")
+base_knockback = 800.0
+recoil_duration = 0.25
 pcam = NodePath("../Pcam")
 camera = NodePath("../Cam")
 
@@ -57,7 +57,9 @@ motion_mode = 1
 
 [node name="Enemies" type="Node2D" parent="Stadium" unique_id=235092122]
 
-[node name="VampBoss" parent="Stadium/Enemies" unique_id=1060000462 instance=ExtResource("4_0lnkb")]
+[node name="AngryBoss" parent="Stadium/Enemies" unique_id=799094343 node_paths=PackedStringArray("target") instance=ExtResource("4_0lnkb")]
+position = Vector2(420, -151)
+target = NodePath("../../Player")
 
 [node name="ProjectilesHolder" type="Node2D" parent="Stadium" unique_id=697776277]
 
@@ -100,3 +102,4 @@ ignore_time_scale = true
 [node name="UISlop" parent="." unique_id=23665878 instance=ExtResource("11_bufal")]
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
+[connection signal="stadium_collision" from="Stadium/Player" to="Stadium" method="_on_player_stadium_collision"]
