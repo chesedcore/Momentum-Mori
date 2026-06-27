@@ -15,7 +15,7 @@ uniform sampler2D noise: repeat_enable;
 
 uniform vec4 arena_color: source_color;
 
-// From https://github.com/libretro/glsl-shaders/blob/master/nnedi3/shaders/rgb-to-yuv.glsl
+// From https://github.com/lwibretro/glsl-shaders/blob/master/nnedi3/shaders/rgb-to-yuv.glsl
 vec2 RGBtoUV(vec3 rgb) {
   return vec2(
     rgb.r * -0.169 + rgb.g * -0.331 + rgb.b *  0.5    + 0.5,
@@ -48,5 +48,5 @@ void fragment() {
 	COLOR = bg_tex;
 	COLOR += (grunge * gs_texture);
 	COLOR += (tex * gs_texture);
-	COLOR *= 0.35;
+	COLOR.rgb *= 0.35;
 }

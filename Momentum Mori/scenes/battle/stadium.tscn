@@ -2,9 +2,33 @@
 
 [ext_resource type="Script" uid="uid://ca4apyk8hb1vq" path="res://scripts/master/stadium.gd" id="1_mqc3m"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="1_vqgvn"]
+[ext_resource type="Shader" uid="uid://dx3105kdv27tg" path="res://shaderslop/grunge_overlay.gdshader" id="2_1s0xc"]
 [ext_resource type="Texture2D" uid="uid://cn2scq51d6s3e" path="res://assets/textures/muhfuckin_greenscreen.png" id="2_2jhvn"]
 [ext_resource type="Shader" uid="uid://chu0h3oe1pfeq" path="res://shaderslop/arena_floor.gdshader" id="2_ci1pd"]
+[ext_resource type="Texture2D" uid="uid://bl7ypvhm1cnuo" path="res://assets/textures/Grunge-Texture-Transparent-Background.png" id="3_70x56"]
 [ext_resource type="Texture2D" uid="uid://do15p2y7n0ynw" path="res://assets/textures/arena_floor.png" id="3_eje4j"]
+[ext_resource type="Shader" uid="uid://dsrapryeiwe8a" path="res://shaderslop/halftone.gdshader" id="4_3dvtq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uykr1"]
+shader = ExtResource("2_1s0xc")
+shader_parameter/grunge_tex = ExtResource("3_70x56")
+shader_parameter/border_size = 2.0
+shader_parameter/grunge_scale = 0.9
+shader_parameter/scratch_scale = 1.0
+shader_parameter/grunge_color = Color(1, 0, 0, 1)
+shader_parameter/grunge_color_strength = 0.36400001729
+shader_parameter/scratch_strength = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aq3sm"]
+shader = ExtResource("4_3dvtq")
+shader_parameter/start_point = Vector2(0.5, 0)
+shader_parameter/end_point = Vector2(0.5, 1)
+shader_parameter/speed = -1.0
+shader_parameter/scale = 40.0
+shader_parameter/start_size = 0.5
+shader_parameter/end_size = 0.1
+shader_parameter/dot_color = Color(0, 0, 0, 1)
+shader_parameter/strength = 1.0
 
 [sub_resource type="Gradient" id="Gradient_eje4j"]
 offsets = PackedFloat32Array(0, 0.22232646, 1)
@@ -42,10 +66,35 @@ shader_parameter/uv_scale = 40.0
 shader_parameter/ground_texture = ExtResource("3_eje4j")
 shader_parameter/red_grunge = SubResource("NoiseTexture2D_6ltpu")
 shader_parameter/noise = SubResource("NoiseTexture2D_eje4j")
-shader_parameter/arena_color = Color(0.22, 0.22, 0.22, 1)
+shader_parameter/arena_color = Color(0.15, 0.15, 0.15, 1)
 
 [node name="Stadium" type="Node2D" unique_id=1739205512]
 script = ExtResource("1_mqc3m")
+metadata/_edit_lock_ = true
+
+[node name="Clear" type="CanvasLayer" parent="." unique_id=502853440]
+layer = -90
+
+[node name="Bg" type="ColorRect" parent="Clear" unique_id=123884860]
+z_index = -20
+material = SubResource("ShaderMaterial_uykr1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Halftone" type="ColorRect" parent="Clear" unique_id=1189388200]
+z_index = -20
+material = SubResource("ShaderMaterial_aq3sm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Floor" type="TextureRect" parent="." unique_id=745948540]
