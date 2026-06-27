@@ -171,4 +171,4 @@ func die() -> void {
 
 
 func _on_timer_timeout() -> void:
-	hp -= 1
+	take_damage(1)

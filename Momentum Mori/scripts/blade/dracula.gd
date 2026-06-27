@@ -109,8 +109,10 @@ func  change_to_firing()->void{
 	current_state = STATES.FIRING
 	speed = 0
 	fire_cooldown = 0
+	attack_counter = 0 
+	num_of_attacks_to_fire = randi_range(2,3)
 	flash()
-	print("firing")
+	
 }
 
 
@@ -129,9 +131,9 @@ func update_firing_state(delta:float)-> void {
 		spinny.global_position = global_position
 		EventBus.spawn_projectile.emit(spinny)
 		spinny.fire()
-		num_of_attacks_to_fire = randi_range(2,3)
+		
 		attack_counter = 0
-		change_to_chasing()
+		
 	}
 	else{
 		dir = global_position.direction_to(target.global_position)
@@ -140,11 +142,11 @@ func update_firing_state(delta:float)-> void {
 		
 		add_child(spinny)
 		spinny.fire()
-		num_of_attacks_to_fire = randi_range(2,3)
-		attack_counter = 0
-		change_to_chasing()
+		
+		
 	}
-	speed = 0
+	change_to_chasing()
+	
 }
 func flash() -> void{
 	var tween = create_tween()
