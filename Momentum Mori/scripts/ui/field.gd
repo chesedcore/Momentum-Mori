@@ -186,3 +186,7 @@ signal player_died
 func _on_player_died() -> void{
 	player_died.emit()
 }
+
+func _exit_tree() -> void {
+	Engine.time_scale = 1.0
+}
