@@ -70,7 +70,7 @@ func get_options() -> Option[Options] {
 	if options_dock.get_child_count() != 1 {
 		return Option.none()
 	}
-	
+
 	return Option.some(options_dock.get_child(0) as Options)
 }
 

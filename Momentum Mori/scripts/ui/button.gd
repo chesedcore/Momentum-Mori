@@ -73,4 +73,4 @@ func _iter_fonts() -> Array[FontVariation] {
 	var fonts: Array[FontVariation]
 	fonts.assign(both_labels.map(_get_font_variation))
 	return fonts
-} 
+}
