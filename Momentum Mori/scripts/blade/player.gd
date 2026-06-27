@@ -27,10 +27,10 @@ var _orbit_velocity: Vector2 = Vector2.ZERO
 var _smoothed_mouse: Vector2 = Vector2.ZERO
 
 ##Chain anchor state
-enum ChainState { 
+enum ChainState {
 	NONE,   #a chain is not out.
 	HELD,   #a chain is out and moving, but it has not struck its target.
-	PULLING #the chain head pulls the blade towards it. 
+	PULLING #the chain head pulls the blade towards it.
 }
 var _chain_state: ChainState = ChainState.NONE
 var _chain_anchor: Vector2 = Vector2.ZERO     # where the blade is frozen during HELD
@@ -44,6 +44,7 @@ func _ready() -> void {
 
 ##use when a chain is summoned. freezes the player at their current spot.
 func begin_chain_hold() -> void {
+	SFXPlayer.play_sfx(preload("res://assets/audio/chain.ogg"), position)
 	_chain_state = ChainState.HELD
 	_chain_anchor = global_position
 	_orbit_center = global_position
@@ -69,28 +70,28 @@ var pre_collision_velocity: Vector2
 
 func _physics_process(delta: float) -> void {
 	if recoil_time > 0.0 {
-		
+
 		recoil_time -= delta
 		velocity = recoil_velocity
 		pre_collision_velocity = velocity
 		move_and_slide()
 		check_for_collisions()
-		
+
 		_orbit_velocity *= pow(frictional_damp_delta_inverse, delta * 60.0)
 		_orbit_center += _orbit_velocity * delta
-		
+
 		if recoil_time <= 0.0 {
 			# resync so orbit resumes from current position, no snap
 			_orbit_center = global_position - Vector2.from_angle(angle) * orbit_radius
 		}
-		
-		
+
+
 		return
 	}
-	
+
 	##this block cannot be put into a function scope trivially as
 	##the return forces an exit away from scope...
-	##you can do this with a temporary break var, 
+	##you can do this with a temporary break var,
 	##but as of now that's how it is
 	match _chain_state:
 		ChainState.HELD:
@@ -99,7 +100,7 @@ func _physics_process(delta: float) -> void {
 			pre_collision_velocity = velocity
 			move_and_slide()
 			return
-		
+
 		ChainState.PULLING:
 			#move toward the dig point at chain_pull_speed
 			var to_dig := _chain_dig_point - global_position
@@ -143,7 +144,7 @@ func _physics_process(delta: float) -> void {
 	blade_sparks.set_amount(clampf((velocity.length() - 2000.) / 3000., 0., 1.))
 	move_and_slide()
 	check_for_collisions()
-	
+
 }
 
 

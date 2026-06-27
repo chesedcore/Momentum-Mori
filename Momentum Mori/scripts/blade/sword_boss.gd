@@ -17,13 +17,14 @@ var num_of_attacks_to_fire : int = 0
 
 const fire_interval:float= 1
 var fire_cooldown : float = 0
-var num_of_swords:int 
+var num_of_swords:int
 var swords : Array[Node]
 func  _ready() -> void{
 	super._ready()
 	num_of_attacks_to_fire = randi_range(1,3)
 	num_of_swords =sword_holder.get_child_count()
 	swords = sword_holder.get_children()
+	sword_holder.cascade_in_started_for_node.connect(play_spawn_sfx)
 }
 
 func _physics_process(delta: float) -> void{
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void{
 	if target{
 		if current_state == STATES.FIRING{
 			update_firing_state(delta)
-			
+
 		}
 		elif current_state == STATES.CHASING{
 			update_chasing_state(delta)
@@ -48,9 +49,9 @@ func _physics_process(delta: float) -> void{
 		elif current_state == STATES.SPIRALING{
 			update_spiral_state(delta)
 		}
-		
+
 		calculate_movement(delta)
-		
+
 		sword_holder.rotation = (target.global_position - global_position).angle()
 	}
 }
@@ -78,8 +79,8 @@ func  change_to_firing()->void{
 	sword_holder.visible = true
 	sword_holder.cascade_in()
 	print("firing")
-	
-	
+
+
 }
 
 
@@ -89,7 +90,7 @@ func update_firing_state(delta:float)-> void {
 		fire_cooldown+= delta
 	}
 	dir = global_position.direction_to(target.global_position)
-	
+
 	if fire_cooldown >= fire_interval{
 		#this part ends the firing state
 		if num_of_swords ==0 {
@@ -111,10 +112,11 @@ func update_firing_state(delta:float)-> void {
 		sword.global_transform = sword_sprite.global_transform
 		#will spawn proper later
 		EventBus.spawn_projectile.emit(sword)
+		play_shoot_sfx()
 		sword_sprite.visible = false
 		sword.fire()
 		fire_cooldown = 0
-		
+
 	}
 }
 
@@ -140,4 +142,14 @@ func update_spiral_state(delta: float) -> void{
 		dir = move_vec.normalized()
 		speed = move_vec.length()
 	}
+}
+
+
+func play_spawn_sfx(_node: Node) -> void {
+	SFXPlayer.play_sfx(preload("res://assets/audio/enemies/sword.ogg"), position)
+}
+
+
+func play_shoot_sfx() -> void {
+	SFXPlayer.play_sfx(preload("res://assets/audio/enemies/sword_shoot.ogg"), position)
 }

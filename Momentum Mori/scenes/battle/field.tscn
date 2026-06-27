@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sncn5"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="10_0lnkb"]
 [ext_resource type="PackedScene" uid="uid://bo3bvipr0rvlh" path="res://scenes/ui/ui.tscn" id="11_bufal"]
+[ext_resource type="Script" uid="uid://b433cip5vxv1x" path="res://scripts/master/sfx_player.gd" id="12_bufal"]
+[ext_resource type="AudioStream" uid="uid://dq3111om6ydkr" path="res://assets/audio/music/purgatory.ogg" id="13_h5s4v"]
 
 [sub_resource type="Environment" id="Environment_qvk82"]
 background_mode = 3
@@ -24,7 +26,7 @@ amplitude = 0.0
 frequency = 5.0
 metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 
-[node name="Field" type="Control" unique_id=112534353 node_paths=PackedStringArray("stadium", "game_camera", "timer", "ui")]
+[node name="Field" type="Control" unique_id=112534353 node_paths=PackedStringArray("stadium", "game_camera", "timer", "ui", "music_player")]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 layout_mode = 3
 anchors_preset = 15
@@ -38,6 +40,7 @@ stadium = NodePath("Stadium")
 game_camera = NodePath("Pcam")
 timer = NodePath("Timer")
 ui = NodePath("UISlop")
+music_player = NodePath("MusicPlayer")
 metadata/_edit_lock_ = true
 
 [node name="Stadium" parent="." unique_id=1739205512 node_paths=PackedStringArray("player", "enemies", "projectiles", "chain_dock", "pcam", "camera") instance=ExtResource("1_xq1i4")]
@@ -66,6 +69,7 @@ environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 physics_interpolation_mode = 1
+visible = false
 top_level = true
 rotation = -0.0024651876
 zoom = Vector2(0.3, 0.3)
@@ -96,6 +100,15 @@ one_shot = true
 ignore_time_scale = true
 
 [node name="UISlop" parent="." unique_id=23665878 instance=ExtResource("11_bufal")]
+
+[node name="SFXPlayer" type="Node" parent="." unique_id=259631935]
+script = ExtResource("12_bufal")
+metadata/_custom_type_script = "uid://b433cip5vxv1x"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=852155789]
+stream = ExtResource("13_h5s4v")
+autoplay = true
+bus = &"Music"
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
 [connection signal="stadium_collision" from="Stadium/Player" to="Stadium" method="_on_player_stadium_collision"]

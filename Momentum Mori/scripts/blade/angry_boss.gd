@@ -11,15 +11,19 @@ var remaining_teleport_cooldown : float = 0
 @export var teleport_world_radius: float = 4900
 
 
-@export var teleport_min_distance: float = 300  
+@export var teleport_min_distance: float = 300
 @export var teleport_max_distance: float = 800
 
 
+func  _ready() -> void{
+	super._ready()
+
+}
 
 func _physics_process(delta: float) -> void{
-	
+
 	if remaining_teleport_cooldown >= teleport_cooldown{
-		# check the targets velocity to see if its heading towards this blade and teleport this blade behhind  the target 
+		# check the targets velocity to see if its heading towards this blade and teleport this blade behhind  the target
 		var target_velocity = target.velocity
 		if target_velocity.length() > 0{
 			var target_move_dir = target_velocity.normalized()
@@ -33,7 +37,7 @@ func _physics_process(delta: float) -> void{
 		}
 	}
 	remaining_teleport_cooldown += delta
-	
+
 	super._physics_process(delta)
 
 }

@@ -14,6 +14,7 @@ signal stopped_adrenaline
 @export var game_camera: GameCamera
 @export var timer: Timer
 @export var ui: UI
+@export var music_player: AudioStreamPlayer
 
 @export var time_until_chain_disappears := 2.0
 
@@ -28,11 +29,11 @@ func _unhandled_input(event: InputEvent) -> void {
 	if event.is_action_pressed(&"action") {
 		action_requested.emit()
 	}
-	
+
 	if event.is_action_pressed(&"adrenaline") {
 		request_start_adrenaline.emit()
 	}
-	
+
 	if event.is_action_released(&"adrenaline") {
 		request_stop_adrenaline.emit()
 	}
@@ -43,6 +44,17 @@ func _ready() -> void {
 	_inject_deps()
 	_wire_up_signals()
 }
+
+
+func _process(delta: float) -> void {
+	music_player.pitch_scale = lerpf(music_player.pitch_scale, Engine.time_scale, 10.0 * delta)
+	if _is_under_adrenaline {
+		ui.set_vignette(1.0)
+	} else {
+		ui.set_vignette(0.4)
+	}
+}
+
 
 func _wire_up_signals() -> void {
 	action_requested.connect(_on_action_requested)
@@ -88,12 +100,12 @@ func _physics_process(delta: float) -> void {
 func tick_up_adrenaline(delta: float) -> void {
 	if _is_under_adrenaline: return
 	var eff_delta := delta
-	
+
 	timer.wait_time = minf(
-		max_adrenaline_time_in_seconds, 
+		max_adrenaline_time_in_seconds,
 		timer.wait_time + eff_delta
 	)
-	
+
 	#print(timer.wait_time)
 }
 

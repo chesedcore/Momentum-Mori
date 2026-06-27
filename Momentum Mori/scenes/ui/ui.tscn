@@ -2,10 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dqdw8a6ujdllc" path="res://scripts/ui/ui.gd" id="1_f5cxw"]
 [ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="1_u7n8c"]
+[ext_resource type="Shader" uid="uid://gn2uk1od0xat" path="res://shaderslop/filmgrain.gdshader" id="2_7vp6q"]
 [ext_resource type="Script" uid="uid://dv64mhjh5k52a" path="res://scripts/ui/black_bars.gd" id="2_g5kmx"]
 [ext_resource type="Script" uid="uid://dkkqcw4f3gnx0" path="res://scripts/ui/time_rect.gd" id="3_aac20"]
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://df64k6eyhrlov" path="res://scenes/ui/hi_fidelity_label.gd" id="5_pfayw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcn1r"]
+shader = ExtResource("2_7vp6q")
+shader_parameter/grain_amount = 0.002000000095
+shader_parameter/grain_size = 0.50000002049012
+shader_parameter/time_affect = 0.50000002375
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7n8c"]
 shader = ExtResource("1_u7n8c")
@@ -60,12 +67,22 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars", "hi_fidelity_label", "hi_fidelity_label_2")]
+[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars", "hi_fidelity_label", "hi_fidelity_label_2", "vignette_color_rect")]
 script = ExtResource("1_f5cxw")
 time_rect = NodePath("ScreenRect/BackRect/TimeRect")
 black_bars = NodePath("ScreenRect/BlackBars")
 hi_fidelity_label = NodePath("ScreenRect/HiFidelityLabel")
 hi_fidelity_label_2 = NodePath("ScreenRect/HiFidelityLabel/HiFidelityLabel2")
+vignette_color_rect = NodePath("VignetteColorRect")
+
+[node name="FilmGrain" type="ColorRect" parent="." unique_id=97416561]
+material = SubResource("ShaderMaterial_jcn1r")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ScreenRect" type="Control" parent="." unique_id=722479326]
 layout_mode = 3
@@ -188,7 +205,7 @@ pivot_offset_ratio = Vector2(0, 0.5)
 script = ExtResource("3_aac20")
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1101039229]
+[node name="VignetteColorRect" type="ColorRect" parent="." unique_id=1101039229]
 material = SubResource("ShaderMaterial_g5kmx")
 anchors_preset = 15
 anchor_right = 1.0
