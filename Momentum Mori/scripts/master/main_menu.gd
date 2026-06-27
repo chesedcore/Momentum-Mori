@@ -10,6 +10,9 @@ class_name MainMenu extends Control
 @export var game_dock: Control
 @export var menu_music: AudioStreamPlayer
 
+@export var clear: CanvasLayer
+@export var postproc: CanvasLayer
+
 func _ready() -> void {
 	_wire_up_signals()
 }
@@ -42,7 +45,13 @@ func _summon_stage_select() -> void {
 
 func _on_request_to_enter_this_stage(stage_data: StageData) -> void {
 	var handler := StageHandler.from(stage_data)
+	setup_canvas_fiddling(handler)
 	game_dock.add_child(handler)
+}
+
+func setup_canvas_fiddling(handler: StageHandler) -> void {
+	handler.request_make_clear_invisible.connect(make_canvases_invisible, CONNECT_ONE_SHOT)
+	handler.request_restore_clear_visibility.connect(make_canvases_visible, CONNECT_ONE_SHOT)
 }
 
 
@@ -64,4 +73,14 @@ func get_options() -> Option[Options] {
 	}
 	
 	return Option.some(options_dock.get_child(0) as Options)
+}
+
+func make_canvases_invisible() -> void {
+	postproc.hide()
+	clear.hide()
+}
+
+func make_canvases_visible() -> void {
+	postproc.show()
+	clear.show()
 }

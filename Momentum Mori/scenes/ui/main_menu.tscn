@@ -77,7 +77,7 @@ shader_parameter/vignette_intensity = 0.6
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock", "stage_select_dock", "game_dock", "menu_music")]
+[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock", "stage_select_dock", "game_dock", "menu_music", "clear", "postproc")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +93,8 @@ options_dock = NodePath("OptionsDock")
 stage_select_dock = NodePath("StageSelectDock")
 game_dock = NodePath("GameDock")
 menu_music = NodePath("MenuMusic")
+clear = NodePath("Clear")
+postproc = NodePath("Postproc")
 metadata/_edit_lock_ = true
 
 [node name="Clear" type="CanvasLayer" parent="." unique_id=3224792]

@@ -1,5 +1,7 @@
 class_name StageHandler extends Control
 
+signal request_make_clear_invisible
+signal request_restore_clear_visibility
 signal exit(won_stage: bool, with_data: StageData)
 
 @export var stage_dock: Control
@@ -27,6 +29,8 @@ func _initiate_intro_sequence() -> IntroSequence {
 }
 
 func start_game() -> void {
+	intro_dock.hide()
+	request_make_clear_invisible.emit()
 	var field_scene := load("res://scenes/battle/field.tscn") as PackedScene
 	_field = field_scene.instantiate() as Field
 	stage_dock.add_child(_field)
@@ -89,4 +93,8 @@ func _on_enemy_died() -> void {
 
 func _on_all_waves_cleared() -> void {
 	exit.emit(true, data)
+}
+
+func _exit_tree() -> void {
+	request_restore_clear_visibility.emit()
 }
