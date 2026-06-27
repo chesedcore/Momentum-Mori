@@ -30,6 +30,12 @@ func _unhandled_key_input(event: InputEvent) -> void {
 
 func _ready() -> void {
 	_initiate_intro_sequence()
+	EventBus.spawn_blade.connect(_on_spawn_blade)
+}
+func _on_spawn_blade(blade : EnemyBlade)->void{
+	var enemies_node := _field.stadium.enemies
+	enemies_node.add_child(blade)
+	blade.died.connect(_on_enemy_died, CONNECT_REFERENCE_COUNTED)
 }
 
 func _initiate_intro_sequence() -> IntroSequence {

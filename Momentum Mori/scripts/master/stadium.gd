@@ -174,7 +174,7 @@ func  _ready() -> void {
 
 func _wire_signals()->void {
 	EventBus.spawn_projectile.connect(_on_spawn_projectile)
-	EventBus.spawn_blade.connect(_on_spawn_blade)
+	
 	EventBus.spawn_spark.connect(_on_spark_at_node)
 }
 
