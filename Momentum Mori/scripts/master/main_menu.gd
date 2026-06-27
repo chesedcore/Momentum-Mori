@@ -13,7 +13,7 @@ func _ready() -> void {
 }
 
 func _wire_up_signals() -> void {
-	begin.clicked.connect(unroll_menu)
+	begin.clicked.connect(start_game)
 	options.clicked.connect(_summon_options)
 }
 
@@ -30,9 +30,13 @@ func _on_return_to_main_menu() -> void {
 	roll_menu()
 }
 
+func start_game() -> void {
+	unroll_menu()
+	Transition.scene_to_transition_to("res://intros/angryintro.tscn")
+}
+
 func unroll_menu() -> void {
 	menu_rect.unroll()
-	Transition.scene_to_transition_to("res://intros/angryintro.tscn")
 }
 
 func roll_menu() -> void {
