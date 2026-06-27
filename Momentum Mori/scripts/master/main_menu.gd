@@ -34,7 +34,15 @@ func _summon_stage_select() -> void {
 	select_pane.cascaded_out.connect(
 		_on_return_to_main_menu, CONNECT_ONE_SHOT
 	)
+	select_pane.enter_this_stage.connect(
+		_on_request_to_enter_this_stage, CONNECT_ONE_SHOT
+	)
 }
+
+func _on_request_to_enter_this_stage(stage_data: StageData) -> void {
+	print("cock")
+}
+
 
 func _on_return_to_main_menu() -> void {
 	roll_menu()
