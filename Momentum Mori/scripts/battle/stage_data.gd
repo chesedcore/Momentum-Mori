@@ -52,6 +52,7 @@ func map_wave_to_blades(idx: int) -> Option[Array[Blade]] {
 	
 	for blade_type in target_wave.enemy_map {
 		var number_of_times_that_blade_appears := target_wave.enemy_map[blade_type]
+		assert(number_of_times_that_blade_appears >= 0, "THERE'S NO FUCKING BLADES BRO")
 		for i in number_of_times_that_blade_appears {
 			blades.push_back(Registry.blade_from_type(blade_type))
 		}

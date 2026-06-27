@@ -17,6 +17,12 @@ static func from(stage_data: StageData) -> StageHandler {
 	return handler
 }
 
+func _unhandled_key_input(event: InputEvent) -> void {
+	if event.is_action_pressed(&"help_me_im_fucking_dying") {
+		exit.emit(true, data)
+	}
+}
+
 func _ready() -> void {
 	_initiate_intro_sequence()
 }

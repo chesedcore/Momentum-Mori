@@ -22,6 +22,10 @@ static func create_intro() -> IntroSequence {
 	return load("res://scenes/master/intro_sequence.tscn").instantiate()
 }
 
+static func create_results() -> Results {
+	return preload("res://scenes/master/results.tscn").instantiate()
+}
+
 static func blade_from_type(type: BladeType) -> Blade {
 	var scene: String
 	match type:
