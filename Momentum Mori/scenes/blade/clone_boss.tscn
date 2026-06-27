@@ -84,4 +84,9 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="Skull_cooldown" type="Timer" parent="." unique_id=567514435]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="CloneSpawnTime" to="." method="_on_clone_spawn_time_timeout"]
+[connection signal="timeout" from="Skull_cooldown" to="." method="_on_skull_cooldown_timeout"]

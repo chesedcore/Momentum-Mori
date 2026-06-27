@@ -66,6 +66,7 @@ environment = SubResource("Environment_qvk82")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=665820437]
 physics_interpolation_mode = 1
+top_level = true
 rotation = -0.0024651876
 zoom = Vector2(0.3, 0.3)
 
