@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://y5ma4in7weiu"]
+
+[ext_resource type="Script" uid="uid://bofjj8s2btyvn" path="res://transition.gd" id="1_2gi1b"]
+
+[node name="Transition" type="Control" unique_id=1137822400]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gi1b")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1279058118]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

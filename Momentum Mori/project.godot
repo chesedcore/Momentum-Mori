@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Momentum Mori"
-run/main_scene="uid://bj7kad1rgpufv"
+run/main_scene="uid://dppjjvduyuwf3"
 config/features=PackedStringArray("4.8", "Mobile")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://cc8cg16w0ph7n"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 EventBus="*uid://dy4olwqq6d75a"
+Transition="*uid://y5ma4in7weiu"
 
 [display]
 

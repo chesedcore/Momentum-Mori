@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://5li0ftggojq8"]
 
 [ext_resource type="PackedScene" uid="uid://bj7kad1rgpufv" path="res://scenes/battle/field.tscn" id="1_ecq6n"]
+[ext_resource type="Script" uid="uid://dto4exfbrqm35" path="res://scenes/Levels/boss_fight.gd" id="1_yu1j1"]
 [ext_resource type="PackedScene" uid="uid://ckdvewdxcovni" path="res://scenes/blade/aoe_boss.tscn" id="2_yu1j1"]
 [ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="3_qe8qh"]
 
 [node name="AoEBossFight" type="Node2D" unique_id=2090532768]
+script = ExtResource("1_yu1j1")
+next_scene = "res://intros/vampintro.tscn"
 
 [node name="Field" parent="." unique_id=112534353 instance=ExtResource("1_ecq6n")]
 
 [node name="AoeBoss" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="0" unique_id=221661367 node_paths=PackedStringArray("target") instance=ExtResource("2_yu1j1")]
 position = Vector2(-1, -1254)
 target = NodePath("../../Player")
-minimum_distance_to_target = 400.0
 
 [node name="EnemyBlade" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="1" unique_id=67324589 node_paths=PackedStringArray("target") instance=ExtResource("3_qe8qh")]
 position = Vector2(705, -331)

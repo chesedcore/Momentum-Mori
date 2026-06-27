@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://dc3vk5q4p28yp"]
 
 [ext_resource type="PackedScene" uid="uid://bj7kad1rgpufv" path="res://scenes/battle/field.tscn" id="1_1i82r"]
+[ext_resource type="Script" uid="uid://dto4exfbrqm35" path="res://scenes/Levels/boss_fight.gd" id="1_j6jcl"]
 [ext_resource type="PackedScene" uid="uid://dsswtol3ovf2j" path="res://scenes/blade/sword_boss.tscn" id="2_5kl1r"]
 [ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="3_aoxlf"]
 
 [node name="SwordBossFight" type="Node2D" unique_id=2090532768]
+script = ExtResource("1_j6jcl")
+next_scene = "res://intros/parryintro.tscn"
 
 [node name="Field" parent="." unique_id=112534353 instance=ExtResource("1_1i82r")]
 
@@ -34,5 +37,8 @@ target = NodePath("../../Player")
 [node name="EnemyBlade5" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="5" unique_id=989283977 node_paths=PackedStringArray("target") instance=ExtResource("3_aoxlf")]
 position = Vector2(1264, 717)
 target = NodePath("../../Player")
+
+[node name="Cam" parent="Field" index="2" unique_id=665820437]
+top_level = false
 
 [editable path="Field"]

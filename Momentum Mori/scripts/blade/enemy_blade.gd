@@ -1,5 +1,7 @@
 class_name EnemyBlade extends Blade
 
+
+
 const attack_duration: float = 1
 @export_group("Attack","attack")
 @export var attack_cooldown : float = 2

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://d2f15sell75vx"]
+
+[ext_resource type="Script" uid="uid://bxvbym04aclt" path="res://intro.gd" id="1_2ot57"]
+[ext_resource type="Texture2D" uid="uid://b8tntq5t2d0ca" path="res://assets/characters/protagonist.webp" id="2_oxxwj"]
+[ext_resource type="Texture2D" uid="uid://y0nnmii7qsf0" path="res://assets/characters/lich.png" id="3_tpiqf"]
+
+[node name="Cloneintro" type="Control" unique_id=533703920]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ot57")
+next_scene = "res://scenes/Levels/clone_boss_fight.tscn"
+
+[node name="Timer" type="Timer" parent="." unique_id=200428712]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Protagonist" type="Sprite2D" parent="." unique_id=1331466859]
+position = Vector2(209, 484)
+texture = ExtResource("2_oxxwj")
+
+[node name="YoureFinished" type="Sprite2D" parent="." unique_id=761957431]
+position = Vector2(1108, 472)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_tpiqf")
+
+[node name="M" type="RichTextLabel" parent="." unique_id=424051045]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -38.0
+offset_right = 31.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 120
+text = "VS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="M2" type="RichTextLabel" parent="." unique_id=742738266]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_top = -208.0
+offset_right = 208.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 27
+text = "\"The dead should not be disturbed\""
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

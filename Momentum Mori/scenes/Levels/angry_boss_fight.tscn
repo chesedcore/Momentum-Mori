@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bcyamyldkssgv"]
 
 [ext_resource type="PackedScene" uid="uid://bj7kad1rgpufv" path="res://scenes/battle/field.tscn" id="1_f17li"]
+[ext_resource type="Script" uid="uid://dto4exfbrqm35" path="res://scenes/Levels/boss_fight.gd" id="1_txrql"]
 [ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="2_txrql"]
 [ext_resource type="PackedScene" uid="uid://dcc3wec2eedea" path="res://scenes/blade/angry_boss.tscn" id="3_v4vfs"]
 
 [node name="AngryBossFight" type="Node2D" unique_id=2090532768]
+script = ExtResource("1_txrql")
+next_scene = "res://intros/swordintro.tscn"
 
 [node name="Field" parent="." unique_id=112534353 instance=ExtResource("1_f17li")]
 

@@ -165,6 +165,6 @@ func check_for_collisions()-> void{
 
 #temp death logic
 func die() -> void {
-	print("you got out gayed")
+	died.emit()
 	visible = false
 }

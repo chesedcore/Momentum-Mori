@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://mmcm004k3say"]
+
+[node name="endsceme" type="Control" unique_id=811568228]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="M4" type="RichTextLabel" parent="." unique_id=35928134]
+modulate = Color(1, 0.07450981, 0.0627451, 1)
+layout_mode = 0
+offset_left = 729.0
+offset_top = 278.0
+offset_right = 1090.0
+offset_bottom = 419.0
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 120
+text = "PLAYING"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="M" type="RichTextLabel" parent="." unique_id=644903948]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 282.0
+offset_right = 703.0
+offset_bottom = 423.0
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 120
+text = "THANK YOU FOR"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

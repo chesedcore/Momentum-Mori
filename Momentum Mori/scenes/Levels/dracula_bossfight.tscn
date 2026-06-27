@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c5ev0xjidjlja"]
+
+[ext_resource type="Script" uid="uid://dto4exfbrqm35" path="res://scenes/Levels/boss_fight.gd" id="1_jpw30"]
+[ext_resource type="PackedScene" uid="uid://bj7kad1rgpufv" path="res://scenes/battle/field.tscn" id="2_bowlk"]
+[ext_resource type="PackedScene" uid="uid://15toacbnjdhk" path="res://scenes/blade/dracula.tscn" id="3_jpw30"]
+[ext_resource type="PackedScene" uid="uid://4nrvpdvd6f5v" path="res://scenes/blade/enemy_blade.tscn" id="4_1ikx5"]
+
+[node name="DraculaBossfight" type="Node2D" unique_id=2090532768]
+script = ExtResource("1_jpw30")
+next_scene = "res://intros/endsceme.tscn"
+
+[node name="Field" parent="." unique_id=112534353 instance=ExtResource("2_bowlk")]
+
+[node name="Dracula" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="0" unique_id=221661367 node_paths=PackedStringArray("target") instance=ExtResource("3_jpw30")]
+position = Vector2(850, -1141)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="1" unique_id=67324589 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(705, -331)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade2" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="2" unique_id=191972200 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(-1043, -585)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade3" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="3" unique_id=137305363 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(377, -805)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade4" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="4" unique_id=2133347136 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(-1437, 609)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade6" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="5" unique_id=51098505 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(2735, -306)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade7" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="6" unique_id=1878740395 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(-3662, -277)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade8" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="7" unique_id=562538727 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(-474, -2081)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade9" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="8" unique_id=489071201 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(-23, 1684)
+target = NodePath("../../Player")
+
+[node name="EnemyBlade5" parent="Field/Stadium/Enemies" parent_id_path=PackedInt32Array(112534353, 235092122) index="9" unique_id=989283977 node_paths=PackedStringArray("target") instance=ExtResource("4_1ikx5")]
+position = Vector2(1264, 717)
+target = NodePath("../../Player")
+
+[editable path="Field"]

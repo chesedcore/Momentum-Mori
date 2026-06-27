@@ -32,6 +32,7 @@ func _on_return_to_main_menu() -> void {
 
 func unroll_menu() -> void {
 	menu_rect.unroll()
+	Transition.scene_to_transition_to("res://intros/angryintro.tscn")
 }
 
 func roll_menu() -> void {
