@@ -3,6 +3,22 @@
 [ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="1_usnqw"]
 [ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="2_iia64"]
 
+[sub_resource type="Resource" id="Resource_w47o7"]
+script = ExtResource("2_iia64")
+enemy_map = Dictionary[int, int]({
+5: 7
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_usnqw"]
+script = ExtResource("2_iia64")
+enemy_map = Dictionary[int, int]({
+5: 4,
+7: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
 [resource]
 script = ExtResource("1_usnqw")
+waves = Array[ExtResource("2_iia64")]([SubResource("Resource_w47o7"), SubResource("Resource_usnqw")])
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

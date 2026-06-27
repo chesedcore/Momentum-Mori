@@ -3,7 +3,16 @@
 [ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="1_rdk43"]
 [ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="2_piy0h"]
 
+[sub_resource type="Resource" id="Resource_i4t46"]
+script = ExtResource("2_piy0h")
+enemy_map = Dictionary[int, int]({
+5: 6,
+8: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
 [resource]
 script = ExtResource("1_rdk43")
+waves = Array[ExtResource("2_piy0h")]([SubResource("Resource_i4t46")])
 boss = 1
 metadata/_custom_type_script = "uid://b5sydn74avxfp"
