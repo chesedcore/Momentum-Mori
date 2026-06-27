@@ -9,6 +9,7 @@ enum BladeType {
 	SOME_GUY,
 	PROJECTILE_GUY,
 	SWORD_GUY,
+	TANKY_GUY,
 }
 
 @export var enemy_map: Dictionary[BladeType, int] = {

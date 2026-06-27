@@ -39,6 +39,8 @@ static func blade_from_type(type: BladeType) -> Blade {
 			scene = "res://scenes/blade/spinning_projectile_enemy.tscn"
 		BladeType.SWORD_GUY:
 			scene = "res://scenes/blade/sword_boss.tscn"
+		BladeType.TANKY_GUY:
+			scene = "res://scenes/blade/parry_boss.tscn"
 		_:
 			assert(false, "go kill monarch")
 			return null

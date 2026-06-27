@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dkkqcw4f3gnx0" path="res://scripts/ui/time_rect.gd" id="3_aac20"]
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://df64k6eyhrlov" path="res://scenes/ui/hi_fidelity_label.gd" id="5_pfayw"]
+[ext_resource type="Script" uid="uid://cker0ucgkktu" path="res://scripts/ui/health.gd" id="8_jcn1r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcn1r"]
 shader = ExtResource("2_7vp6q")
@@ -214,3 +215,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="Health" type="Control" parent="." unique_id=1473080830]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("8_jcn1r")
+
+[node name="Node2D" type="Node2D" parent="Health" unique_id=1407707040]
+
+[node name="Health" type="ColorRect" parent="Health/Node2D" unique_id=1897149723]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -54,7 +54,6 @@ func setup_canvas_fiddling(handler: StageHandler) -> void {
 	handler.request_restore_clear_visibility.connect(make_canvases_visible, CONNECT_ONE_SHOT)
 }
 
-
 func _on_return_to_main_menu() -> void {
 	roll_menu()
 }
