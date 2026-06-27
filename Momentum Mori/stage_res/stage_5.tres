@@ -6,14 +6,21 @@
 [sub_resource type="Resource" id="Resource_ieu5t"]
 script = ExtResource("2_om6qx")
 enemy_map = Dictionary[int, int]({
-4: 1,
 5: 6
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_ismwb"]
+script = ExtResource("2_om6qx")
+enemy_map = Dictionary[int, int]({
+4: 1,
+6: 2
 })
 metadata/_custom_type_script = "uid://datvch1mc6nbi"
 
 [resource]
 script = ExtResource("1_r1a04")
 intro_lines = Array[String](["\"What a horrible night to have a spin...\"", "Says Dracula, as I approach the last floor", "\"I expected someone more enthusiastic,\"", "He says, as I sigh, and ready my chains.", "There is no time to waste."])
-waves = Array[ExtResource("2_om6qx")]([SubResource("Resource_ieu5t")])
+waves = Array[ExtResource("2_om6qx")]([SubResource("Resource_ieu5t"), SubResource("Resource_ismwb")])
 boss = 4
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

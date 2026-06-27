@@ -3,8 +3,24 @@
 [ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="1_wtrba"]
 [ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="2_kpjw4"]
 
+[sub_resource type="Resource" id="Resource_bufal"]
+script = ExtResource("2_kpjw4")
+enemy_map = Dictionary[int, int]({
+5: 6
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_h5s4v"]
+script = ExtResource("2_kpjw4")
+enemy_map = Dictionary[int, int]({
+3: 1,
+5: 4
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
 [resource]
 script = ExtResource("1_wtrba")
 intro_lines = Array[String](["Several floating witches materialise before me", "Then they combine into one", "And once again, they separate", "Is it a mirage?"])
+waves = Array[ExtResource("2_kpjw4")]([SubResource("Resource_bufal"), SubResource("Resource_h5s4v")])
 boss = 5
 metadata/_custom_type_script = "uid://b5sydn74avxfp"
