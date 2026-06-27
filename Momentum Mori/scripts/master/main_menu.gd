@@ -15,6 +15,7 @@ class_name MainMenu extends Control
 
 func _ready() -> void {
 	_wire_up_signals()
+	Settings.load_audio_independent()
 }
 
 func _wire_up_signals() -> void {
