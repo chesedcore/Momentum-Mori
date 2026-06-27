@@ -20,5 +20,6 @@ metadata/_custom_type_script = "uid://datvch1mc6nbi"
 
 [resource]
 script = ExtResource("1_usnqw")
+intro_lines = Array[String](["A knight appears before me on the third floor", "Their swords float above them", "As they look at me with contempt", "I must watch for the swords..."])
 waves = Array[ExtResource("2_iia64")]([SubResource("Resource_w47o7"), SubResource("Resource_usnqw")])
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

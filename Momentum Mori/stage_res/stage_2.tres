@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://datvch1mc6nbi"
 
 [resource]
 script = ExtResource("1_rdk43")
+intro_lines = Array[String](["A rocky figure appears before me...", "Its eyes glow as its body begins to rotate", "I must heed caution"])
 waves = Array[ExtResource("2_piy0h")]([SubResource("Resource_i4t46")])
 boss = 1
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

@@ -5,4 +5,6 @@
 
 [resource]
 script = ExtResource("1_wtrba")
+intro_lines = Array[String](["Several floating witches materialise before me", "Then they combine into one", "And once again, they separate", "Is it a mirage?"])
+boss = 5
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

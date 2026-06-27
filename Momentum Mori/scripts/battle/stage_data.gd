@@ -8,7 +8,7 @@ enum Track {
 	PURGATORY,
 }
 
-@export var intro_lines: Array[String] = [
+@export_multiline var intro_lines: Array[String] = [
 	"monarch forgot to add text to this bullshit"
 ]
 

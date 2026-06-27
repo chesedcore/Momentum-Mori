@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://datvch1mc6nbi"
 
 [resource]
 script = ExtResource("1_nrwgi")
+intro_lines = Array[String](["Hark! A dragon greets me", "Of course not in the friendly way", "as is tradition..."])
 waves = Array[ExtResource("2_hoe5r")]([SubResource("Resource_iia64")])
 boss = 2
 metadata/_custom_type_script = "uid://b5sydn74avxfp"

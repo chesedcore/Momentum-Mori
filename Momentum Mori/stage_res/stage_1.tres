@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://datvch1mc6nbi"
 
 [resource]
 script = ExtResource("1_6m02x")
-intro_lines = Array[String](["if they talk behind yo back", "then fart"])
+intro_lines = Array[String](["Ah, Castle Sylvain...", "The Dark Lord Dracula has resurrected...", "Of course, it is no one but I and my chains", "Who must take up arms to defeat this evil spinning menace", "Here we go..."])
 waves = Array[ExtResource("2_g44tv")]([SubResource("Resource_g44tv"), SubResource("Resource_c46fg")])
 boss = 3
 metadata/_custom_type_script = "uid://b5sydn74avxfp"
