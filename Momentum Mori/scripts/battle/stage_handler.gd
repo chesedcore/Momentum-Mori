@@ -23,7 +23,7 @@ func _unhandled_key_input(event: InputEvent) -> void {
 		_spawn_win_status_screen()
 	}
 	if event.is_action_pressed(&"harakiri") {
-		_spawn_win_status_screen()
+		_spawn_loss_status_screen()
 	}
 }
 

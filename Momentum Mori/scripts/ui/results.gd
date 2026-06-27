@@ -5,7 +5,6 @@ var stage: StageData
 
 signal finished(p_won: bool, p_stage: StageData)
 @export var status: RichTextLabel
-@export var confirm_button: Btn
 @export var bar_container: VBoxContainer
 
 var _prior_offsets: Dictionary[ColorRect, Vector2]
@@ -24,15 +23,12 @@ func record_offsets() -> void {
 }
 
 func _ready() -> void {
-	_wire_up_signals()
 	set_status_text()
 	record_offsets()
 	scatter()
 	begin()
-}
-
-func _wire_up_signals() -> void {
-	confirm_button.clicked.emit(_on_finished)
+	await get_tree().create_timer(3).timeout
+	_on_finished()
 }
 
 func scatter() -> void {
@@ -78,11 +74,10 @@ func make_everything_disappear() -> void {
 		t.tween_property(bar, "offset_transform_position", _prior_offsets[bar], 0.7)
 	}
 	t.tween_property(status, "modulate", Color.TRANSPARENT, 0.7)
+	t.finished.connect(finished.emit.bind(won, stage))
 }
 
 func _on_finished() -> void {
 	reset_tween()
 	make_everything_disappear()
-	print("finished!")
-	finished.emit(won, stage)
 }

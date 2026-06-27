@@ -3,13 +3,6 @@
 [ext_resource type="Script" uid="uid://d3hvmo8bqymtt" path="res://scripts/ui/results.gd" id="1_ohol7"]
 [ext_resource type="Shader" uid="uid://0wwe8asxyg2b" path="res://shaderslop/infinite_scroll.gdshader" id="2_n20wx"]
 [ext_resource type="FontFile" uid="uid://c4ku2pwo16apq" path="res://assets/fonts/EngravingCC.ttf" id="2_ohol7"]
-[ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="2_y655g"]
-
-[sub_resource type="FontVariation" id="FontVariation_y655g"]
-resource_local_to_scene = true
-
-[sub_resource type="FontVariation" id="FontVariation_ii7ri"]
-resource_local_to_scene = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n20wx"]
 viewport_path = NodePath("Text/SubViewport")
@@ -23,7 +16,7 @@ shader_parameter/scroll_speed = Vector2(0.1, 0)
 [sub_resource type="FontVariation" id="FontVariation_y2j7i"]
 base_font = ExtResource("2_ohol7")
 
-[node name="Results" type="Control" unique_id=947178193 node_paths=PackedStringArray("status", "confirm_button", "bar_container")]
+[node name="Results" type="Control" unique_id=947178193 node_paths=PackedStringArray("status", "bar_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +26,6 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ohol7")
 status = NodePath("Text/SubViewport/Status")
-confirm_button = NodePath("BarContainer/Bars3/ConfirmButton")
 bar_container = NodePath("BarContainer")
 metadata/_edit_lock_ = true
 
@@ -67,25 +59,6 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-1280, 0)
 offset_transform_visual_only = false
 color = Color(0, 0, 0, 1)
-
-[node name="ConfirmButton" parent="BarContainer/Bars3" unique_id=1664075844 instance=ExtResource("2_y655g")]
-z_index = 6
-layout_mode = 1
-offset_top = -156.0
-offset_right = 109.0
-offset_bottom = -10.0
-
-[node name="BEGIN" parent="BarContainer/Bars3/ConfirmButton" index="1" unique_id=1595004043]
-offset_left = 342.0
-offset_right = 771.81165
-theme_override_fonts/normal_font = SubResource("FontVariation_y655g")
-text = "confirm"
-
-[node name="BEGIN2" parent="BarContainer/Bars3/ConfirmButton" index="2" unique_id=636319610]
-offset_left = 397.97986
-offset_right = 720.81934
-theme_override_fonts/normal_font = SubResource("FontVariation_ii7ri")
-text = "confirm"
 
 [node name="Text" type="SubViewportContainer" parent="." unique_id=418155991]
 top_level = true
@@ -121,5 +94,3 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[editable path="BarContainer/Bars3/ConfirmButton"]
