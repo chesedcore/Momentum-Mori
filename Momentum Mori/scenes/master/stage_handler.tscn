@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b33rbdgyvl8mf"]
+
+[ext_resource type="Script" uid="uid://baloyjsb0fyxr" path="res://scripts/battle/stage_handler.gd" id="1_jpllm"]
+
+[node name="StageHandler" type="Control" unique_id=735527268 node_paths=PackedStringArray("stage_dock", "intro_dock")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jpllm")
+stage_dock = NodePath("StageDock")
+intro_dock = NodePath("IntroDock")
+
+[node name="StageDock" type="Control" parent="." unique_id=1049789460]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="IntroDock" type="Control" parent="." unique_id=697372007]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

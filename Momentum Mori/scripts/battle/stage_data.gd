@@ -66,3 +66,7 @@ func get_boss_texture() -> Option[Texture] {
 func get_boss_name() -> String {
 	return BossCharacter.get_name_for(boss)
 }
+
+func get_lines() -> Array[String] {
+	return intro_lines
+}

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dmfhk1xpgnsfa"]
+
+[ext_resource type="Script" uid="uid://cqrq67kn0s1uh" path="res://scripts/ui/hflabel.gd" id="1_4r0tb"]
+[ext_resource type="Script" uid="uid://b53oskcjhep47" path="res://scripts/master/intro_sequence.gd" id="1_m17sq"]
+
+[node name="Intro" type="Control" unique_id=947178193 node_paths=PackedStringArray("bar_container", "text", "skip")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_m17sq")
+bar_container = NodePath("BarContainer")
+text = NodePath("Text")
+skip = NodePath("Skip")
+lines = Array[String](["if you see this", "then monarch fucked up", "i'm sorry"])
+
+[node name="BarContainer" type="VBoxContainer" parent="." unique_id=1953330388]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Bars" type="ColorRect" parent="BarContainer" unique_id=1653964268]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-1280, 0)
+color = Color(0, 0, 0, 1)
+
+[node name="Bars2" type="ColorRect" parent="BarContainer" unique_id=1991253437]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(1280, 0)
+color = Color(0, 0, 0, 1)
+
+[node name="Bars3" type="ColorRect" parent="BarContainer" unique_id=252539201]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-1280, 0)
+color = Color(0, 0, 0, 1)
+
+[node name="Skip" type="RichTextLabel" parent="." unique_id=623862573]
+modulate = Color(0.59717613, 0.59717613, 0.5971761, 0.25490198)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 139.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Hit enter to proceed
+Hit S to skip"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="Text" type="Control" parent="." unique_id=1136081808]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 343.0
+offset_bottom = -343.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4r0tb")
+max_glyphs = 100
+font_size = 60
+multiline = true
+metadata/_custom_type_script = "uid://cqrq67kn0s1uh"

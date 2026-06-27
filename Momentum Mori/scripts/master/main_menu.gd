@@ -7,6 +7,7 @@ class_name MainMenu extends Control
 
 @export var options_dock: Control
 @export var stage_select_dock: Control
+@export var game_dock: Control
 @export var menu_music: AudioStreamPlayer
 
 func _ready() -> void {
@@ -40,7 +41,8 @@ func _summon_stage_select() -> void {
 }
 
 func _on_request_to_enter_this_stage(stage_data: StageData) -> void {
-	print("cock")
+	var handler := StageHandler.from(stage_data)
+	game_dock.add_child(handler)
 }
 
 

@@ -53,6 +53,9 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 1.1
 shader_parameter/skew = 0.0
 
+[sub_resource type="FontVariation" id="FontVariation_7suek"]
+resource_local_to_scene = true
+
 [sub_resource type="FontVariation" id="FontVariation_otr3d"]
 resource_local_to_scene = true
 
@@ -60,9 +63,6 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 
 [sub_resource type="FontVariation" id="FontVariation_n4uci"]
-resource_local_to_scene = true
-
-[sub_resource type="FontVariation" id="FontVariation_877pj"]
 resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8uuw"]
@@ -77,7 +77,7 @@ shader_parameter/vignette_intensity = 0.6
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock", "stage_select_dock", "menu_music")]
+[node name="MainMenu" type="Control" unique_id=811568228 node_paths=PackedStringArray("begin", "options", "credits", "menu_rect", "options_dock", "stage_select_dock", "game_dock", "menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +91,7 @@ credits = NodePath("MenuElements/ButtonCascade/CREDITS")
 menu_rect = NodePath("MenuElements")
 options_dock = NodePath("OptionsDock")
 stage_select_dock = NodePath("StageSelectDock")
+game_dock = NodePath("GameDock")
 menu_music = NodePath("MenuMusic")
 metadata/_edit_lock_ = true
 
@@ -694,11 +695,11 @@ offset_top = 90.712074
 offset_right = 0.04334259
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/OPTIONS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
+theme_override_fonts/normal_font = SubResource("FontVariation_7suek")
 text = "OPTIONS"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/OPTIONS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
+theme_override_fonts/normal_font = SubResource("FontVariation_otr3d")
 text = "OPTIONS"
 
 [node name="CREDITS" parent="MenuElements/ButtonCascade" unique_id=996543734 instance=ExtResource("7_877pj")]
@@ -706,11 +707,11 @@ layout_mode = 1
 offset_top = 185.02118
 
 [node name="BEGIN" parent="MenuElements/ButtonCascade/CREDITS" index="1" unique_id=1595004043]
-theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
+theme_override_fonts/normal_font = SubResource("FontVariation_8ekit")
 text = "credits"
 
 [node name="BEGIN2" parent="MenuElements/ButtonCascade/CREDITS" index="2" unique_id=636319610]
-theme_override_fonts/normal_font = SubResource("FontVariation_877pj")
+theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
 text = "credits"
 
 [node name="FilmGrain" type="ColorRect" parent="." unique_id=223929882]

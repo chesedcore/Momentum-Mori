@@ -14,6 +14,14 @@ static func create_stage_select() -> StageSelect {
 	return load("res://scenes/ui/stage_select.tscn").instantiate()
 }
 
+static func create_stage_handler() -> StageHandler {
+	return load("res://scenes/master/stage_handler.tscn").instantiate()
+}
+
+static func create_intro() -> IntroSequence {
+	return load("res://scenes/master/intro_sequence.tscn").instantiate()
+}
+
 static func blade_from_type(type: BladeType) -> Blade {
 	var scene: String
 	match type:
