@@ -7,9 +7,31 @@
 [ext_resource type="Resource" uid="uid://c4ti0pdoekm47" path="res://stage_res/stage_3.tres" id="5_dcnsm"]
 [ext_resource type="Resource" uid="uid://inis0qxr1ys2" path="res://stage_res/stage_4.tres" id="6_eacrk"]
 [ext_resource type="Resource" uid="uid://cftleggbu8lj6" path="res://stage_res/stage_5.tres" id="7_qaq0o"]
-[ext_resource type="Resource" uid="uid://b0mbqax2en6s" path="res://stage_res/fraulein.tres" id="8_87nox"]
+[ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="8_87nox"]
 [ext_resource type="Resource" uid="uid://bmdg8hhstdam0" path="res://stage_res/baba_yaga.tres" id="9_87nox"]
+
+[sub_resource type="Resource" id="Resource_kpjw4"]
+script = ExtResource("8_87nox")
+enemy_map = Dictionary[int, int]({
+5: 5
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_b35ja"]
+script = ExtResource("8_87nox")
+enemy_map = Dictionary[int, int]({
+5: 3,
+9: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"
+
+[sub_resource type="Resource" id="Resource_wtrba"]
+script = ExtResource("2_le35h")
+intro_lines = Array[String](["A woman chuckles at me as I rise to the next floor.", "\"Yet so far, and yet so away,\"", "She speaks with a menacing grin.", "And as she does, her fangs reveal themselves.", "I ready my blade by the end of my chain."])
+waves = Array[ExtResource("8_87nox")]([SubResource("Resource_kpjw4"), SubResource("Resource_b35ja")])
+boss = 6
+metadata/_custom_type_script = "uid://b5sydn74avxfp"
 
 [node name="Stages" type="Node2D" unique_id=1819894403]
 script = ExtResource("1_ajfmk")
-stages = Array[ExtResource("2_le35h")]([ExtResource("3_kvbd6"), ExtResource("4_kvbd6"), ExtResource("5_dcnsm"), ExtResource("8_87nox"), ExtResource("6_eacrk"), ExtResource("9_87nox"), ExtResource("7_qaq0o")])
+stages = Array[ExtResource("2_le35h")]([ExtResource("3_kvbd6"), ExtResource("4_kvbd6"), ExtResource("5_dcnsm"), ExtResource("9_87nox"), ExtResource("6_eacrk"), SubResource("Resource_wtrba"), ExtResource("7_qaq0o")])
