@@ -1,11 +1,13 @@
 class_name BossCharacter
 
 enum Boss {
-	OLIVIER,   #knight
+	OLIVIER,   #swords
 	DWAYNE,    #defense
 	METEONIS,  #aoe
 	ONIBANCHO, #aggro
 	COUNT_DRACULA, #you won't believe this
+	BABA_YAGA, #clones
+	FRAULEIN,  #lifestyle
 }
 
 static func boss_to_portrait(b: Boss) -> Option[Texture] {
@@ -21,6 +23,10 @@ static func boss_to_portrait(b: Boss) -> Option[Texture] {
 			path = "res://assets/characters/youre_finished.webp"
 		Boss.COUNT_DRACULA:
 			path = "res://assets/characters/dracula.webp"
+		Boss.BABA_YAGA:
+			path = "res://assets/characters/baba yaga.webp"
+		Boss.FRAULEIN:
+			path = "res://assets/characters/fraulein.webp"
 		_:
 			assert(false, "oops")
 	if not path: return Option.none()

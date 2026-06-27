@@ -6,7 +6,7 @@ var field: Field
 @export var hi_fidelity_label: HFLabel
 @export var hi_fidelity_label_2: HFLabel
 @export var vignette_color_rect: ColorRect
-
+@export var health: Health
 
 func setup_self_using_field(p_field: Field) -> void {
 	field = p_field
@@ -14,6 +14,7 @@ func setup_self_using_field(p_field: Field) -> void {
 	black_bars.setup_using_field(field)
 	hi_fidelity_label.setup_using_field(field)
 	hi_fidelity_label_2.setup_using_field(field)
+	health.setup(field)
 }
 
 

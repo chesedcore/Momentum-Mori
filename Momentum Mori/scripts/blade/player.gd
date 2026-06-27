@@ -168,3 +168,7 @@ func die() -> void {
 	died.emit()
 	visible = false
 }
+
+
+func _on_timer_timeout() -> void:
+	hp -= 1

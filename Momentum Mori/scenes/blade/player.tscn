@@ -84,3 +84,8 @@ blade_visual_node = NodePath("../Incline/Visual/Visual/Control/Circle")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360801447]
 
 [node name="BladeSparks" parent="." unique_id=1239502658 instance=ExtResource("7_btcr0")]
+
+[node name="Timer" type="Timer" parent="." unique_id=1407548790]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

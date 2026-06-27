@@ -11,6 +11,7 @@ signal exit(won_stage: bool, with_data: StageData)
 var data: StageData
 var _field: Field
 var _current_wave_idx: int = 0
+var _stage_finished := false
 
 static func from(stage_data: StageData) -> StageHandler {
 	var handler := Registry.create_stage_handler()
@@ -89,9 +90,20 @@ func _spawn_wave(wave_idx: int) -> void {
 
 func _on_enemy_died() -> void {
 	await get_tree().process_frame
+
+	if _stage_finished:
+		return
+
+	if not is_instance_valid(_field):
+		return
+
+	if _field.stadium.player.hp <= 0:
+		_spawn_loss_status_screen()
+		return
 	
 	var remaining := _field.stadium.enemies.get_child_count()
-	if remaining > 0: return
+	if remaining > 0:
+		return
 	
 	_current_wave_idx += 1
 	
@@ -103,21 +115,42 @@ func _on_enemy_died() -> void {
 }
 
 func _on_all_waves_cleared() -> void {
+	await get_tree().process_frame
+
+	if _stage_finished:
+		return
+
+	if not is_instance_valid(_field):
+		return
+
+	if _field.stadium.player.hp <= 0:
+		_spawn_loss_status_screen()
+		return
+
 	_spawn_win_status_screen()
 }
 
-func _spawn_win_status_screen() -> void {
-	var res := Results.from(true, data)
+func _finish_stage(won: bool) -> void {
+	if _stage_finished:
+		return
+
+	_stage_finished = true
+
+	var res := Results.from(won, data)
 	res.finished.connect(exit.emit)
 	results_dock.add_child(res)
-	_field.queue_free()
+
+	if is_instance_valid(_field):
+		_field.queue_free()
+}
+
+func _spawn_win_status_screen() -> void {
+	_finish_stage(true)
 }
 
 func _spawn_loss_status_screen() -> void {
-	var res := Results.from(false, data)
-	res.finished.connect(exit.emit)
-	results_dock.add_child(res)
-	_field.queue_free()
+	_field.stadium.get_player().hp = -INF
+	_finish_stage(false)
 }
 
 func _exit_tree() -> void {

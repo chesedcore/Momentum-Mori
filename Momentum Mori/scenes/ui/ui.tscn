@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://8blqdkg5e2ny" path="res://shaderslop/vignette.gdshader" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://df64k6eyhrlov" path="res://scenes/ui/hi_fidelity_label.gd" id="5_pfayw"]
 [ext_resource type="Script" uid="uid://cker0ucgkktu" path="res://scripts/ui/health.gd" id="8_jcn1r"]
+[ext_resource type="Shader" uid="uid://ce484u48266w7" path="res://shaderslop/cooldown.gdshader" id="9_uegxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcn1r"]
 shader = ExtResource("2_7vp6q")
@@ -68,13 +69,30 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars", "hi_fidelity_label", "hi_fidelity_label_2", "vignette_color_rect")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpllm"]
+shader = ExtResource("9_uegxj")
+shader_parameter/ring_radius = 0.8450000401375
+shader_parameter/ring_width = 0.07600000291148
+shader_parameter/ring_color = Color(1, 1, 1, 1)
+shader_parameter/ring_fade = 1.0
+shader_parameter/ring_countdown = 0.2410000114475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uegxj"]
+shader = ExtResource("9_uegxj")
+shader_parameter/ring_radius = 0.8450000401375
+shader_parameter/ring_width = 0.07600000291148
+shader_parameter/ring_color = Color(1, 0, 0, 1)
+shader_parameter/ring_fade = 1.0
+shader_parameter/ring_countdown = 0.346000016435
+
+[node name="UISlop" type="CanvasLayer" unique_id=23665878 node_paths=PackedStringArray("time_rect", "black_bars", "hi_fidelity_label", "hi_fidelity_label_2", "vignette_color_rect", "health")]
 script = ExtResource("1_f5cxw")
 time_rect = NodePath("ScreenRect/BackRect/TimeRect")
 black_bars = NodePath("ScreenRect/BlackBars")
 hi_fidelity_label = NodePath("ScreenRect/HiFidelityLabel")
 hi_fidelity_label_2 = NodePath("ScreenRect/HiFidelityLabel/HiFidelityLabel2")
 vignette_color_rect = NodePath("VignetteColorRect")
+health = NodePath("Health")
 
 [node name="FilmGrain" type="ColorRect" parent="." unique_id=97416561]
 material = SubResource("ShaderMaterial_jcn1r")
@@ -84,6 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="ScreenRect" type="Control" parent="." unique_id=722479326]
 layout_mode = 3
@@ -216,16 +235,101 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Health" type="Control" parent="." unique_id=1473080830]
+[node name="Health" type="Control" parent="." unique_id=1473080830 node_paths=PackedStringArray("arr_text", "health", "health_underbar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("8_jcn1r")
+arr_text = [NodePath("Node2D3/COUNTER"), NodePath("Node2D3/COUNTER2")]
+health = NodePath("Node2D/Health")
+health_underbar = NodePath("Node2D2/Health")
 
 [node name="Node2D" type="Node2D" parent="Health" unique_id=1407707040]
+skew = -0.286234
 
 [node name="Health" type="ColorRect" parent="Health/Node2D" unique_id=1897149723]
-offset_right = 40.0
+material = SubResource("ShaderMaterial_jpllm")
+offset_left = -4.1204243
+offset_top = 14.593762
+offset_right = 109.87958
+offset_bottom = 128.59377
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Node2D2" type="Node2D" parent="Health" unique_id=1567501205]
+skew = -0.286234
+
+[node name="Health" type="ColorRect" parent="Health/Node2D2" unique_id=1046111354]
+material = SubResource("ShaderMaterial_uegxj")
+offset_left = -1.4147396
+offset_top = 15.636173
+offset_right = 112.58526
+offset_bottom = 129.63617
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="Node2D3" type="Node2D" parent="Health" unique_id=538727616]
+
+[node name="COUNTER" type="RichTextLabel" parent="Health/Node2D3" unique_id=1936534701]
+modulate = Color(1, 0, 0, 1)
+offset_left = 3.0
+offset_right = 135.0
+offset_bottom = 109.0
+theme_override_font_sizes/normal_font_size = 32
+text = "999"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="COUNTER2" type="RichTextLabel" parent="Health/Node2D3" unique_id=486193870]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 138.0
+offset_bottom = 110.0
+theme_override_font_sizes/normal_font_size = 32
+text = "999"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Health/Node2D3" unique_id=493305814]
+modulate = Color(1, 0, 0, 1)
+offset_left = 35.0
+offset_top = 42.0
+offset_right = 167.0
+offset_bottom = 151.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/normal_font_size = 32
+text = "rpm"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Health/Node2D3" unique_id=274571319]
+offset_left = 38.0
+offset_top = 43.0
+offset_right = 170.0
+offset_bottom = 152.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/normal_font_size = 32
+text = "rpm"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Indication" type="RichTextLabel" parent="." unique_id=508073683]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
 offset_bottom = 40.0
+grow_horizontal = 0
+text = "press e/rmb to unleash chain
+hold q/lmb to enter focus spin"
+fit_content = true
+autowrap_mode = 0

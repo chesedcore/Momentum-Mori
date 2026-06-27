@@ -15,7 +15,6 @@ var recoil_velocity: Vector2 = Vector2.ZERO
 @warning_ignore("unused_signal")
 signal died
 
-
 func apply_recoil(dir: Vector2, force: float, duration: float) -> void {
 	var shake_force : float=  remap(force,300,1200,0.1,1)
 	blade_animator.shake(shake_force)
