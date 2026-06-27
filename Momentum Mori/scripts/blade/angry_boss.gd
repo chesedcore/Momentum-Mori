@@ -8,16 +8,13 @@ var remaining_teleport_cooldown : float = 0
 
 @export var teleport_distance: float = 400
 
+@export var teleport_world_radius: float = 4900
 
 
 @export var teleport_min_distance: float = 300  
 @export var teleport_max_distance: float = 800
 
 
-func  _ready() -> void{
-	super._ready()
-	
-}
 
 func _physics_process(delta: float) -> void{
 	
@@ -46,8 +43,15 @@ func teleport_behind_target() -> void{
 	var flash_tween = create_tween()
 	flash_tween.tween_property(circle,"modulate",Color.WHITE,0.05)
 	await  flash_tween.finished
-	var target_move_dir = target.velocity.normalized()
-	global_position = target.global_position - target_move_dir * teleport_distance
+	var target_move_dir :Vector2= target.velocity.normalized()
+	var teleport_position := target.global_position - target_move_dir * teleport_distance
+	
+	if teleport_position.distance_to(Vector2.ZERO) > teleport_world_radius{
+		var unflash_tween = create_tween()
+		unflash_tween.tween_property(circle, "modulate", Color.RED, 0.05)
+		return
+	}
+	global_position = teleport_position
 	var to_target = global_position.direction_to(target.global_position)
 	change_to_attack(to_target)
 	var unflash_tween = create_tween()

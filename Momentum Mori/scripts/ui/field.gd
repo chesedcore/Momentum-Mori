@@ -159,7 +159,6 @@ func _on_stuff_hit(stuff_arr: Array, chain: ChainWhip, final: Vector2) -> void {
 	}
 	stadium.get_player().begin_chain_pull(chain.get_endpoint().unwrap_or(final))
 }
-
 func _setup_chain_destructor(chain: ChainWhip) -> void {
 	var t := create_tween()
 	t.tween_await(chain_spawn_confirmed).set_timeout(1)

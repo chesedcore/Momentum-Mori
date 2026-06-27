@@ -28,7 +28,7 @@ attack_speed = 2000.0
 attack_dist = 3000.0
 incline = NodePath("Incline")
 chasing_speed = 1000.0
-hp = 300.0
+hp = 350.0
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]
@@ -64,7 +64,7 @@ offset_right = 291.0
 offset_bottom = 290.0
 
 [node name="Circle" type="Node2D" parent="Incline/Visual/Visual/Control" unique_id=1357358368]
-modulate = Color(0.13554195, 0.100064985, 0.2388052, 1)
+modulate = Color(0.13725491, 0.101960786, 0.23921569, 1)
 script = ExtResource("4_d1j11")
 thickness = 15.0
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"

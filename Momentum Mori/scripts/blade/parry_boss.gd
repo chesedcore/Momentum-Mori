@@ -10,11 +10,12 @@ var remaining_parry_cooldown : float = 0
 var remaining_parry_duration : float = 0
 var on_cooldown:bool = false
 
+var hand_dmg : float = 20
 
 func _on_area_2d_body_entered(body: Node2D) -> void{
 	if body is Player:
 		body.apply_recoil(-body.velocity.normalized(),parry_recoil,.5)
-		body.take_damage(parry_dmg)
+		body.take_damage(hand_dmg)
 		EventBus.spawn_spark.emit(body)
 }
 
@@ -58,4 +59,22 @@ func end_parry()->void{
 	is_parrying = false
 	var tween = create_tween()
 	tween.tween_property(visual, "modulate", og_color, 0.15)
+}
+@export var hand: CascadeV3
+@export var hand_hitbox: CollisionShape2D
+
+
+func _on_hand_sweep_cooldown_timeout() -> void{
+	hand.visible = true
+	hand.cascade_in()
+	await  hand.cascade_in_chain_finished
+	hand_hitbox.disabled = false
+	var hand_tween = create_tween()
+	hand_tween.tween_property(hand,"rotation_degrees",360,1)
+	await hand_tween.finished
+	hand_hitbox.disabled = true
+	hand.cascade_out()
+	await  hand.cascade_out_chain_finished
+	hand.visible = false
+	hand.rotation_degrees = 0
 }

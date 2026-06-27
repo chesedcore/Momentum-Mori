@@ -31,6 +31,7 @@ incline = NodePath("Incline")
 chasing_speed = 1400.0
 turn_speed = 4.0
 minimum_distance_to_target = 400.0
+hp = 125.0
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Spiral" parent="." unique_id=1555681892 node_paths=PackedStringArray("host") instance=ExtResource("2_tlmub")]
