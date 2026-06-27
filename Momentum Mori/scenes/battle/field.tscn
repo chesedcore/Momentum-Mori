@@ -111,4 +111,5 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="blade_collision" from="Stadium/Player" to="Stadium" method="_on_blade_blade_collision"]
+[connection signal="died" from="Stadium/Player" to="." method="_on_player_died"]
 [connection signal="stadium_collision" from="Stadium/Player" to="Stadium" method="_on_player_stadium_collision"]

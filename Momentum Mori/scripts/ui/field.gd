@@ -181,3 +181,8 @@ func _inject_deps() -> void {
 	game_camera.stadium = stadium
 	ui.setup_self_using_field(self)
 }
+
+signal player_died
+func _on_player_died() -> void{
+	player_died.emit()
+}
