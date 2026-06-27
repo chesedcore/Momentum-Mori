@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StageData" format=3 uid="uid://bmdg8hhstdam0"]
+
+[ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="1_wtrba"]
+[ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="2_kpjw4"]
+
+[resource]
+script = ExtResource("1_wtrba")
+metadata/_custom_type_script = "uid://b5sydn74avxfp"
