@@ -92,4 +92,4 @@ skip={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
 viewport/hdr_2d=true
-environment/defaults/default_clear_color=Color(0.054860994, 0.054861, 0.054860994, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
