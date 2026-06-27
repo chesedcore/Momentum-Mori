@@ -46,7 +46,29 @@ func _summon_stage_select() -> void {
 func _on_request_to_enter_this_stage(stage_data: StageData) -> void {
 	var handler := StageHandler.from(stage_data)
 	setup_canvas_fiddling(handler)
+	handler.exit.connect(_on_stage_exit)
 	game_dock.add_child(handler)
+}
+
+func _on_stage_exit(won: bool, with_data: StageData) -> void {
+	for child in game_dock.get_children() {
+		child.queue_free()
+	}
+	
+	var next_stage: StageData
+	
+	if won {
+		next_stage = Stages.get_next_modulo_stage(with_data)
+	} else {
+		next_stage = with_data
+	}
+	
+	var select_pane := StageSelect.from(
+		Stages.find_stage_idx(next_stage).unwrap()
+	)
+	stage_select_dock.add_child(select_pane)
+	select_pane.cascaded_out.connect(_on_return_to_main_menu, CONNECT_ONE_SHOT)
+	select_pane.enter_this_stage.connect(_on_request_to_enter_this_stage, CONNECT_ONE_SHOT)
 }
 
 func setup_canvas_fiddling(handler: StageHandler) -> void {
