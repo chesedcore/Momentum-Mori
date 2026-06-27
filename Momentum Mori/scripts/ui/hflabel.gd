@@ -28,6 +28,9 @@ signal finished_morphing
 ##font size of each label.
 @export var font_size := 10
 
+##custom font.
+@export var override_font: Font
+
 ##text alignment
 @export_enum("Left", "Center", "Right") var alignment: int = 1
 
@@ -110,8 +113,14 @@ class Glyph:
 #region PRIVATE
 func _ready() -> void:
 	_preallocate_pool()
-	if _label_pool.size() > 0: 
-		_font = _label_pool[0].get_theme_font("font")
+
+func _try_set_label_font(label: Label) -> void:
+	if not _font:
+		if override_font:
+			_font = override_font
+		else:
+			_font = label.get_theme_font("font")
+	label.add_theme_font_override(&"font", _font)
 
 ##preallocates all label nodes up-front. this is done to avoid runtime stutter from
 ##add_child and memory allocation.
@@ -123,7 +132,8 @@ func _preallocate_pool() -> void:
 		label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		label.focus_mode = Control.FOCUS_NONE
-		label.add_theme_font_size_override("font_size", font_size)
+		_try_set_label_font(label)
+		label.add_theme_font_size_override(&"font_size", font_size)
 		self.add_child(label)
 		_label_pool.push_back(label)
 		_free_label_indices.push_back(i)

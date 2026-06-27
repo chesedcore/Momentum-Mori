@@ -26,3 +26,7 @@ static func boss_to_portrait(b: Boss) -> Option[Texture] {
 	if not path: return Option.none()
 	return Option.some(load(path))
 }
+
+static func get_name_for(b: Boss) -> String {
+	return (Boss.find_key(b) as String).capitalize()
+}

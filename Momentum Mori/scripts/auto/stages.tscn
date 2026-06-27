@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://tfn3ng1b70yo" path="res://scripts/auto/stages.gd" id="1_ajfmk"]
 [ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="2_le35h"]
 [ext_resource type="Resource" uid="uid://c3scngnayjfoh" path="res://stage_res/stage_1.tres" id="3_kvbd6"]
+[ext_resource type="Resource" uid="uid://n7dx8bx0lnhd" path="res://stage_res/stage_2.tres" id="4_kvbd6"]
+[ext_resource type="Resource" uid="uid://c4ti0pdoekm47" path="res://stage_res/stage_3.tres" id="5_dcnsm"]
+[ext_resource type="Resource" uid="uid://inis0qxr1ys2" path="res://stage_res/stage_4.tres" id="6_eacrk"]
+[ext_resource type="Resource" uid="uid://cftleggbu8lj6" path="res://stage_res/stage_5.tres" id="7_qaq0o"]
 
 [node name="Stages" type="Node2D" unique_id=1819894403]
 script = ExtResource("1_ajfmk")
-stages = Array[ExtResource("2_le35h")]([ExtResource("3_kvbd6")])
+stages = Array[ExtResource("2_le35h")]([ExtResource("3_kvbd6"), ExtResource("4_kvbd6"), ExtResource("5_dcnsm"), ExtResource("6_eacrk"), ExtResource("7_qaq0o")])

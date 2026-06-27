@@ -6,6 +6,7 @@ class_name MainMenu extends Control
 @export var menu_rect: MenuRect
 
 @export var options_dock: Control
+@export var stage_select_dock: Control
 @export var menu_music: AudioStreamPlayer
 
 func _ready() -> void {
@@ -13,7 +14,7 @@ func _ready() -> void {
 }
 
 func _wire_up_signals() -> void {
-	begin.clicked.connect(unroll_menu)
+	begin.clicked.connect(_summon_stage_select)
 	options.clicked.connect(_summon_options)
 }
 
@@ -22,6 +23,15 @@ func _summon_options() -> void {
 	var options_pane := Options.create()
 	options_dock.add_child(options_pane)
 	options_pane.cascaded_out.connect(
+		_on_return_to_main_menu, CONNECT_ONE_SHOT
+	)
+}
+
+func _summon_stage_select() -> void {
+	unroll_menu()
+	var select_pane := StageSelect.from(0)
+	stage_select_dock.add_child(select_pane)
+	select_pane.cascaded_out.connect(
 		_on_return_to_main_menu, CONNECT_ONE_SHOT
 	)
 }

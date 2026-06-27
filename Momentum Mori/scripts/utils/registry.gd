@@ -10,6 +10,10 @@ static func create_options() -> Options {
 	return load("res://scenes/ui/options_pane.tscn").instantiate()
 }
 
+static func create_stage_select() -> StageSelect {
+	return load("res://scenes/ui/stage_select.tscn").instantiate()
+}
+
 static func blade_from_type(type: BladeType) -> Blade {
 	var scene: String
 	match type:

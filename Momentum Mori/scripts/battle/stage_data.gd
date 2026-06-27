@@ -58,3 +58,11 @@ func map_wave_to_blades(idx: int) -> Option[Array[Blade]] {
 	}
 	return Option.some(blades)
 }
+
+func get_boss_texture() -> Option[Texture] {
+	return BossCharacter.boss_to_portrait(boss)
+}
+
+func get_boss_name() -> String {
+	return BossCharacter.get_name_for(boss)
+}
