@@ -42,6 +42,7 @@ shader_parameter/uv_scale = 40.0
 shader_parameter/ground_texture = ExtResource("3_eje4j")
 shader_parameter/red_grunge = SubResource("NoiseTexture2D_6ltpu")
 shader_parameter/noise = SubResource("NoiseTexture2D_eje4j")
+shader_parameter/arena_color = Color(0.22, 0.22, 0.22, 1)
 
 [node name="Stadium" type="Node2D" unique_id=1739205512]
 script = ExtResource("1_mqc3m")

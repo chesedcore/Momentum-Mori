@@ -76,10 +76,12 @@ func get_options() -> Option[Options] {
 
 func make_canvases_invisible() -> void {
 	postproc.hide()
-	clear.hide()
+	#clear.hide()
+	menu_music.stop()
 }
 
 func make_canvases_visible() -> void {
 	postproc.show()
-	clear.show()
+	#clear.show()
+	menu_music.play()
 }
