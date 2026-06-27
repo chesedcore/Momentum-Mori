@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://15toacbnjdhk"]
+[gd_scene format=3 uid="uid://damrbpiao1gbk"]
 
 [ext_resource type="Script" uid="uid://da5cvtpr6ssgu" path="res://scripts/blade/dracula.gd" id="1_1f8sf"]
 [ext_resource type="Shader" uid="uid://dibcqhwcukoe7" path="res://shaderslop/wobbly_fuck.gdshader" id="2_xjn5p"]

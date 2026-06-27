@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://6ddbg057cc0p"]
+
+[ext_resource type="Script" uid="uid://duc3mkxsler5q" path="res://scripts/visuals/particles/blade_sparks.gd" id="1_qttgu"]
+
+[sub_resource type="Gradient" id="Gradient_64awx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(18.892157, 0.5933253, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h3lff"]
+gradient = SubResource("Gradient_64awx")
+width = 4
+height = 20
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_64awx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qttgu"]
+curve = SubResource("Curve_64awx")
+
+[sub_resource type="Curve" id="Curve_vx303"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.13483155), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_se34d"]
+curve = SubResource("Curve_vx303")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p8a37"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 24.183
+initial_velocity_min = 110.24
+initial_velocity_max = 220.48
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_se34d")
+alpha_curve = SubResource("CurveTexture_qttgu")
+
+[node name="BladeSparks" type="Node2D" unique_id=1239502658]
+script = ExtResource("1_qttgu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1354508622]
+amount = 30
+texture = SubResource("GradientTexture2D_h3lff")
+speed_scale = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_p8a37")

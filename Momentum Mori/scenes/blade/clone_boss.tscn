@@ -27,6 +27,7 @@ clone_spawn_time = NodePath("CloneSpawnTime")
 incline = NodePath("Incline")
 escape_duration = 2.0
 minimum_distance_to_target = 700.0
+hp = 150.0
 blade_animator = NodePath("BladeAnimator")
 
 [node name="Incline" type="SubViewportContainer" parent="." unique_id=849929057 node_paths=PackedStringArray("target_center_dock")]
@@ -83,4 +84,9 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="Skull_cooldown" type="Timer" parent="." unique_id=567514435]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="CloneSpawnTime" to="." method="_on_clone_spawn_time_timeout"]
+[connection signal="timeout" from="Skull_cooldown" to="." method="_on_skull_cooldown_timeout"]

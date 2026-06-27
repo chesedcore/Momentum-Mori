@@ -9,7 +9,7 @@ const attack_duration: float = 1
 @export var attack_predict_strength: float = 1.0
 
 @export_group("Spiral", "spiral")
-@export var spiral_duration: float = 5
+@export var spiral_duration: float = 2.8
 @export var spiral_speed: float = 1300
 @export var spiral_expand_rate: float = 5000
 @export var spiral_angular_speed: float = 12
@@ -90,7 +90,7 @@ func calculate_movement(delta){
 func change_to_attack(attack_dir : Vector2)->void {
 	#chance to do a sprial instead
 	var spiral_chance := randi_range(0,6)
-	print(spiral_chance)
+	#print(spiral_chance)
 	if spiral_chance == 3 {
 		change_to_spiral()
 		return
@@ -104,7 +104,7 @@ func change_to_attack(attack_dir : Vector2)->void {
 	}
 	remaining_attack_cooldown = 0
 	current_state = STATES.ATTACKING
-	speed =attack_speed
+	speed = attack_speed
 }
 
 func update_attack_state(delta : float)->void {

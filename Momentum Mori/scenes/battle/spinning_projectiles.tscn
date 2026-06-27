@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dgl3st4ahrqde"]
 
 [ext_resource type="Script" uid="uid://6aswt1jl6aic" path="res://scripts/battle/spinning_projectiles.gd" id="1_83576"]
-[ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="2_83576"]
 [ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="2_xt08g"]
+[ext_resource type="Texture2D" uid="uid://bs7johcye2fn1" path="res://assets/projectile/fire.png" id="3_xt08g"]
+[ext_resource type="Script" uid="uid://bqufnflkdx00x" path="res://scripts/battle/fire_sprite.gd" id="4_ips7i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygtp1"]
 radius = 33.985218
@@ -19,18 +20,17 @@ projectile_holder = NodePath("ProjectileHolder")
 [node name="ProjectileHolder" type="Control" parent="." unique_id=1481703720]
 layout_mode = 3
 anchors_preset = 0
-rotation = 0.81110996
+rotation = 0.7853982
 script = ExtResource("2_xt08g")
 
 [node name="projectile" type="Node2D" parent="ProjectileHolder" unique_id=303254487]
 position = Vector2(150, 0)
 
-[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile" unique_id=1447462427]
-modulate = Color(1, 0, 0.03137255, 1)
-script = ExtResource("2_83576")
-thickness = 30.0
-radius = 20.0
-metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+[node name="Fire" type="Sprite2D" parent="ProjectileHolder/projectile" unique_id=849617816]
+position = Vector2(0, -85.99999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xt08g")
+script = ExtResource("4_ips7i")
 
 [node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile" unique_id=750345090]
 
@@ -40,12 +40,11 @@ shape = SubResource("CircleShape2D_ygtp1")
 [node name="projectile2" type="Node2D" parent="ProjectileHolder" unique_id=367413007]
 position = Vector2(-150, 0)
 
-[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile2" unique_id=9856000]
-modulate = Color(1, 0, 0.03137255, 1)
-script = ExtResource("2_83576")
-thickness = 30.0
-radius = 20.0
-metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+[node name="Fire2" type="Sprite2D" parent="ProjectileHolder/projectile2" unique_id=2097905831]
+position = Vector2(0.99999994, -87.99999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xt08g")
+script = ExtResource("4_ips7i")
 
 [node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile2" unique_id=249621641]
 
@@ -55,12 +54,11 @@ shape = SubResource("CircleShape2D_83576")
 [node name="projectile3" type="Node2D" parent="ProjectileHolder" unique_id=511848341]
 position = Vector2(0, -150)
 
-[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile3" unique_id=648952883]
-modulate = Color(1, 0, 0.03137255, 1)
-script = ExtResource("2_83576")
-thickness = 30.0
-radius = 20.0
-metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+[node name="Fire2" type="Sprite2D" parent="ProjectileHolder/projectile3" unique_id=432495750]
+position = Vector2(0.99999994, -88)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xt08g")
+script = ExtResource("4_ips7i")
 
 [node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile3" unique_id=866722908]
 
@@ -70,12 +68,11 @@ shape = SubResource("CircleShape2D_83576")
 [node name="projectile4" type="Node2D" parent="ProjectileHolder" unique_id=692371352]
 position = Vector2(0, 150)
 
-[node name="Circle" type="Node2D" parent="ProjectileHolder/projectile4" unique_id=1736282071]
-modulate = Color(1, 0, 0.03137255, 1)
-script = ExtResource("2_83576")
-thickness = 30.0
-radius = 20.0
-metadata/_custom_type_script = "uid://b0nijkb0ceph5"
+[node name="Fire2" type="Sprite2D" parent="ProjectileHolder/projectile4" unique_id=1504332177]
+position = Vector2(0.99999994, -87.99999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xt08g")
+script = ExtResource("4_ips7i")
 
 [node name="hitbox" type="Area2D" parent="ProjectileHolder/projectile4" unique_id=758373293]
 

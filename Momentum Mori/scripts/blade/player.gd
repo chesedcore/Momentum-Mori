@@ -20,6 +20,8 @@ signal stadium_collision
 ##how fast the player is pulled to the dig point once the chain lands
 @export var chain_pull_speed: float = 3000.0
 
+@export var blade_sparks : BladeSparks
+
 var _orbit_center: Vector2 = Vector2.ZERO
 var _orbit_velocity: Vector2 = Vector2.ZERO
 var _smoothed_mouse: Vector2 = Vector2.ZERO
@@ -122,6 +124,7 @@ func _physics_process(delta: float) -> void {
 	_smoothed_mouse = _smoothed_mouse.lerp(mouse_pos, smooth_factor)
 
 	var to_mouse := _smoothed_mouse - _orbit_center
+	blade_sparks.set_sparks_rotation(-to_mouse)
 	var dist := to_mouse.length()
 
 	if dist > 2.0:
@@ -137,6 +140,8 @@ func _physics_process(delta: float) -> void {
 	var target_pos := _orbit_center + Vector2.from_angle(angle) * orbit_radius
 	velocity = (target_pos - global_position) / delta
 	pre_collision_velocity = velocity
+	blade_sparks.should_emit(velocity.length() > 2000.)
+	blade_sparks.set_amount(clampf((velocity.length() - 2000.) / 3000., 0., 1.))
 	move_and_slide()
 	check_for_collisions()
 

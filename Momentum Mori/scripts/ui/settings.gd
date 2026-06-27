@@ -15,17 +15,20 @@ func _ready() -> void {
 }
 
 func _on_master_changed(value: float) -> void {
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+	if value <= -20.0 {value = -80.0}
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
 	_save_audio()
 }
 
 func _on_music_changed(value: float) -> void {
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
+	if value <= -20.0 {value = -80.0}
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
 	_save_audio()
 }
 
 func _on_sfx_changed(value: float) -> void {
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
+	if value <= -20.0 {value = -80.0}
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), value)
 	_save_audio()
 }
 

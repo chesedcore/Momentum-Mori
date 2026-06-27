@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://dosj7nmt2tt2y"]
+
+[ext_resource type="Script" uid="uid://datvch1mc6nbi" path="res://scripts/battle/wave_data.gd" id="1_u7gn2"]
+
+[resource]
+script = ExtResource("1_u7gn2")
+enemy_map = Dictionary[int, int]({
+5: 1
+})
+metadata/_custom_type_script = "uid://datvch1mc6nbi"

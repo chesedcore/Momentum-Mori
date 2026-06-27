@@ -62,6 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(20.288242, 20.288242)
 pivot_offset = Vector2(253.76135, 258.4688)
+mouse_filter = 2
 texture = ExtResource("2_2jhvn")
 
 [node name="Circle" type="Node2D" parent="." unique_id=381567262]

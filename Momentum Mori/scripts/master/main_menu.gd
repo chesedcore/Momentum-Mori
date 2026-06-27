@@ -6,6 +6,7 @@ class_name MainMenu extends Control
 @export var menu_rect: MenuRect
 
 @export var options_dock: Control
+@export var menu_music: AudioStreamPlayer
 
 func _ready() -> void {
 	_wire_up_signals()

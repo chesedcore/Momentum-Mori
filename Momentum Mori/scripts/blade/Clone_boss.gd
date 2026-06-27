@@ -2,6 +2,7 @@ class_name  CloneBoss extends EnemyBlade
 
 
 const CLONE_BOSS_CLONE = preload("res://scenes/blade/clone_boss_clone.tscn")
+const SKULL = preload("res://scenes/battle/skull.tscn")
 
 
 @export var max_clones :int = 4
@@ -28,3 +29,12 @@ func _on_clone_died()->void{
 	num_of_clones -= 1
 	_begin_spawn()
 }
+
+
+func _on_skull_cooldown_timeout() -> void:
+	var skull: Sword = SKULL.instantiate()
+	skull.target=target
+	skull.global_position = global_position
+	skull.fire()
+	EventBus.spawn_projectile.emit(skull)
+	

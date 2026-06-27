@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://1d4158pqm3vk" path="res://scripts/ui/incline.gd" id="4_a3fxq"]
 [ext_resource type="Script" uid="uid://b0nijkb0ceph5" path="res://scripts/visuals/circle.gd" id="5_wpxnr"]
 [ext_resource type="PackedScene" uid="uid://bnunjbf28uasj" path="res://scenes/particles/trail2d.tscn" id="6_g17t8"]
+[ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="7_e7076"]
+[ext_resource type="Texture2D" uid="uid://b1sc2k7d1dwyc" path="res://assets/projectile/hand.png" id="8_a3fxq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvk82"]
 radius = 13.823168
@@ -19,15 +21,20 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
-[node name="ParryBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("visual", "incline", "blade_animator")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay0lp"]
+size = Vector2(408.75, 581.5)
+
+[node name="ParryBoss" type="CharacterBody2D" unique_id=221661367 node_paths=PackedStringArray("visual", "hand", "hand_hitbox", "incline", "blade_animator")]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_hpdak")
 visual = NodePath("Incline/Visual/Visual/Control/Circle")
+hand = NodePath("hand")
+hand_hitbox = NodePath("hand/Area2D/hand_hitbox")
 incline = NodePath("Incline")
 chasing_speed = 400.0
 recoil_resistance = 0.3
-hp = 200.0
+hp = 300.0
 blade_animator = NodePath("BladeAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521565518]
@@ -77,3 +84,30 @@ script = ExtResource("5_wpxnr")
 metadata/_custom_type_script = "uid://b0nijkb0ceph5"
 
 [node name="Line2D" parent="." unique_id=305766413 instance=ExtResource("6_g17t8")]
+
+[node name="hand" type="Control" parent="." unique_id=1321397505]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_e7076")
+
+[node name="Hand" type="Sprite2D" parent="hand" unique_id=1227109545]
+position = Vector2(21, -457)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_a3fxq")
+
+[node name="Area2D" type="Area2D" parent="hand" unique_id=1597014608]
+
+[node name="hand_hitbox" type="CollisionShape2D" parent="hand/Area2D" unique_id=1343522364]
+position = Vector2(27, -427)
+shape = SubResource("RectangleShape2D_ay0lp")
+disabled = true
+
+[node name="hand_sweep_cooldown" type="Timer" parent="." unique_id=1792320261]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="hand/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="hand_sweep_cooldown" to="." method="_on_hand_sweep_cooldown_timeout"]
