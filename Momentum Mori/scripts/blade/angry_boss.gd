@@ -51,13 +51,14 @@ func teleport_behind_target() -> void{
 	var teleport_position := target.global_position - target_move_dir * teleport_distance
 	
 	if teleport_position.distance_to(Vector2.ZERO) > teleport_world_radius{
-		var unflash_tween = create_tween()
-		unflash_tween.tween_property(circle, "modulate", Color.RED, 0.05)
+		var unflash_tween_t := create_tween()
+		unflash_tween_t.tween_property(circle, "modulate", Color.RED, 0.05)
 		return
 	}
+	
 	global_position = teleport_position
-	var to_target = global_position.direction_to(target.global_position)
+	var to_target := global_position.direction_to(target.global_position)
 	change_to_attack(to_target)
-	var unflash_tween = create_tween()
+	var unflash_tween := create_tween()
 	unflash_tween.tween_property(circle,"modulate",Color.RED,0.05)
 }

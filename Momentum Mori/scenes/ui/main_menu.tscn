@@ -95,10 +95,12 @@ game_dock = NodePath("GameDock")
 menu_music = NodePath("MenuMusic")
 metadata/_edit_lock_ = true
 
-[node name="Bg" type="ColorRect" parent="." unique_id=307941373]
+[node name="Clear" type="CanvasLayer" parent="." unique_id=3224792]
+layer = -90
+
+[node name="Bg" type="ColorRect" parent="Clear" unique_id=307941373]
 z_index = -20
 material = SubResource("ShaderMaterial_x6ow5")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,10 +109,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Halftone" type="ColorRect" parent="." unique_id=816289404]
+[node name="Halftone" type="ColorRect" parent="Clear" unique_id=816289404]
 z_index = -20
 material = SubResource("ShaderMaterial_iqtx5")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -714,9 +715,10 @@ text = "credits"
 theme_override_fonts/normal_font = SubResource("FontVariation_n4uci")
 text = "credits"
 
-[node name="FilmGrain" type="ColorRect" parent="." unique_id=223929882]
+[node name="Postproc" type="CanvasLayer" parent="." unique_id=1888121693]
+
+[node name="FilmGrain" type="ColorRect" parent="Postproc" unique_id=223929882]
 material = SubResource("ShaderMaterial_w8uuw")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -725,9 +727,8 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Vignette" type="ColorRect" parent="." unique_id=67180634]
+[node name="Vignette" type="ColorRect" parent="Postproc" unique_id=67180634]
 material = SubResource("ShaderMaterial_t1d8u")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
