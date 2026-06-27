@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cxi7qsbu2ixjn"]
+
+[ext_resource type="Script" uid="uid://tfn3ng1b70yo" path="res://scripts/auto/stages.gd" id="1_ajfmk"]
+[ext_resource type="Script" uid="uid://b5sydn74avxfp" path="res://scripts/battle/stage_data.gd" id="2_le35h"]
+[ext_resource type="Resource" uid="uid://c3scngnayjfoh" path="res://stage_res/stage_1.tres" id="3_kvbd6"]
+
+[node name="Stages" type="Node2D" unique_id=1819894403]
+script = ExtResource("1_ajfmk")
+stages = Array[ExtResource("2_le35h")]([ExtResource("3_kvbd6")])

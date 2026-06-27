@@ -28,13 +28,13 @@ shader_parameter/speed = 0.2
 shader_parameter/angle = 1.785
 shader_parameter/skew = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yji02"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7suek"]
 viewport_path = NodePath("OptionsRandomShitCascade/SETTINGS/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otr3d"]
 resource_local_to_scene = true
 shader = ExtResource("4_4g6gd")
-shader_parameter/tex = SubResource("ViewportTexture_yji02")
+shader_parameter/tex = SubResource("ViewportTexture_7suek")
 shader_parameter/scroll_speed = Vector2(0.1, 0)
 
 [sub_resource type="FontVariation" id="FontVariation_8g5eo"]

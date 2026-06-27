@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://cc8cg16w0ph7n"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 EventBus="*uid://dy4olwqq6d75a"
+Stages="*uid://cxi7qsbu2ixjn"
 
 [display]
 

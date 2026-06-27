@@ -43,7 +43,7 @@ func get_current_track_stream() -> Option[AudioStream] {
 }
 
 func map_wave_to_blades(idx: int) -> Option[Array[Blade]] {
-	if idx < waves.size() - 1 {
+	if idx >= waves.size() {
 		return Option.none()
 	}
 	

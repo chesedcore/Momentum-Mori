@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://cj41lfnkvu1y" path="res://scripts/ui/grunged_rect_menu.gd" id="3_7suek"]
 [ext_resource type="Shader" uid="uid://dsrapryeiwe8a" path="res://shaderslop/halftone.gdshader" id="4_otr3d"]
 [ext_resource type="Script" uid="uid://bgshvuao8jk2q" path="res://scripts/ui/cascadeV3.gd" id="5_8ekit"]
+[ext_resource type="Script" uid="uid://cf4xalgm7w1oa" path="res://scripts/ui/stage_select.gd" id="5_877pj"]
+[ext_resource type="Shader" uid="uid://0wwe8asxyg2b" path="res://shaderslop/infinite_scroll.gdshader" id="5_n4uci"]
+[ext_resource type="FontFile" uid="uid://c4ku2pwo16apq" path="res://assets/fonts/EngravingCC.ttf" id="6_877pj"]
 [ext_resource type="Shader" uid="uid://bsyvum6ktxnpj" path="res://shaderslop/stripes.gdshader" id="6_n4uci"]
 [ext_resource type="PackedScene" uid="uid://bfile0iurmogp" path="res://scenes/ui/button.tscn" id="7_877pj"]
 [ext_resource type="Shader" uid="uid://gn2uk1od0xat" path="res://shaderslop/filmgrain.gdshader" id="8_ayp64"]
@@ -32,6 +35,42 @@ shader_parameter/start_size = 0.5
 shader_parameter/end_size = 0.1
 shader_parameter/dot_color = Color(0, 0, 0, 1)
 shader_parameter/strength = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qvk82"]
+viewport_path = NodePath("StageSelectDock/StageSelect/STAGE_SELECT/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayp64"]
+resource_local_to_scene = true
+shader = ExtResource("5_n4uci")
+shader_parameter/tex = SubResource("ViewportTexture_qvk82")
+shader_parameter/scroll_speed = Vector2(0.1, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_y2j7i"]
+base_font = ExtResource("6_877pj")
+
+[sub_resource type="FontVariation" id="FontVariation_877pj"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_ayp64"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_y1h5l"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_pw24t"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_5dct7"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_qilvv"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_jbte4"]
+resource_local_to_scene = true
+
+[sub_resource type="FontVariation" id="FontVariation_e0hcc"]
+resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqp2i"]
 shader = ExtResource("6_n4uci")
@@ -125,12 +164,166 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="StageSelectDock" type="Control" parent="." unique_id=1650247216]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="StageSelect" type="Control" parent="StageSelectDock" unique_id=268543949 node_paths=PackedStringArray("previous", "next", "back", "select")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_877pj")
+previous = NodePath("Previous")
+next = NodePath("Next")
+back = NodePath("Back")
+select = NodePath("Select")
+metadata/_custom_type_script = "uid://bgshvuao8jk2q"
+metadata/_edit_lock_ = true
+
+[node name="STAGE_SELECT" type="SubViewportContainer" parent="StageSelectDock/StageSelect" unique_id=1835580574]
+z_index = -1
+material = SubResource("ShaderMaterial_ayp64")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 132.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="StageSelectDock/StageSelect/STAGE_SELECT" unique_id=197212352]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1412, 680)
+size_2d_override = Vector2i(1900, 0)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StageSelectDock/StageSelect/STAGE_SELECT/SubViewport" unique_id=626722319]
+offset_left = -97.0
+offset_right = 1443.0
+offset_bottom = 111.0
+theme_override_fonts/normal_font = SubResource("FontVariation_y2j7i")
+theme_override_font_sizes/normal_font_size = 80
+text = "STAGE SELECT"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Previous" parent="StageSelectDock/StageSelect" unique_id=1664075844 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_left = -145.99998
+offset_top = 141.0
+offset_right = -41.651268
+offset_bottom = -108.60901
+rotation = 0.5235988
+
+[node name="Backstripes" parent="StageSelectDock/StageSelect/Previous" index="0" unique_id=756467404]
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" parent="StageSelectDock/StageSelect/Previous/Backstripes" index="0" unique_id=1642753874]
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="StageSelectDock/StageSelect/Previous" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_877pj")
+text = "previous"
+metadata/_edit_lock_ = true
+
+[node name="BEGIN2" parent="StageSelectDock/StageSelect/Previous" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_ayp64")
+text = "previous"
+metadata/_edit_lock_ = true
+
+[node name="Next" parent="StageSelectDock/StageSelect" unique_id=1411688182 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_left = 614.0
+offset_top = 759.0
+offset_right = 718.3487
+offset_bottom = 509.391
+rotation = -0.7853982
+
+[node name="Backstripes" parent="StageSelectDock/StageSelect/Next" index="0" unique_id=756467404]
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" parent="StageSelectDock/StageSelect/Next/Backstripes" index="0" unique_id=1642753874]
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="StageSelectDock/StageSelect/Next" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_y1h5l")
+text = "next"
+metadata/_edit_lock_ = true
+
+[node name="BEGIN2" parent="StageSelectDock/StageSelect/Next" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_pw24t")
+text = "next"
+metadata/_edit_lock_ = true
+
+[node name="Back" parent="StageSelectDock/StageSelect" unique_id=1833734192 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_left = -51.0
+offset_top = 378.0
+offset_right = 53.348694
+offset_bottom = 128.39099
+
+[node name="Backstripes" parent="StageSelectDock/StageSelect/Back" index="0" unique_id=756467404]
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" parent="StageSelectDock/StageSelect/Back/Backstripes" index="0" unique_id=1642753874]
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="StageSelectDock/StageSelect/Back" index="1" unique_id=1595004043]
+theme_override_fonts/normal_font = SubResource("FontVariation_5dct7")
+text = "back"
+metadata/_edit_lock_ = true
+
+[node name="BEGIN2" parent="StageSelectDock/StageSelect/Back" index="2" unique_id=636319610]
+theme_override_fonts/normal_font = SubResource("FontVariation_qilvv")
+text = "back"
+metadata/_edit_lock_ = true
+
+[node name="Select" parent="StageSelectDock/StageSelect" unique_id=1964802763 instance=ExtResource("7_877pj")]
+layout_mode = 1
+offset_left = -127.0
+offset_top = 378.0
+offset_right = -22.651306
+offset_bottom = 128.39099
+
+[node name="Backstripes" parent="StageSelectDock/StageSelect/Select" index="0" unique_id=756467404]
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" parent="StageSelectDock/StageSelect/Select/Backstripes" index="0" unique_id=1642753874]
+metadata/_edit_lock_ = true
+
+[node name="BEGIN" parent="StageSelectDock/StageSelect/Select" index="1" unique_id=1595004043]
+offset_left = 803.0
+offset_top = 226.99998
+offset_right = 1232.8116
+offset_bottom = 345.0
+theme_override_fonts/normal_font = SubResource("FontVariation_jbte4")
+text = "SELECT"
+
+[node name="BEGIN2" parent="StageSelectDock/StageSelect/Select" index="2" unique_id=636319610]
+offset_left = 858.97986
+offset_top = 231.13689
+offset_right = 1181.8193
+offset_bottom = 333.99835
+theme_override_fonts/normal_font = SubResource("FontVariation_e0hcc")
+text = "SELECT"
 
 [node name="OptionsDock" type="Control" parent="." unique_id=486229764]
 layout_mode = 1
@@ -143,6 +336,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="MenuElements" type="Control" parent="." unique_id=1335118090 node_paths=PackedStringArray("menu_element_cascade", "trigger_rect", "title_cascades", "button_cascade")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -716,6 +910,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Vignette" type="ColorRect" parent="." unique_id=67180634]
 material = SubResource("ShaderMaterial_t1d8u")
@@ -733,5 +928,9 @@ stream = ExtResource("11_7suek")
 autoplay = true
 bus = &"Music"
 
+[editable path="StageSelectDock/StageSelect/Previous"]
+[editable path="StageSelectDock/StageSelect/Next"]
+[editable path="StageSelectDock/StageSelect/Back"]
+[editable path="StageSelectDock/StageSelect/Select"]
 [editable path="MenuElements/ButtonCascade/OPTIONS"]
 [editable path="MenuElements/ButtonCascade/CREDITS"]

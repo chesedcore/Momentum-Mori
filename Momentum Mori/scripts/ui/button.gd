@@ -1,6 +1,8 @@
 class_name Btn extends Control
 
 signal clicked
+signal hovered
+signal unhovered
 
 @export var backstripes: ColorRect
 @export var actual_name: RichTextLabel
@@ -29,6 +31,7 @@ func reset_tween() -> void {
 
 func _on_mouse_hovered_text() -> void {
 	reset_tween()
+	hovered.emit()
 	t.tween_property(backstripes, ^"scale:y", 1.0, 0.3)
 	both_labels.map(_make_label_shake)
 	for font in _iter_fonts() {
@@ -38,6 +41,7 @@ func _on_mouse_hovered_text() -> void {
 
 func _on_mouse_unhovered_text() -> void {
 	reset_tween()
+	unhovered.emit()
 	t.tween_property(backstripes, ^"scale:y", 0.0, 0.3)
 	both_labels.map(_reset_label_shake)
 	for font in _iter_fonts() {
