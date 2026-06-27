@@ -1,32 +1,21 @@
 class_name Results extends Control
 
-signal txt_clicked
-signal _internal_finished
-signal finished
+var won: bool
+var stage: StageData
 
+signal finished(p_won: bool, p_stage: StageData)
+@export var status: RichTextLabel
+@export var confirm_button: Btn
 @export var bar_container: VBoxContainer
-@export var text: HiFidelityLabel
-@export var skip: RichTextLabel
 
 var _prior_offsets: Dictionary[ColorRect, Vector2]
 
-@export var lines: Array[String]
-
-static func from_lines(arr: Array[String]) -> IntroSequence {
-	var intro := Registry.create_intro()
-	intro.lines.assign(arr)
-	return intro
+static func from(p_status: bool, p_data: StageData) -> Results {
+	var res := Registry.create_results()
+	res.won = p_status
+	res.stage = p_data
+	return res
 }
-
-func _unhandled_input(event: InputEvent) -> void {
-	if event.is_action_pressed("ui_accept") {
-		txt_clicked.emit()
-	}
-	if event.is_action_pressed("skip") {
-		_internal_finished.emit()
-	}
-}
-
 
 func record_offsets() -> void {
 	for bar in iter_bars() {
@@ -36,21 +25,25 @@ func record_offsets() -> void {
 
 func _ready() -> void {
 	_wire_up_signals()
+	set_status_text()
 	record_offsets()
 	scatter()
 	begin()
 }
 
 func _wire_up_signals() -> void {
-	_internal_finished.connect(_on_internal_finished, CONNECT_ONE_SHOT)
-	text.gui_input.connect(_on_text_gui_input)
+	confirm_button.clicked.emit(_on_finished)
 }
 
-func _on_text_gui_input(ev: InputEvent) -> void {
-	if ev is InputEventMouseButton {
-		if ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT {
-			txt_clicked.emit()
-		}
+func scatter() -> void {
+	status.modulate = Color.TRANSPARENT
+}
+
+func set_status_text() -> void {
+	if won {
+		status.text = "VICTORY  VICTORY"
+	} else {
+		status.text = "DEFEAT  DEFEAT"
 	}
 }
 
@@ -73,46 +66,23 @@ func begin() -> void {
 	make_everything_appear()
 }
 
-func scatter() -> void {
-	text.immediately_set_text("...")
-	text.modulate = Color.TRANSPARENT
-	skip.modulate = Color.TRANSPARENT
-}
-
 func make_everything_appear() -> void {
 	for bar in iter_bars() {
 		t.tween_property(bar, "offset_transform_position", Vector2.ZERO, 0.7)
 	}
-	t.tween_property(text, "modulate", Color.WHITE, 0.7)
-	t.tween_property(skip, "modulate", Color.WHITE, 0.7)
-	t.finished.connect(recite_lines)
+	t.tween_property(status, "modulate", Color.WHITE, 0.7)
 }
 
 func make_everything_disappear() -> void {
 	for bar in iter_bars() {
 		t.tween_property(bar, "offset_transform_position", _prior_offsets[bar], 0.7)
 	}
-	t.tween_property(text, "modulate", Color.TRANSPARENT, 0.7)
-	t.tween_property(skip, "modulate", Color.TRANSPARENT, 0.7)
-	t.finished.connect(finished.emit)
+	t.tween_property(status, "modulate", Color.TRANSPARENT, 0.7)
 }
 
-var txt_tween: Tween
-func recite_lines() -> void {
-	txt_tween = create_tween()
-	for line in lines {
-		txt_tween.tween_callback(text.morph_into.bind(line))
-		txt_tween.tween_await(txt_clicked).set_timeout(text.zero_point_three + 2)
-	}
-	txt_tween.finished.connect(_internal_finished.emit)
-}
-
-func ensure_text_killed() -> void {
-	if txt_tween: txt_tween.kill()
-}
-
-func _on_internal_finished() -> void {
-	ensure_text_killed()
+func _on_finished() -> void {
 	reset_tween()
 	make_everything_disappear()
+	print("finished!")
+	finished.emit(won, stage)
 }

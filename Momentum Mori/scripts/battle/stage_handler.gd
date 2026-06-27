@@ -6,6 +6,7 @@ signal exit(won_stage: bool, with_data: StageData)
 
 @export var stage_dock: Control
 @export var intro_dock: Control
+@export var results_dock: Control
 
 var data: StageData
 var _field: Field
@@ -19,7 +20,10 @@ static func from(stage_data: StageData) -> StageHandler {
 
 func _unhandled_key_input(event: InputEvent) -> void {
 	if event.is_action_pressed(&"help_me_im_fucking_dying") {
-		exit.emit(true, data)
+		_spawn_win_status_screen()
+	}
+	if event.is_action_pressed(&"harakiri") {
+		_spawn_win_status_screen()
 	}
 }
 
@@ -39,6 +43,7 @@ func start_game() -> void {
 	request_make_clear_invisible.emit()
 	var field_scene := load("res://scenes/battle/field.tscn") as PackedScene
 	_field = field_scene.instantiate() as Field
+	_field.player_died.connect(_spawn_loss_status_screen)
 	stage_dock.add_child(_field)
 
 	#swap the music track defined by this stage
@@ -98,7 +103,21 @@ func _on_enemy_died() -> void {
 }
 
 func _on_all_waves_cleared() -> void {
-	exit.emit(true, data)
+	_spawn_win_status_screen()
+}
+
+func _spawn_win_status_screen() -> void {
+	var res := Results.from(true, data)
+	res.finished.connect(exit.emit)
+	results_dock.add_child(res)
+	_field.queue_free()
+}
+
+func _spawn_loss_status_screen() -> void {
+	var res := Results.from(false, data)
+	res.finished.connect(exit.emit)
+	results_dock.add_child(res)
+	_field.queue_free()
 }
 
 func _exit_tree() -> void {
